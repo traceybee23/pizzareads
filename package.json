@@ -1,0 +1,17 @@
+{
+  "name": "pizzareads",
+  "version": "1.0.0",
+  "description": "Transport yourself back to the 90s with this web app, where we're all about reliving the rad vibes while embracing our passion for books and reading. Achieve your reading goals and score awesome rewards, like free pizza! ## Database Schema Design",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend",
+    "build": "npm run --prefix backend build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
