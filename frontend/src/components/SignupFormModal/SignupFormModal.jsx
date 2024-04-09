@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useModal } from '../../context/Modal';
 import * as sessionActions from '../../store/session';
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormModal() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const sessionUser = useSelector((state) => state.session.user);
-
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -17,14 +13,13 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
-
+  const { closeModal } = useModal();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors({});
-
     if (password === confirmPassword) {
-      dispatch(
+      setErrors({});
+      return dispatch(
         sessionActions.signup({
           email,
           username,
@@ -33,24 +28,23 @@ function SignupFormPage() {
           password
         })
       )
-      .then(navigate('/'))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors)
-        }
-      });
+        .then(closeModal)
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data?.errors) {
+            setErrors(data.errors);
+          }
+        });
     }
   };
 
   useEffect(() => {
     let errObj = {}
-    if (sessionUser) navigate('/')
     if(username && username.length < 4) errObj.password = "Username must be more than 4 characters"
     if(password && password.length < 6) errObj.password = "Password must be more than 6 characters"
     if(password !== confirmPassword) errObj.confirmPassword = "Confirm Password field must be the same as the Password field"
     setErrors(errObj)
-  }, [password, confirmPassword, username, sessionUser, navigate])
+  }, [password, confirmPassword, username])
 
 
 
@@ -115,4 +109,4 @@ function SignupFormPage() {
   );
 }
 
-export default SignupFormPage;
+export default SignupFormModal;
