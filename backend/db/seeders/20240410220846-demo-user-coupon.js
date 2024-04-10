@@ -1,6 +1,6 @@
 'use strict';
 
-const { BookProgress } = require('../models');
+const { UserCoupon } = require('../models');
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
@@ -10,37 +10,28 @@ if (process.env.NODE_ENV === 'production') {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await BookProgress.bulkCreate([
+    await UserCoupon.bulkCreate([
       {
         userId: 1,
-        bookId: 1,
-        pagesRead: 10
-      },
-      {
-        userId: 1,
-        bookId: 4,
-        pagesRead: 30
+        couponId: 1,
+        redeemedDate: null
       },
       {
         userId: 2,
-        bookId: 5,
-        pagesRead: 50
+        couponId: 2,
+        redeemedDate: null
+
       },
       {
         userId: 3,
-        bookId: 5,
-        pagesRead: 60
-      },
-      {
-        userId: 2,
-        bookId: 10,
-        pagesRead: 55
+        couponId: 3,
+        redeemedDate: null
       }
     ])
   },
 
   async down (queryInterface, Sequelize) {
-    options.tableName = 'BookProgresses';
+    options.tableName = 'UserCoupons';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
       userId: { [Op.in]: [1, 2, 3] }
