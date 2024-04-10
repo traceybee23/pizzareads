@@ -18,12 +18,18 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Users' }
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       couponId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Coupons' }
+        references: {
+          model: 'Coupons',
+          key: 'id'
+        }
       },
       redeemedDate: {
         type: Sequelize.STRING,
@@ -39,7 +45,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
   },
   async down(queryInterface, Sequelize) {
     options.tableName = 'UserCoupons'
