@@ -43,15 +43,35 @@ li {
 
 .profile-dropdown {
   background-color: #ed9c36;
-  width: fit-content;
+  width: 120px;
   height: fit-content;
   padding: 20px;
   margin: 0;
   position: absolute;
   font-size: 20px;
   right: 0px;
+
 }
 
 .logout-button {
-  margin-top: 10px;
+  margin-top: 25px;
+}
+
+.login-signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.user-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-menu li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
 }

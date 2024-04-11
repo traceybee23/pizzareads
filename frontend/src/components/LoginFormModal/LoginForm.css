@@ -9,3 +9,16 @@ input {
   margin-bottom: 10px;
   width: fit-content;
 }
+
+.login-modal {
+  padding: 20px;
+
+}
+
+#modal-content {
+  border-radius: 5px;
+}
+
+.login-button {
+  width: 100%;
+}

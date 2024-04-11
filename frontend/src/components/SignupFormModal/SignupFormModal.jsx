@@ -49,7 +49,7 @@ function SignupFormModal() {
 
 
   return (
-    <div className='inputFormSignup'>
+    <div className='signup-modal'>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         {errors.email && <span className='errors'>{errors.email}</span>}
@@ -101,7 +101,9 @@ function SignupFormModal() {
             required
           />
         <div className='signupButton'>
-          <button type="submit"
+          <button
+          className='login-button' 
+          type="submit"
           disabled={!email || !password || !username || !firstName || !lastName || !!Object.values(errors).length}>Sign Up</button>
         </div>
       </form>

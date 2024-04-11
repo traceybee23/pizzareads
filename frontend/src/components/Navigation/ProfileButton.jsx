@@ -47,26 +47,44 @@ function ProfileButton({ user }) {
       </button>
       <div className={ulClassName} ref={ulRef}>
         {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
+          <div className='user-menu'>
+            <li style={{paddingBottom: 15}}>{user.username}</li>
+            <li style={{borderBottom: "2px solid #bae264"}}>
+              books
+            </li>
+            <li style={{borderBottom: "2px solid #e1709a"}}>
+              coupons
+            </li>
+            <li style={{borderBottom: "2px solid #d3a8d3"}}>
+              friends
+            </li>
+            <li style={{borderBottom: "2px solid #84dcc6"}}>
+              shop
+            </li>
             <li>
               <button className='logout-button' onClick={logout}>Log Out</button>
             </li>
-          </>
+          </div>
         ) : (
           <>
-            <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-            <OpenModalMenuItem
-              itemText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+            <div className='login-signup'>
+              <button>
+
+                <OpenModalMenuItem
+                  itemText="Log In"
+                  onItemClick={closeMenu}
+                  modalComponent={<LoginFormModal />}
+                />
+              </button>
+              <button>
+
+                <OpenModalMenuItem
+                  itemText="Sign Up"
+                  onItemClick={closeMenu}
+                  modalComponent={<SignupFormModal />}
+                />
+              </button>
+            </div>
           </>
         )}
       </div>

@@ -6,6 +6,7 @@ html {
 
 body {
   margin: 0;
+  font-family: "Roboto Mono", sans-serif;
 }
 
 
@@ -15,12 +16,12 @@ button {
   padding: 0 20px;
   background: #922e21;;
   color: #F4E9DC;
-  border: .80px groove #F4E9DC;
   font-size: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 
 button:hover {
   cursor: pointer;
 }
-
