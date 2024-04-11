@@ -7,3 +7,20 @@ html {
 body {
   margin: 0;
 }
+
+
+button {
+  height: 40px;
+  width: fit-content;
+  padding: 0 20px;
+  background: #922e21;;
+  color: #F4E9DC;
+  border: .80px groove #F4E9DC;
+  font-size: 20px;
+}
+
+
+button:hover {
+  cursor: pointer;
+}
+

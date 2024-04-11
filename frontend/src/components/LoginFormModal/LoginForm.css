@@ -9,18 +9,3 @@ input {
   margin-bottom: 10px;
   width: fit-content;
 }
-
-button {
-  height: 40px;
-  width: fit-content;
-  padding: 0 20px;
-  background: pink;
-  color: rgb(255, 255, 255);
-  border: .80px solid #00ff00;
-  font-size: 20px;
-}
-
-
-button:hover {
-  cursor: pointer;
-}

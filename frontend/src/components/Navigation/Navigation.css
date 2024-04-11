@@ -25,7 +25,6 @@ li {
 }
 
 
-
 .logo {
   height: 75px;
   padding-top: 3px;
@@ -33,7 +32,6 @@ li {
 
 .menu {
   width: fit-content;
-  align-self: flex-end;
   position: relative;
   padding: 10px;
   font-size: 50px;
@@ -48,8 +46,12 @@ li {
   width: fit-content;
   height: fit-content;
   padding: 20px;
-  margin: 65px 0 0;
-  align-self: flex-end;
+  margin: 0;
   position: absolute;
   font-size: 20px;
+  right: 0px;
+}
+
+.logout-button {
+  margin-top: 10px;
 }
