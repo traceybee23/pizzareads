@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import * as sessionActions from './store/session';
+import BooksList from './components/BooksList';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <h1 style={{color: "#922e21"}}>pizzareads</h1>
+      },
+      {
+        path: '/books',
+        element: <BooksList />
       }
     ]
   }
