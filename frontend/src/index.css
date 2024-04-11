@@ -1,1 +1,9 @@
 /* TODO: Add sitewide styles */
+
+html {
+  background-color:#F4E9DC;
+}
+
+body {
+  margin: 0;
+}

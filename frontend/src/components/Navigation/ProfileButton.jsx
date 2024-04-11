@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className='profile-button' onClick={toggleMenu}>
+      <button className='menu' onClick={toggleMenu}>
         <CiUser />
       </button>
       <ul className={ulClassName} ref={ulRef}>
