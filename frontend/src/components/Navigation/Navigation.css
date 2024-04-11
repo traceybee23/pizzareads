@@ -7,3 +7,38 @@ li {
 .hidden {
   display: none;
 }
+
+.profile-button {
+  font-size: 55px;
+  margin: 5px 0;
+  padding: 0 2px 2px;
+  background-color: transparent;
+  border: none;
+  color: #922e21;
+}
+
+.home-profile {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding-left: 0;
+  background-color: #ed9c36;
+  width: 100%;
+}
+
+.logo {
+  height: 75px;
+  padding-top: 3px;
+}
+
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  font-size: 20px;
+  right: 8px;
+  top: 88px;
+  background-color: #ed9c36;
+  align-items: center;
+  padding: 0 20px 5px;
+}
