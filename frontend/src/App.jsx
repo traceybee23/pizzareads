@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <h1 style={{color: "#922e21"}}>pizzareads</h1>
       }
     ]
   }
