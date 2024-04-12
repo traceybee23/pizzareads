@@ -30,7 +30,7 @@ const BooksList = () => {
           className="book-cards"
           key={book.id}
         >
-          <Link className="link-books">
+          <Link className="link-books" to={`/books/${book.id}`}>
 
             <img className='book-images' src={book.coverImageUrl} />
             <div className="book-deets">
