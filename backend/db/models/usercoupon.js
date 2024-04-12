@@ -9,11 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      
+      UserCoupon.belongsTo(models.User, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE' // Optional: Configure cascade delete behavior
+      });
+
+      // Associate with Books
+      UserCoupon.belongsTo(models.Coupon, {
+        foreignKey: 'couponId',
+        onDelete: 'CASCADE' // Optional: Configure cascade delete behavior
+      });
     }
   }
+
   UserCoupon.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false

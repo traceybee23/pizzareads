@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuth } = require('../../utils/auth');
-const { BookProgress } = require("../../db/models");
+const { BookProgress, User, Books } = require("../../db/models");
 
 const router = express.Router();
 
@@ -17,22 +17,24 @@ router.get('/user/:userId', requireAuth, async (req, res, next) => {
 
   if (user.id !== userId) return res.status(403).json({ "message": "Forbidden"})
 
-  const progresses = await BookProgress.findAll({
-    where: { userId: req.params.userId }
-  })
 
+  try {
+    const progresses = await BookProgress.findAll({
+      where: { userId: userId },
+      include: [
+        { model: User },
+        { model: Books }
+      ]
+    });
 
-  if (!progresses) {
-    const err = Error('Book Progress not found');
-    err.message = "Book Progress couldn't be found";
-    err.status = 404;
-    return next(err)
-  } else {
-    let progressList = [];
+    if (!progresses || progresses.length === 0) {
+      return res.status(404).json({ "message": "Book Progress not found" });
+    }
 
-    progresses.forEach(progress => progressList.push(progress.toJSON()))
-
-    res.json({ BookProgress: progressList })
+    const progressList = progresses.map(progress => progress.toJSON());
+    res.json({ BookProgress: progressList });
+  } catch (error) {
+    next(error); // Pass the error to the error handling middleware
   }
 })
 

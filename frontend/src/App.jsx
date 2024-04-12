@@ -5,6 +5,7 @@ import Navigation from './components/Navigation';
 import * as sessionActions from './store/session';
 import BooksList from './components/BooksList';
 import SingleBook from './components/SingleBook';
+import BookProgress from './components/BookProgress';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/books/:bookId',
         element: <SingleBook />
+      },
+      {
+        path: '/progress/user/:userId',
+        element: <BookProgress />
       }
     ]
   }

@@ -2,11 +2,13 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import booksReducer from './books';
+import progressReducer from './progress';
 
 const rootReducer = combineReducers({
   // ADD REDUCERS HERE
   session: sessionReducer,
-  books: booksReducer
+  books: booksReducer,
+  progress: progressReducer
 });
 
 let enhancer;
