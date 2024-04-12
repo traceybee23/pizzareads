@@ -46,14 +46,21 @@
 .book-title {
   display: flex;
   flex-direction: column;
+  font-size: large;
 }
 
 .book-author {
   display: flex;
   flex-direction: column;
+  font-size: 13px;
 }
 
 .book-genre {
   font-weight: 700;
   font-style: italic;
+  font-size: 14px;
+}
+
+.book-description {
+  font-size: 14px;
 }
