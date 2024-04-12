@@ -1,10 +1,14 @@
-
-
 const LOAD_BOOKS = 'books/LOAD_BOOKS'
+const SINGLE_BOOK = 'books/SINGLE_BOOK'
 
 const loadBooks = (books) => ({
   type: LOAD_BOOKS,
   books
+})
+
+const loadSingleBook = (book) => ({
+  type: SINGLE_BOOK,
+  book
 })
 
 export const fetchBooks = () => async dispatch => {
@@ -13,6 +17,18 @@ export const fetchBooks = () => async dispatch => {
   if (response.ok) {
     const books = await response.json();
     dispatch(loadBooks(books))
+  }
+}
+
+export const fetchSingleBook = (bookId) => async dispatch => {
+  const response = await fetch(`/api/books/${bookId}`)
+
+  if (response.ok) {
+    const bookData = await response.json();
+    dispatch(loadSingleBook(bookData, bookId))
+  } else {
+    const errors = await response.json();
+    return errors;
   }
 }
 
@@ -25,6 +41,11 @@ const booksReducer = ( state = {}, action ) => {
         booksState[book.id] = book;
       })
       return booksState
+    }
+    case SINGLE_BOOK: {
+      const bookState = {}
+      bookState[action.book.id] = action.book
+      return bookState;
     }
     default:
       return state;

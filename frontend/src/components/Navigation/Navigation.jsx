@@ -9,7 +9,7 @@ function Navigation({ isLoaded }) {
   return (
 
     <div className='nav-bar'>
-        <NavLink to="/"><img className='logo' src='./red-pizza.png'/></NavLink>
+        <NavLink to="/"><img className='logo' src='../../red-pizza.png'/></NavLink>
       {isLoaded && (
         <div className='profile-button'>
           <ProfileButton user={sessionUser} />

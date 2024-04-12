@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import * as sessionActions from './store/session';
 import BooksList from './components/BooksList';
+import SingleBook from './components/SingleBook';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: '/books',
         element: <BooksList />
+      },
+      {
+        path: '/books/:bookId',
+        element: <SingleBook />
       }
     ]
   }
