@@ -2,7 +2,10 @@
 
 html {
   background-color:#F4E9DC;
+  min-width: 1200px
 }
+
+
 
 body {
   margin: 0;

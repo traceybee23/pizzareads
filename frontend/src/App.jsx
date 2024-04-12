@@ -6,6 +6,7 @@ import * as sessionActions from './store/session';
 import BooksList from './components/BooksList';
 import SingleBook from './components/SingleBook';
 import BookProgress from './components/BookProgress';
+import LandingPage from './components/LandingPage';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1 style={{color: "#922e21"}}>pizzareads</h1>
+        element: <LandingPage />
       },
       {
         path: '/books',

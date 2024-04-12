@@ -9,12 +9,12 @@ const loadProgresses = (progress) => ({
 })
 
 
-export const fetchProgresses = (progress, userId) => async dispatch => {
+export const fetchProgresses = (userId) => async dispatch => {
   const response = await csrfFetch(`/api/progress/user/${userId}`)
 
   if (response.ok) {
     const progress = await response.json();
-    dispatch(loadProgresses(progress, userId))
+    dispatch(loadProgresses(progress))
   } else {
     const errors = await response.json();
     return errors;
@@ -25,11 +25,9 @@ const progressReducer = (state = {}, action) => {
 
   switch (action.type) {
     case LOAD_PROGRESS: {
-      const progressesState = {...state}
+      const progressesState = {}
       action.progress.BookProgress.forEach(progress => {
-        console.log(progressesState, "REDUCER")
-        console.log(action, "REDUCER2")
-        console.log(action.progress.BookProgress, "REDUCER3")
+        progressesState[progress.id] = progress
       })
       return progressesState
     }

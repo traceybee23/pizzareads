@@ -1,0 +1,77 @@
+.progress-image {
+  height: 200px;
+}
+
+.progress-image:hover {
+  cursor: pointer;
+}
+
+.currentlyreading-h1 {
+  color:#922e21;
+  text-align: left;
+  margin-left: 15px;
+}
+
+.book-progress-container {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 10px 40px;
+}
+
+.book-progress-cards {
+  display: flex;
+  margin: 10px;
+  background-color: #ed9c36;
+  padding: 20px;
+  width: 400px;
+}
+
+.progress-deets {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left;
+  margin-left: 20px;
+  width: 100%;
+}
+
+.progress-button {
+  width: fit-content;
+  height: fit-content;
+  font-size: 15px;
+  padding-bottom: 5px;
+  align-self: center;
+}
+
+.progress-title {
+  font-weight: bold;
+  font-size: larger;
+}
+
+
+
+.progressBar {
+  appearance: none;
+  height: 15px;
+  border-radius: 100px;
+  width: 100%;
+
+  /* Chrome and Safari */
+  &::-webkit-progress-bar {
+    background: #ffd8a2 ;
+
+  }
+
+  &::-webkit-progress-value {
+    background-color: #e1709a;
+
+  }
+}
+
+.progress-container {
+  width: 100%;
+  font-size: 15px;
+  text-align: center;
+
+}

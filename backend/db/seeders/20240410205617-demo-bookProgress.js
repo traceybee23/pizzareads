@@ -14,7 +14,7 @@ module.exports = {
       {
         userId: 1,
         bookId: 1,
-        pagesRead: 10
+        pagesRead: 313
       },
       {
         userId: 1,

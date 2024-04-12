@@ -1,0 +1,76 @@
+.pizza-dood {
+  position: absolute;
+  margin: 50px;
+  z-index: -1;
+  bottom: 60px;
+  right: 300px;
+
+}
+
+.ribbon-accent {
+  position: absolute;
+  z-index: -2;
+  height: 800px;
+  right: 10px;
+  bottom: 10px;
+}
+
+.purple-grid {
+  position: absolute;
+  z-index: -3;
+  top: 85px;
+  right: 1px;
+}
+
+.blue-grid {
+  position: absolute;
+  z-index: -4;
+  bottom: 1px;
+  left: 1px;
+}
+
+.pizza-dood-0 {
+  position: absolute;
+  padding-top: 190px;
+  left: 200px;
+  z-index: -1;
+  bottom: 100px;
+  height: 600px;
+}
+
+.ribbon-accent-0 {
+  position: absolute;
+  z-index: -2;
+  height: 700px;
+  right: 10px;
+  top: -2px;
+}
+
+.purple-grid-0 {
+  position: absolute;
+  z-index: -3;
+  bottom: 1px;
+  right: 1px;
+}
+
+.blue-grid-0 {
+  position: absolute;
+  z-index: -4;
+  bottom: 170px;
+  left: -130px;
+}
+
+@media (max-width: 1200px) {
+ .purple-grid {
+  right: -250px;
+ }
+}
+
+.title {
+  color: #922e21;
+  font-size: 60px;
+}
+
+h1 {
+  color: #922e21;
+}
