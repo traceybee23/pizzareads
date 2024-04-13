@@ -8,6 +8,7 @@ import SingleBook from './components/SingleBook';
 import BookProgress from './components/BookProgress';
 import LandingPage from './components/LandingPage';
 
+
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

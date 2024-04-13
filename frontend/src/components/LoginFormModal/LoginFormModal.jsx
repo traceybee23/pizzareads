@@ -2,13 +2,18 @@ import { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
+
 import './LoginForm.css';
 
 function LoginFormModal() {
+
+
   const dispatch = useDispatch();
+
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+
   const { closeModal } = useModal();
 
   const handleSubmit = (e) => {
@@ -24,27 +29,32 @@ function LoginFormModal() {
       });
   };
 
+
+
   return (
     <div className='login-modal'>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder='Email or Username'
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+        <input
+          type="text"
+          placeholder='Email or Username'
+          value={credential}
+          onChange={(e) => setCredential(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
         {errors.credential && <p>{errors.credential}</p>}
         <button className='login-button' type="submit">Log In</button>
       </form>
+      <span >
+          New to pizzareads? Signup!
+      </span>
     </div>
   );
 }

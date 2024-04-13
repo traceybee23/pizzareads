@@ -80,7 +80,7 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
   const bookProgress = await BookProgress.create(newProgress)
 
 
-  res.json(bookProgress)
+  res.json({book, bookProgress})
 
 })
 
