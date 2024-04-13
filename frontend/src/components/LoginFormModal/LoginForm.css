@@ -22,3 +22,7 @@ input {
 .login-button {
   width: 100%;
 }
+
+.modalLink:hover {
+  cursor: pointer;
+}

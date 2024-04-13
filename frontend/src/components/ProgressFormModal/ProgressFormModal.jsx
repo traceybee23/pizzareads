@@ -14,8 +14,13 @@ const ProgressFormModal = () => {
 
   const book = Object.values(useSelector(state => state.books));
 
+  const userProgress = Object.values(useSelector(state => state.progress));
   const bookId = book[0].id
   const totalPages = book[0].totalPages
+
+  const bookProgress = userProgress.filter(progress => progress.bookId === bookId)
+
+  console.log(bookProgress.length)
 
   const [pagesRead, setPagesRead] = useState(0);
   const [userId, setUserId] = useState('')
@@ -64,6 +69,7 @@ const ProgressFormModal = () => {
   return (
     <div>
       <h1>What page are you on?</h1>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"

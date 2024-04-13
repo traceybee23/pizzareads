@@ -2,6 +2,8 @@ import { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import SignupFormModal from '../SignupFormModal/SignupFormModal';
 
 import './LoginForm.css';
 
@@ -53,7 +55,11 @@ function LoginFormModal() {
         <button className='login-button' type="submit">Log In</button>
       </form>
       <span >
-          New to pizzareads? Signup!
+          New to pizzareads?
+          <OpenModalMenuItem
+          itemText={<span className="modalLink">Sign Up</span>}
+          modalComponent={<SignupFormModal />}
+          />
       </span>
     </div>
   );

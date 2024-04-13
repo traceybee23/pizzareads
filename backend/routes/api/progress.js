@@ -15,7 +15,7 @@ router.get('/user/:userId', requireAuth, async (req, res, next) => {
     })
   }
 
-  if (user.id !== userId) return res.status(403).json({ "message": "Forbidden"})
+  if (user.id !== userId) return res.status(403).json({ "message": "Forbidden" })
 
 
   try {
@@ -64,7 +64,7 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
     })
   }
 
-  if (pagesRead > book.totalPages || !pagesRead ) {
+  if (pagesRead > book.totalPages || !pagesRead) {
     return res.status(400).json({
       message: "Pages read invalid"
     })
@@ -80,7 +80,62 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
   const bookProgress = await BookProgress.create(newProgress)
 
 
-  res.json({book, bookProgress})
+  res.json({ book, bookProgress })
+
+})
+
+
+router.put('/:progressId', requireAuth, async (req, res, next) => {
+
+  const { user } = req;
+
+  const { pagesRead } = req.body;
+
+  const progressId = Number(req.params.progressId);
+
+  try {
+    const progress = await BookProgress.findOne({
+      where: {
+        id: progressId
+      },
+      include: [
+        { model: User },
+        { model: Books }
+      ]
+    })
+
+    console.log(progress.Book.totalPages)
+
+    if (!progress) {
+      return res.status(404).json({
+        message: "progress couldn't be found"
+      })
+    }
+
+    if (!user) {
+      return res.status(401).json({
+        message: "Authentication required"
+      })
+    }
+
+    if (pagesRead > progress.Book.totalPages|| !pagesRead) {
+      return res.status(400).json({
+        message: "Pages read invalid"
+      })
+    }
+
+
+    if (user) {
+      progress.set({ pagesRead })
+      await progress.save();
+      return res.status(200).json(progress)
+    }
+
+  } catch (error) {
+    error.message = "Bad Request"
+    error.status = 400
+    next(error)
+  }
 
 })
 
