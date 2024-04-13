@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './BookProgress.css'
 import { fetchProgresses } from "../../store/progress";
 import { useNavigate } from 'react-router-dom'
+import UpdateButton from "../UpdateProgress/UpdateButton";
+import booksReducer from "../../store/books";
 
 
 
@@ -46,7 +48,7 @@ const BookProgress = () => {
                   <progress className="progressBar" value={progress.pagesRead} max={progress.Book.totalPages}>
                   </progress>&nbsp;&nbsp;
                   {percentage(`${progress.Book.totalPages}`, `${progress.pagesRead}`)}%</span>
-                <button className="progress-button">update progress</button>
+                <UpdateButton progressId={progress.id} book={progress.Book} />
               </div>
             </div>
         ))}

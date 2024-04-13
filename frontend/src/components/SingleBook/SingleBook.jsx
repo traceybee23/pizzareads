@@ -4,12 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleBook } from '../../store/books';
 import ProgressButton from '../ProgressFormModal/ProgressButton';
 import './SingleBook.css'
+import UpdateButton from '../UpdateProgress/UpdateButton';
 
 const SingleBook = () => {
 
   const { bookId } = useParams();
 
   const book = useSelector(state => state.books ? state.books[bookId] : null);
+
+  const userProgress = Object.values(useSelector(state => state.progress));
+
+  const bookProgress = userProgress.filter(progress => progress.bookId === +bookId)
+
+  console.log(bookProgress.length)
 
   const dispatch = useDispatch();
 
@@ -23,9 +30,20 @@ const SingleBook = () => {
     <div className='single-book-card'>
       <div className='image-container'>
         <img className='book-image' src={book.coverImageUrl} />
-          <div className='curr-read-butt'>
-            <ProgressButton />
-          </div>
+        {
+          bookProgress.length ? (
+            bookProgress.map(progress => (
+              <div className='curr-read-butt' key={progress.id}>
+                <UpdateButton progressId={progress.id} book={book} />
+              </div>
+            ))
+          ) : (
+
+            <div className='curr-read-butt'>
+              <ProgressButton />
+            </div>
+          )
+        }
       </div>
       <div className='single-book-deets'>
         <span className='single-book-title'>{book.title}</span>

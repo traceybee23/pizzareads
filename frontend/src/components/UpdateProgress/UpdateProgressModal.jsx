@@ -1,30 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import './ProgressForm.css'
-import { createProgress } from '../../store/progress';
+import { updateProgress } from '../../store/progress';
 import { fetchProgresses } from '../../store/progress';
+import { fetchBooks } from '../../store/books';
 
+const UpdateProgressModal = ({progressId, book}) => {
 
-
-const ProgressFormModal = () => {
 
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user)
 
-  const book = Object.values(useSelector(state => state.books));
-
-  const userProgress = Object.values(useSelector(state => state.progress));
-  const bookId = book[0].id
-  const totalPages = book[0].totalPages
-
-  const bookProgress = userProgress.filter(progress => progress.bookId === bookId)
-
-  console.log(!bookProgress.length)
+  const totalPages = book.totalPages
 
   const [pagesRead, setPagesRead] = useState(0);
-  const [userId, setUserId] = useState('')
+
   const [errors, setErrors] = useState({});
 
 
@@ -35,14 +26,11 @@ const ProgressFormModal = () => {
 
     setErrors({})
 
-    if (user) setUserId(user.id)
-    const newProgress = {
-      userId,
-      bookId,
+    const updatedProgress = {
       pagesRead
     }
 
-    dispatch(createProgress(bookId, newProgress))
+    dispatch(updateProgress(progressId, updatedProgress))
     dispatch(fetchProgresses(user.id))
       .then(closeModal)
       .catch(async (response) => {
@@ -53,6 +41,9 @@ const ProgressFormModal = () => {
         }
     })
   }
+  useEffect(() => {
+    dispatch(fetchBooks())
+  }, [dispatch])
 
   useEffect(() => {
     let errObj = {}
@@ -67,11 +58,11 @@ const ProgressFormModal = () => {
 
   }, [pagesRead, totalPages, setErrors])
 
+
   return (
-    !bookProgress.length &&
+    user && 
     <div>
       <h1>What page are you on?</h1>
-
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -84,11 +75,11 @@ const ProgressFormModal = () => {
           className='add-book-progress'
           type='submit'
         >
-          add book progress
+          update book progress
         </button>
       </form>
     </div>
   )
 }
 
-export default ProgressFormModal;
+export default UpdateProgressModal;
