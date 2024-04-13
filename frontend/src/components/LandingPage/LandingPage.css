@@ -1,9 +1,9 @@
 .pizza-dood {
   position: absolute;
-  margin: 50px;
+  margin-right: 50px;
   z-index: -1;
   bottom: 60px;
-  right: 300px;
+  left: 600px;
 
 }
 
@@ -32,7 +32,7 @@
 .pizza-dood-0 {
   position: absolute;
   padding-top: 190px;
-  left: 200px;
+  left: 300px;
   z-index: -1;
   bottom: 100px;
   height: 600px;
@@ -41,7 +41,7 @@
 .ribbon-accent-0 {
   position: absolute;
   z-index: -2;
-  height: 700px;
+  height: 800px;
   right: 10px;
   top: -2px;
 }

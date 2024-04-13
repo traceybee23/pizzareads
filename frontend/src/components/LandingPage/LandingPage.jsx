@@ -7,7 +7,6 @@ import './LandingPage.css'
 const LandingPage = () => {
 
   const user = useSelector(state => state.session.user)
-  console.log(user)
 
   return (
     <div className='landing-page'>

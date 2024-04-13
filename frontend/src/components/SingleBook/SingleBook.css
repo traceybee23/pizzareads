@@ -16,7 +16,7 @@
 .single-book-deets {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   text-align: left;
   margin-left: 25px;
   color: #922e21;
