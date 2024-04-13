@@ -4,8 +4,6 @@ import './BookProgress.css'
 import { fetchProgresses } from "../../store/progress";
 import { useNavigate } from 'react-router-dom'
 import UpdateButton from "../UpdateProgress/UpdateButton";
-import booksReducer from "../../store/books";
-
 
 
 const BookProgress = () => {
