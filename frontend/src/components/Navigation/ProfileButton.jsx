@@ -5,8 +5,10 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { useNavigate } from 'react-router-dom'
 
 function ProfileButton({ user }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -49,7 +51,7 @@ function ProfileButton({ user }) {
         {user ? (
           <div className='user-menu'>
             <li style={{paddingBottom: 15}}>{user.username}</li>
-            <li style={{borderBottom: "2px solid #bae264"}}>
+            <li className='booksLink' onClick={()=> navigate('/books')} >
               books
             </li>
             <li style={{borderBottom: "2px solid #e1709a"}}>

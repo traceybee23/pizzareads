@@ -75,3 +75,12 @@ li {
   align-items: center;
   width: 140px;
 }
+
+.booksLink {
+  border-bottom: 2px solid #bae264;
+  margin-bottom: 5px;
+}
+
+.booksLink:hover {
+  cursor: pointer;
+}
