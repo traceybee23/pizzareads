@@ -35,13 +35,16 @@
   font-size: 14px;
 }
 
-.currently-reading-button {
+.currently-reading {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  justify-content: center;
   padding-top: 5px;
+
 }
 
+.curr-read-butt {
+  margin: 10px;
+}
 
 
 .image-container {
@@ -51,7 +54,12 @@
 }
 
 .book-icon {
-  padding-top: 1px;
+
   color: #e1709a;
   font-size: 25px;
+}
+
+span.cr-text {
+  text-align: center;
+
 }
