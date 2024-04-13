@@ -38,4 +38,50 @@ router.get('/user/:userId', requireAuth, async (req, res, next) => {
   }
 })
 
+router.post('/books/:bookId', requireAuth, async (req, res, next) => {
+
+  const { user } = req;
+
+  const { pagesRead } = req.body;
+
+  const bookId = Number(req.params.bookId);
+
+  const book = await Books.findOne({
+    where: {
+      id: bookId
+    }
+  })
+
+  if (!book) {
+    return res.status(404).json({
+      message: "Book couldn't be found"
+    })
+  }
+
+  if (!user) {
+    return res.status(401).json({
+      message: "Authentication required"
+    })
+  }
+
+  if (pagesRead > book.totalPages || !pagesRead ) {
+    return res.status(400).json({
+      message: "Pages read invalid"
+    })
+  }
+
+
+  let newProgress = {
+    userId: user.id,
+    bookId: bookId,
+    pagesRead: pagesRead
+  }
+
+  const bookProgress = await BookProgress.create(newProgress)
+
+
+  res.json(bookProgress)
+
+})
+
 module.exports = router

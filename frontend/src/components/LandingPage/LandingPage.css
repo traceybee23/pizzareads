@@ -1,8 +1,7 @@
 .pizza-dood {
   position: absolute;
-  margin-right: 50px;
   z-index: -1;
-  bottom: 60px;
+  bottom: 10px;
   left: 600px;
 
 }
