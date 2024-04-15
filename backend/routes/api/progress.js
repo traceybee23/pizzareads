@@ -104,7 +104,6 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
       ]
     })
 
-    console.log(progress.Book.totalPages)
 
     if (!progress) {
       return res.status(404).json({
@@ -138,5 +137,47 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
   }
 
 })
+
+router.delete('/:progressId', requireAuth, async (req, res, next) => {
+  const { user } = req
+  const progressId = req.params.progressId
+  try {
+    const progress = await BookProgress.findOne({
+      where: {
+        id: progressId
+      }
+    })
+
+    if (!progress) {
+      return res.status(404).json({
+        message: "progress couldn't be found"
+      })
+    }
+
+    if (!user) {
+      return res.status(401).json({
+        message: "Authentication required"
+      })
+    }
+
+    if (user.id !== progress.userId) {
+      return res.status(403).json({
+        message: "Forbidden"
+      })
+    }
+
+    if (user) {
+      await progress.destroy(progress)
+
+      return res.status(200).json({
+        message: "Successfully deleted"
+      })
+    }
+  } catch(error) {
+    error.message = "Bad Request"
+    error.status = 400
+    next(error)
+  }
+});
 
 module.exports = router

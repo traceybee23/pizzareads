@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSingleBook } from '../../store/books';
+import { fetchBooks, fetchSingleBook } from '../../store/books';
 import ProgressButton from '../ProgressFormModal/ProgressButton';
 import './SingleBook.css'
 import UpdateButton from '../UpdateProgress/UpdateButton';
@@ -22,9 +22,10 @@ const SingleBook = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchSingleBook(bookId));
+    dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
-  }, [dispatch, bookId])
+    dispatch(fetchSingleBook(bookId));
+  }, [dispatch, bookId, user.id])
 
 
   return (
