@@ -7,14 +7,23 @@ import { fetchBooks } from '../../store/books';
 
 const UpdateProgressModal = ({progressId, book}) => {
 
-
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user)
 
+  let currPagesRead;
+
+  const userProgress = Object.values(useSelector(state => state.progress))
+
+  const bookProgress = userProgress.filter(progress => progress.bookId === book.id)
+
+  bookProgress.map(progress => {
+    currPagesRead = progress.pagesRead
+  })
+
   const totalPages = book.totalPages
 
-  const [pagesRead, setPagesRead] = useState(0);
+  const [pagesRead, setPagesRead] = useState(currPagesRead);
 
   const [errors, setErrors] = useState({});
 
@@ -60,7 +69,7 @@ const UpdateProgressModal = ({progressId, book}) => {
 
 
   return (
-    user && 
+    user &&
     <div>
       <h1>What page are you on?</h1>
       <form onSubmit={handleSubmit}>
