@@ -35,31 +35,9 @@
   font-size: 14px;
 }
 
-.currently-reading {
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-
-}
-
-.curr-read-butt {
-  margin: 10px;
-}
-
 
 .image-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.book-icon {
-
-  color: #e1709a;
-  font-size: 25px;
-}
-
-span.cr-text {
-  text-align: center;
-
 }

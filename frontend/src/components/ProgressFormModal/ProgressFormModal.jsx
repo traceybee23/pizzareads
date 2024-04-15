@@ -5,8 +5,6 @@ import './ProgressForm.css'
 import { createProgress } from '../../store/progress';
 import { fetchProgresses } from '../../store/progress';
 
-
-
 const ProgressFormModal = () => {
 
   const dispatch = useDispatch();
@@ -67,7 +65,7 @@ const ProgressFormModal = () => {
   return (
     !bookProgress.length &&
     <div>
-      <h1>What page are you on?</h1>
+      <h1>what page are you on?</h1>
 
       <form onSubmit={handleSubmit}>
         <input

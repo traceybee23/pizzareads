@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf'
 const LOAD_PROGRESS = 'progress/LOAD_PROGRESS'
 const SINGLE_PROGRESS = 'progress/SINGLE_PROGRESS'
 const UPDATE_PROGRESS = 'progress/UPDATE_PROGRESS'
+const REMOVE_PROGRESS = 'progress/REMOVE_PROGRESS'
 
 const loadProgresses = (progress) => ({
   type: LOAD_PROGRESS,
@@ -17,6 +18,11 @@ const loadSingleProgress = (progress) => ({
 const editProgress = (progress) => ({
   type: UPDATE_PROGRESS,
   progress
+})
+
+const removeProgress = (progressId) => ({
+  type: REMOVE_PROGRESS,
+  progressId
 })
 
 export const fetchProgresses = (userId) => async dispatch => {
@@ -65,6 +71,19 @@ export const updateProgress = (progressId, progress) => async dispatch => {
   }
 }
 
+export const deleteProgress = ({progressId}) => async dispatch => {
+  const response = await csrfFetch(`api/progress/${progressId}`, {
+    method: "DELETE"
+  })
+
+  if (response.ok) {
+    dispatch(removeProgress(progressId));
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+}
+
 const progressReducer = (state = {}, action) => {
 
   switch (action.type) {
@@ -82,6 +101,11 @@ const progressReducer = (state = {}, action) => {
     }
     case UPDATE_PROGRESS: {
       return { ...state, [action.progress.id]: action.progress }
+    }
+    case REMOVE_PROGRESS: {
+      const newState = {...state}
+      delete newState[action.progressId]
+      return newState
     }
     default:
       return state
