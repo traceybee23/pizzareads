@@ -25,7 +25,6 @@ const ProgressFormModal = () => {
   const [userId, setUserId] = useState('')
   const [errors, setErrors] = useState({});
 
-
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {

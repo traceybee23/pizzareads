@@ -41,6 +41,12 @@ function ProfileButton({ user }) {
     navigate('/')
   };
 
+  const navBooks = e => {
+    e.preventDefault()
+    closeMenu()
+    navigate('/books')
+  }
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
@@ -52,7 +58,7 @@ function ProfileButton({ user }) {
         {user ? (
           <div className='user-menu'>
             <li style={{paddingBottom: 15}}>{user.username}</li>
-            <li className='booksLink' onClick={()=> navigate('/books')} >
+            <li className='booksLink' onClick={navBooks} >
               books
             </li>
             <li style={{borderBottom: "2px solid #e1709a"}}>
