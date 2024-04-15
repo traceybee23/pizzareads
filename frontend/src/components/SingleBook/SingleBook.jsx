@@ -5,6 +5,7 @@ import { fetchSingleBook } from '../../store/books';
 import ProgressButton from '../ProgressFormModal/ProgressButton';
 import './SingleBook.css'
 import UpdateButton from '../UpdateProgress/UpdateButton';
+import { fetchProgresses } from '../../store/progress';
 
 const SingleBook = () => {
 
@@ -16,12 +17,15 @@ const SingleBook = () => {
 
   const bookProgress = userProgress.filter(progress => progress.bookId === +bookId)
 
-  console.log(bookProgress.length)
+  const user = useSelector(state => state.session.user);
+
+
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchSingleBook(bookId));
+    dispatch(fetchProgresses(user.id))
   }, [dispatch, bookId])
 
 

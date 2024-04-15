@@ -21,8 +21,6 @@ const ProgressFormModal = () => {
 
   const bookProgress = userProgress.filter(progress => progress.bookId === bookId)
 
-  console.log(!bookProgress.length)
-
   const [pagesRead, setPagesRead] = useState(0);
   const [userId, setUserId] = useState('')
   const [errors, setErrors] = useState({});
@@ -42,7 +40,7 @@ const ProgressFormModal = () => {
       pagesRead
     }
 
-    dispatch(createProgress(bookId, newProgress))
+    await dispatch(createProgress(bookId, newProgress))
     dispatch(fetchProgresses(user.id))
       .then(closeModal)
       .catch(async (response) => {
