@@ -8,7 +8,7 @@
   text-align: left;
   align-self: start;
   margin-left: 15px;
-  color: #922e21
+  color: #922e21;
 }
 
 .book-cards {
@@ -31,8 +31,8 @@
   text-align: left;
   margin-left: 10px;
   justify-content: space-around;
-  color: #922e21;
-  font-weight: 600;
+  color: black;
+
 }
 
 
@@ -47,12 +47,14 @@
   display: flex;
   flex-direction: column;
   font-size: large;
+  font-weight: 700;
 }
 
 .book-author {
   display: flex;
   flex-direction: column;
   font-size: 13px;
+  font-weight: 500;
 }
 
 .book-genre {

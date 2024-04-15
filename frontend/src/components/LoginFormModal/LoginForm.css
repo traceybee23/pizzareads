@@ -12,7 +12,9 @@ input {
 
 .login-modal {
   padding: 20px;
-
+  width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 #modal-content {
@@ -20,9 +22,26 @@ input {
 }
 
 .login-button {
-  width: 100%;
+  width: fit-content;
+  align-self: center;
+  margin-top: 10px;
 }
 
 .modalLink:hover {
   cursor: pointer;
+  color: #e1709a;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.loginButtonModal {
+  background-color: #bae264;
+  color: black;
+  font-size: small;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.login-modal input {
+  margin-bottom: 15px;
 }
