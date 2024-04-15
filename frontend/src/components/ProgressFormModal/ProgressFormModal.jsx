@@ -15,17 +15,11 @@ const ProgressFormModal = () => {
 
   const book = Object.values(useSelector(state => state.books));
 
-  let currPagesRead;
-
   const userProgress = Object.values(useSelector(state => state.progress));
   const bookId = book[0].id
   const totalPages = book[0].totalPages
 
   const bookProgress = userProgress.filter(progress => progress.bookId === bookId)
-
-  
-
-  console.log(currPagesRead)
 
   const [pagesRead, setPagesRead] = useState(0);
   const [userId, setUserId] = useState('')
