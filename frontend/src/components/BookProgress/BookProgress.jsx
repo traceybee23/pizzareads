@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './BookProgress.css'
 import { fetchProgresses } from "../../store/progress";
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import UpdateButton from "../UpdateProgress/UpdateButton";
 import { fetchBooks } from "../../store/books";
 
 
 const BookProgress = () => {
-
 
   const navigate = useNavigate();
 
@@ -55,7 +54,7 @@ const BookProgress = () => {
                 </div>
               </>
           </div>
-            
+
         ))}
       </div>
     </>
