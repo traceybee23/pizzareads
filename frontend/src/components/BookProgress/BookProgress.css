@@ -103,10 +103,12 @@ span.cr-text {
 
 .progress-buttons {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+
 }
 
-button.progress-buttons {
-  height: 10px;
+.progress-buttons button {
+  width: fit-content;
+
 }

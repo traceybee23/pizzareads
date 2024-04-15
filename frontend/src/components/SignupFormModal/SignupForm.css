@@ -1,4 +1,17 @@
 
 .signup-modal {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+.signup-modal button {
+  margin: 10px;
+  width: fit-content;
+}
+
+.signup-modal span {
+  padding-bottom: 20px;
 }

@@ -55,7 +55,7 @@ const ProgressFormModal = () => {
     if (!pagesRead) errObj.pagesRead = "pages read is required"
 
     if (pagesRead && pagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
-
+    if (pagesRead && pagesRead < 0) errObj.pagesRead = "pages read is invalid"
     if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
 
     setErrors(errObj)
@@ -64,7 +64,7 @@ const ProgressFormModal = () => {
 
   return (
     !bookProgress.length &&
-    <div>
+    <div className='progress-form'>
       <h1>what page are you on?</h1>
 
       <form onSubmit={handleSubmit}>
@@ -76,6 +76,7 @@ const ProgressFormModal = () => {
         />
         {errors.pagesRead && <span className="errors">&nbsp;{errors.pagesRead}</span>}
         <button
+          disabled={!!Object.values(errors).length}
           className='add-book-progress'
           type='submit'
         >

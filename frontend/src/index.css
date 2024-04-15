@@ -2,7 +2,6 @@
 
 html {
   background-color:#F4E9DC;
-  min-width: 1200px
 }
 
 
@@ -28,9 +27,21 @@ button {
 
 input {
   font-family: "Quicksand", sans-serif;
+  margin: auto;
+
 }
 
 
 button:hover {
   cursor: pointer;
+}
+
+.errors {
+  color: #922e21;
+
+}
+
+button:disabled {
+  background-color: rgb(146, 119, 117);
+  cursor: not-allowed;
 }

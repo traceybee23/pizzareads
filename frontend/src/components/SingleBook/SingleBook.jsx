@@ -51,11 +51,11 @@ const SingleBook = () => {
       <div className='single-book-deets'>
         <span className='single-book-title'>{book.title}</span>
         <span className='single-book-author'>{book.author}</span>
-        <span>Genre: {book.genre}</span>
+        <span><span className='deet-label'>Genre:</span> {book.genre}</span>
         <span className='single-book-desc' >{book.description}</span>
-        <span>Total Pages: {book.totalPages}</span>
-        <span>Published: {book.publishedDate}</span>
-        <span>ISBN: {book.isbn}</span>
+        <span><span className='deet-label'>Total Pages:</span> {book.totalPages}</span>
+        <span><span className='deet-label'>Published:</span> {book.publicationDate}</span>
+        <span><span className='deet-label'>ISBN:</span> {book.isbn}</span>
       </div>
     </div>
   )

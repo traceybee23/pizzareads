@@ -1,0 +1,20 @@
+.progress-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+}
+
+.progress-form button {
+  margin-top: 50px;
+}
+
+.progress-form input {
+  align-self: center;
+  width: 86px;
+}
+.progress-form .errors {
+  position: absolute;
+  margin: 20px;
+  align-self: center;
+}

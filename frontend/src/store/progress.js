@@ -88,14 +88,14 @@ const progressReducer = (state = {}, action) => {
 
   switch (action.type) {
     case LOAD_PROGRESS: {
-      const progressesState = {...state}
+      const progressesState = {}
       action.progress.BookProgress.forEach(progress => {
         progressesState[progress.id] = progress
       })
       return progressesState
     }
     case SINGLE_PROGRESS: {
-      const progressState = {...state}
+      const progressState = {}
       progressState[action.progress.id] = action.progress
       return progressState
     }

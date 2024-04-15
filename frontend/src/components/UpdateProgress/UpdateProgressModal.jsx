@@ -63,14 +63,15 @@ const UpdateProgressModal = ({progressId, book}) => {
 
     if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
 
+    if (pagesRead && pagesRead < currPagesRead) errObj.pagesRead = "pages read must be greater than your previous progress"
     setErrors(errObj)
 
-  }, [pagesRead, totalPages, setErrors])
+  }, [pagesRead, totalPages, setErrors, currPagesRead])
 
 
   return (
     user &&
-    <div>
+    <div className='progress-form'>
       <h1>What page are you on?</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -81,6 +82,7 @@ const UpdateProgressModal = ({progressId, book}) => {
         />
         {errors.pagesRead && <span className="errors">&nbsp;{errors.pagesRead}</span>}
         <button
+          disabled={!!Object.values(errors).length}
           className='add-book-progress'
           type='submit'
         >

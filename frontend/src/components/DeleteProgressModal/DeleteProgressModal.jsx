@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal';
 import { deleteProgress } from '../../store/progress';
+import './DeleteProgress.css'
 
 const DeleteProgressModal = ({progressId}) => {
 
@@ -18,11 +19,11 @@ const DeleteProgressModal = ({progressId}) => {
   }
   return (
     <>
-    <div>
+    <div className='confirm-delete-modal'>
       <h1>confirm delete</h1>
       <span>are you sure you want to delete this reading progress?</span>
       <button onClick={handleDelete}>yes (delete progress)</button>
-      <button style={{backgroundColor: "darkgrey"}} onClick={closeModal}>no (keep progress)</button>
+      <button style={{backgroundColor: "rgb(146, 119, 117)"}} onClick={closeModal}>no (keep progress)</button>
     </div>
     </>
   )
