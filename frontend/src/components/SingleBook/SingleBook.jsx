@@ -30,6 +30,7 @@ const SingleBook = () => {
 
   return (
     book &&
+    <>
     <div className='single-book-card'>
       <div className='image-container'>
         <img className='book-image' src={book.coverImageUrl} />
@@ -58,6 +59,10 @@ const SingleBook = () => {
         <span><span className='deet-label'>ISBN:</span> {book.isbn}</span>
       </div>
     </div>
+      <img className="purple-grid-0" src="../../purple-grid.png" />
+      <img className="ribbon-accent-1" src="../../ribbon-accent.png" />
+      <img className="blue-grid-1" src="../../blue-grid.png" />
+    </>
   )
 }
 
