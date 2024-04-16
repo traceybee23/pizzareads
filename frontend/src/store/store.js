@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import booksReducer from './books';
 import progressReducer from './progress';
+import couponReducer from './coupons';
 
 const rootReducer = combineReducers({
   // ADD REDUCERS HERE
   session: sessionReducer,
   books: booksReducer,
-  progress: progressReducer
+  progress: progressReducer,
+  coupon: couponReducer
 });
 
 let enhancer;

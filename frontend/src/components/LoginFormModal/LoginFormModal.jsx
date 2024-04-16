@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
-import { Link } from 'react-router-dom';
 import DemoUser from './DemoUser';
 
 import './LoginForm.css';

@@ -84,3 +84,7 @@ li {
 .booksLink:hover {
   cursor: pointer;
 }
+
+.couponLink:hover {
+  cursor: pointer;
+}

@@ -7,6 +7,7 @@ import BooksList from './components/BooksList';
 import SingleBook from './components/SingleBook';
 import BookProgress from './components/BookProgress';
 import LandingPage from './components/LandingPage';
+import UserCoupons from './components/UserCoupons';
 
 
 function Layout() {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: '/progress/user/:userId',
         element: <BookProgress />
+      },
+      {
+        path: '/coupons/current',
+        element: <UserCoupons />
       }
     ]
   }
