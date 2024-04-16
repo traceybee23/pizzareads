@@ -8,6 +8,7 @@ import { fetchBooks } from "../../store/books";
 import DeleteProgressButton from "../DeleteProgressModal/DeleteProgressButton";
 
 
+
 const BookProgress = () => {
 
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const BookProgress = () => {
   const progresses = Object.values(useSelector(state => state.progress))
 
   useEffect(() => {
+
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
   }, [dispatch, user.id])
@@ -30,13 +32,15 @@ const BookProgress = () => {
     return Math.floor(per)
   }
 
+
+
   return (
     progresses &&
     <>
       <h1 className="currentlyreading-h1">currently reading</h1>
       <div className="book-progress-container">
         {user && progresses && progresses.map(progress => (
-
+          progress.completed === false &&
           progress.Book &&
           <div
             className="book-progress-cards"

@@ -11,22 +11,18 @@ const UpdateProgressModal = ({progressId, book}) => {
 
   const user = useSelector(state => state.session.user)
 
-  let currPagesRead;
-
   const userProgress = Object.values(useSelector(state => state.progress))
 
-  const bookProgress = userProgress.filter(progress => progress.bookId === book.id)
+  const bookProgress = userProgress.find(progress => progress.bookId === book.id)
 
-  bookProgress.map(progress => {
-    currPagesRead = progress.pagesRead
-  })
+  const currPagesRead = bookProgress ? bookProgress.pagesRead : 0;
 
   const totalPages = book.totalPages
 
-  const [pagesRead, setPagesRead] = useState(currPagesRead);
-
+  const [strPagesRead, setPagesRead] = useState(currPagesRead);
   const [errors, setErrors] = useState({});
 
+  let pagesRead = +strPagesRead
 
   const { closeModal } = useModal();
 
@@ -35,13 +31,17 @@ const UpdateProgressModal = ({progressId, book}) => {
 
     setErrors({})
 
-    const updatedProgress = {
-      pagesRead
+
+    const updatedProgress = { pagesRead };
+    if (pagesRead === totalPages) {
+      updatedProgress.completed = true;
     }
 
     dispatch(updateProgress(progressId, updatedProgress))
-    dispatch(fetchProgresses(user.id))
-      .then(closeModal)
+    .then(() => {
+      dispatch(fetchProgresses(user.id));
+      closeModal();
+    })
       .catch(async (response) => {
         const data = await response.json();
         if (data && data.errors) {
@@ -52,18 +52,17 @@ const UpdateProgressModal = ({progressId, book}) => {
   }
   useEffect(() => {
     dispatch(fetchBooks())
-  }, [dispatch])
+    dispatch(fetchProgresses(user.id))
+  }, [dispatch, user.id])
 
   useEffect(() => {
     let errObj = {}
 
     if (!pagesRead) errObj.pagesRead = "pages read is required"
+    if (pagesRead && strPagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
+    if (pagesRead && !Number.isInteger(+strPagesRead)) errObj.pagesRead = "pages read is invalid"
+    if (pagesRead && strPagesRead < currPagesRead) errObj.pagesRead = "pages read must be greater than your previous progress"
 
-    if (pagesRead && pagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
-
-    if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
-
-    if (pagesRead && pagesRead < currPagesRead) errObj.pagesRead = "pages read must be greater than your previous progress"
     setErrors(errObj)
 
   }, [pagesRead, totalPages, setErrors, currPagesRead])
@@ -76,7 +75,7 @@ const UpdateProgressModal = ({progressId, book}) => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={pagesRead}
+          value={strPagesRead}
           onChange={e => setPagesRead(e.target.value)}
           placeholder='pages read'
         />

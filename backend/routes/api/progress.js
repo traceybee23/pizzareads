@@ -20,7 +20,9 @@ router.get('/user/:userId', requireAuth, async (req, res, next) => {
 
   try {
     const progresses = await BookProgress.findAll({
-      where: { userId: userId },
+      where: {
+        userId: userId
+      },
       include: [
         { model: User },
         { model: Books }
@@ -96,7 +98,8 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
   try {
     const progress = await BookProgress.findOne({
       where: {
-        id: progressId
+        id: progressId,
+        completed: false
       },
       include: [
         { model: User },
@@ -107,7 +110,7 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
 
     if (!progress) {
       return res.status(404).json({
-        message: "progress couldn't be found"
+        message: "progress couldn't be found or is already completed"
       })
     }
 
@@ -117,18 +120,21 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
       })
     }
 
-    if (pagesRead > progress.Book.totalPages|| !pagesRead) {
+    if (pagesRead > progress.Book.totalPages || !pagesRead) {
       return res.status(400).json({
         message: "Pages read invalid"
       })
     }
 
-
-    if (user) {
-      progress.set({ pagesRead })
+    if (pagesRead === progress.Book.totalPages) {
+      progress.set({ pagesRead, completed: true });
       await progress.save();
-      return res.status(200).json(progress)
+    } else {
+      progress.set({ pagesRead });
+      await progress.save();
     }
+
+    return res.status(200).json(progress);
 
   } catch (error) {
     error.message = "Bad Request"
@@ -173,7 +179,7 @@ router.delete('/:progressId', requireAuth, async (req, res, next) => {
         message: "Successfully deleted"
       })
     }
-  } catch(error) {
+  } catch (error) {
     error.message = "Bad Request"
     error.status = 400
     next(error)

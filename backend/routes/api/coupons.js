@@ -7,8 +7,6 @@ const router = express.Router();
 router.get('/current', requireAuth, async (req, res, next) => {
   const { user } = req;
 
-  console.log
-
   if (!user) {
     return res.status(401).json({
       "message": "Authentication required"
@@ -35,4 +33,39 @@ router.get('/current', requireAuth, async (req, res, next) => {
   }
 })
 
+
+router.get('/', requireAuth, async (req, res, next) => {
+  const { user } = req;
+
+  if (!user) {
+    return res.status(401).json({
+      "message": "Authentication required"
+    })
+  }
+
+  if (user.totalBooksRead < 5 ) {
+    return res.status(403).json({
+      "message": "Read more books!"
+    })
+  }
+
+  if (user.totalBooksRead !== 5 && user.totalBooksRead < 10) {
+    return res.status(403).json({
+      "message": "Read more books!"
+    })
+  }
+
+  try {
+
+    const coupon = await Coupon.findOne({})
+
+    if (!coupon || coupon.length === 0) {
+      return res.status(404).json({ "message": "Coupon not found" });
+    }
+
+    res.json({ coupon })
+  } catch (error) {
+    next(error); // Pass the error to the error handling middleware
+  }
+})
 module.exports = router
