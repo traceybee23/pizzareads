@@ -31,34 +31,36 @@ const SingleBook = () => {
   return (
     book &&
     <>
-    <div className='single-book-card'>
-      <div className='image-container'>
-        <img className='book-image' src={book.coverImageUrl} />
-        {
-          bookProgress.length ? (
+      <div className='single-book-card'>
+        <div className='image-container'>
+          <img className='book-image' src={book.coverImageUrl} />
+          {bookProgress.length ? (
             bookProgress.map(progress => (
               <div className='curr-read-butt' key={progress.id}>
-                <UpdateButton progressId={progress.id} book={book} />
+                {progress.completed ? (
+                  <span>you already read this book</span>
+                ) : (
+                  <UpdateButton progressId={progress.id} book={book}/>
+                )}
               </div>
             ))
           ) : (
-
             <div className='curr-read-butt'>
-              <ProgressButton />
+              <ProgressButton   />
             </div>
-          )
-        }
+          )}
+
+        </div>
+        <div className='single-book-deets'>
+          <span className='single-book-title'>{book.title}</span>
+          <span className='single-book-author'>{book.author}</span>
+          <span><span className='deet-label'>Genre:</span> {book.genre}</span>
+          <span className='single-book-desc' >{book.description}</span>
+          <span><span className='deet-label'>Total Pages:</span> {book.totalPages}</span>
+          <span><span className='deet-label'>Published:</span> {book.publicationDate}</span>
+          <span><span className='deet-label'>ISBN:</span> {book.isbn}</span>
+        </div>
       </div>
-      <div className='single-book-deets'>
-        <span className='single-book-title'>{book.title}</span>
-        <span className='single-book-author'>{book.author}</span>
-        <span><span className='deet-label'>Genre:</span> {book.genre}</span>
-        <span className='single-book-desc' >{book.description}</span>
-        <span><span className='deet-label'>Total Pages:</span> {book.totalPages}</span>
-        <span><span className='deet-label'>Published:</span> {book.publicationDate}</span>
-        <span><span className='deet-label'>ISBN:</span> {book.isbn}</span>
-      </div>
-    </div>
       <img className="purple-grid-0" src="../../purple-grid.png" />
       <img className="ribbon-accent-1" src="../../ribbon-accent.png" />
       <img className="blue-grid-1" src="../../blue-grid.png" />

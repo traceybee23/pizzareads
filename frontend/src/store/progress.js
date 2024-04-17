@@ -55,7 +55,7 @@ export const createProgress = (bookId, progress) => async dispatch => {
 }
 
 export const updateProgress = (progressId, progress) => async dispatch => {
-  
+
   const response = await csrfFetch(`/api/progress/${progressId}`, {
     method: 'PUT',
     headers: { "Content-Type": "application/json" },

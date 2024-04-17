@@ -112,3 +112,19 @@ span.cr-text {
   width: fit-content;
 
 }
+
+.goal-progress-container {
+  position: absolute;
+  background-color: #bae264;
+  width: fit-content;
+  right: 100px;
+  top: 260px;
+  border-radius: 5px;
+  padding: 0 25px;
+  border: 2px solid ;
+  z-index: -1;
+}
+
+.goal-progress-container h2 {
+  text-align: right;
+}

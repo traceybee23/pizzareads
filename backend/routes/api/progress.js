@@ -54,6 +54,10 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
     }
   })
 
+  const progress = await BookProgress.findOne({
+    where: {userId: user.id, bookId: book.id}
+  })
+
   if (!book) {
     return res.status(404).json({
       message: "Book couldn't be found"
@@ -63,6 +67,12 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
   if (!user) {
     return res.status(401).json({
       message: "Authentication required"
+    })
+  }
+
+  if (progress) {
+    return res.status(403).json({
+      message: "Book already read or in progress"
     })
   }
 

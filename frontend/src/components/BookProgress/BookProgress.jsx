@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import UpdateButton from "../UpdateProgress/UpdateButton";
 import { fetchBooks } from "../../store/books";
 import DeleteProgressButton from "../DeleteProgressModal/DeleteProgressButton";
-
+import GoalProgress from "./GoalProgress";
+import { restoreUser } from "../../store/session";
 
 
 const BookProgress = () => {
@@ -19,11 +20,15 @@ const BookProgress = () => {
 
   const progresses = Object.values(useSelector(state => state.progress))
 
-  useEffect(() => {
+  console.log(user)
 
+  useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
-  }, [dispatch, user.id])
+    .then(() => dispatch(restoreUser()))
+  }, [dispatch, user.id ])
+
+ 
 
   const percentage = (x, y) => {
     let total = +x
@@ -31,7 +36,6 @@ const BookProgress = () => {
     let per = (read / total) * 100
     return Math.floor(per)
   }
-
 
 
   return (
@@ -65,6 +69,7 @@ const BookProgress = () => {
 
         ))}
       </div>
+      <GoalProgress user={user} />
     </>
   )
 }

@@ -4,6 +4,7 @@ import { useModal } from '../../context/Modal';
 import { updateProgress } from '../../store/progress';
 import { fetchProgresses } from '../../store/progress';
 import { fetchBooks } from '../../store/books';
+import { restoreUser } from '../../store/session';
 
 const UpdateProgressModal = ({progressId, book}) => {
 
@@ -53,15 +54,16 @@ const UpdateProgressModal = ({progressId, book}) => {
   useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
+    .then(() => dispatch(restoreUser()))
   }, [dispatch, user.id])
 
   useEffect(() => {
     let errObj = {}
 
     if (!pagesRead) errObj.pagesRead = "pages read is required"
-    if (pagesRead && strPagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
-    if (pagesRead && !Number.isInteger(+strPagesRead)) errObj.pagesRead = "pages read is invalid"
-    if (pagesRead && strPagesRead < currPagesRead) errObj.pagesRead = "pages read must be greater than your previous progress"
+    if (pagesRead && pagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
+    if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
+    if (pagesRead && pagesRead < currPagesRead) errObj.pagesRead = "pages read must be greater than your previous progress"
 
     setErrors(errObj)
 
@@ -71,14 +73,15 @@ const UpdateProgressModal = ({progressId, book}) => {
   return (
     user &&
     <div className='progress-form'>
-      <h1>What page are you on?</h1>
+      <h1>what page are you on?</h1>
       <form onSubmit={handleSubmit}>
+      <span>
         <input
           type="text"
           value={strPagesRead}
           onChange={e => setPagesRead(e.target.value)}
           placeholder='pages read'
-        />
+        /> /{totalPages}</span>
         {errors.pagesRead && <span className="errors">&nbsp;{errors.pagesRead}</span>}
         <button
           disabled={!!Object.values(errors).length}
