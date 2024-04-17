@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       )
     }
   }
-  
+
   Coupon.init({
     name: {
       type: DataTypes.STRING,
@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [1, 100]
       }
+    },
+    used: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     sequelize,
