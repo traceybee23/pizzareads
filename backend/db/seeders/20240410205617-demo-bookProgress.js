@@ -24,6 +24,30 @@ module.exports = {
         completed: false
       },
       {
+        userId: 1,
+        bookId: 7,
+        pagesRead: 227,
+        completed: true
+      },
+      {
+        userId: 1,
+        bookId: 8,
+        pagesRead: 141,
+        completed: true
+      },
+      {
+        userId: 1,
+        bookId: 9,
+        pagesRead: 274,
+        completed: true
+      },
+      {
+        userId: 1,
+        bookId: 10,
+        pagesRead: 481,
+        completed: true
+      },
+      {
         userId: 2,
         bookId: 5,
         pagesRead: 50,

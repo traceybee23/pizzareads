@@ -118,11 +118,20 @@ span.cr-text {
 
 .goal-progress-container {
   position: relative;
-  background-color: #bae264;
   width: fit-content;
-  border-radius: 5px;
   padding: 0 25px;
-  border: 2px solid;
   left: 700px;
   bottom: 580px;
+}
+
+.get-pizza-butt button {
+  background-color: #bae264;
+  color: black;
+}
+
+.goal-progress-banner {
+  background-color: #bae264;
+  border: 2px solid;
+  padding: 15px;
+  border-radius: 5px;
 }

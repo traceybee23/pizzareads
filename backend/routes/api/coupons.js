@@ -57,7 +57,6 @@ router.post('/:couponId', requireAuth, async (req, res, next) => {
 
   const coupon = await Coupon.findByPk(couponId)
 
-  console.log(coupon, "(())()()()(((((((((((()))))))))")
   if (coupon) {
     coupon.set({ used: true })
     await coupon.save();

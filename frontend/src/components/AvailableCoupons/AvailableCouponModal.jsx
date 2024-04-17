@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-
-import './AvailableCoupons.css'
+import { useModal } from '../../context/Modal';
 import { addCoupon, fetchAvailCoup } from "../../store/coupons";
+import './AvailableCoupon.css'
 
 const AvailableCoupons = () => {
 
   const dispatch = useDispatch();
-
+  const { closeModal } = useModal();
   const coupons = Object.values(useSelector(state => state.coupon));
-
 
   useEffect(() => {
     dispatch(fetchAvailCoup())
@@ -18,6 +17,7 @@ const AvailableCoupons = () => {
   const handleAddCoupon = (couponId, coupon) => {
 
     dispatch(addCoupon(couponId, coupon))
+    closeModal()
   }
 
   return (

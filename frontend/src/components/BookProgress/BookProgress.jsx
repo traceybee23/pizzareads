@@ -65,7 +65,7 @@ const BookProgress = () => {
 
         ))}
       </div>
-      <GoalProgress user={user} />
+      <GoalProgress />
     </>
   )
 }

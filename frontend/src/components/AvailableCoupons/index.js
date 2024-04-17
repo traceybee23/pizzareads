@@ -1,3 +1,3 @@
-import AvailableCoupons from "./AvailableCoupons";
+import AvailableCoupons from "./AvailableCouponModal";
 
 export default AvailableCoupons;
