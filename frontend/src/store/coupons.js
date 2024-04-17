@@ -44,14 +44,14 @@ export const fetchAvailCoup = () => async dispatch => {
   }
 }
 
-export const addCoupon = (couponId) => async dispatch => {
+export const addCoupon = (couponId, coupon) => async dispatch => {
+  console.log(couponId, coupon)
   const response = await csrfFetch(`/api/coupons/${couponId}`, {
     method: "POST"
   })
   if (response.ok) {
     const { coupon }= await response.json()
     dispatch(receiveCoupon(coupon))
-
   } else {
     const errors = await response.json();
     return errors

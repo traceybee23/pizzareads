@@ -15,7 +15,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
   try {
     const coupons = await UserCoupon.findAll({
-      where: { userId: user.id},
+      where: { userId: user.id },
       include: [
         { model: User },
         { model: Coupon }
@@ -26,13 +26,13 @@ router.get('/current', requireAuth, async (req, res, next) => {
       return res.status(404).json({ "message": "User Coupon not found" });
     }
 
-    res.json( coupons )
+    res.json(coupons)
   } catch (error) {
     next(error); // Pass the error to the error handling middleware
   }
 })
 
-router.post('/:couponId', requireAuth, async(req, res, next) => {
+router.post('/:couponId', requireAuth, async (req, res, next) => {
   const { user } = req;
 
   const couponId = Number(req.params.couponId);
@@ -43,7 +43,7 @@ router.post('/:couponId', requireAuth, async(req, res, next) => {
     })
   }
 
-  if (user.totalBooksRead < 5 ) {
+  if (user.totalBooksRead < 5) {
     return res.status(403).json({
       "message": "Read more books!"
     })
@@ -55,20 +55,31 @@ router.post('/:couponId', requireAuth, async(req, res, next) => {
     })
   }
 
-  const coupon = await Coupon.findOne({
-    where: {
-      id: couponId
-    }
-  })
+  const coupon = await Coupon.findByPk(couponId)
 
-  let newCoupon = {
-    userId: user.id,
-    couponId: couponId
+  console.log(coupon, "(())()()()(((((((((((()))))))))")
+  if (coupon) {
+    coupon.set({ used: true })
+    await coupon.save();
+  } else {
+    return res.status(404).json({
+      message: "coupon couldn't be found or is already used"
+    })
   }
 
-  const userCoupon = await UserCoupon.create(newCoupon)
+  try {
+    let newCoupon = {
+      userId: user.id,
+      couponId: coupon.id
+    }
 
-  res.json({ coupon, userCoupon })
+    const userCoupon = await UserCoupon.create(newCoupon)
+
+    res.json({ coupon, userCoupon })
+  } catch {
+    res.json({"MESSAGE": "FAILURE"})
+  }
+
 })
 
 
@@ -81,7 +92,7 @@ router.get('/', requireAuth, async (req, res, next) => {
     })
   }
 
-  if (user.totalBooksRead < 5 ) {
+  if (user.totalBooksRead < 5) {
     return res.status(403).json({
       "message": "Read more books!"
     })
@@ -95,13 +106,17 @@ router.get('/', requireAuth, async (req, res, next) => {
 
   try {
 
-    const coupon = await Coupon.findOne({})
+    const coupon = await Coupon.findOne({
+      where: {
+        used: false
+      }
+    })
 
     if (!coupon || coupon.length === 0) {
       return res.status(404).json({ "message": "Coupon not found" });
     }
 
-    res.json( coupon )
+    res.json(coupon)
   } catch (error) {
     next(error); // Pass the error to the error handling middleware
   }

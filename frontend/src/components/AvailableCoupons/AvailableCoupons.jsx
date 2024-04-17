@@ -8,13 +8,14 @@ const AvailableCoupons = () => {
 
   const dispatch = useDispatch();
 
-  const coupon = useSelector(state => state.coupon[1]);
+  const coupons = Object.values(useSelector(state => state.coupon));
+
 
   useEffect(() => {
     dispatch(fetchAvailCoup())
   }, [dispatch])
 
-  const handleAddCoupon = (couponId) => {
+  const handleAddCoupon = (couponId, coupon) => {
 
     dispatch(addCoupon(couponId, coupon))
   }
@@ -22,16 +23,16 @@ const AvailableCoupons = () => {
   return (
     <div className="avail-coup">
       <div className="coupons-container">
-        {coupon &&
+        {coupons && coupons.map(coupon => (
           <div key={coupon.id} className="coupon-cards">
             <img src="../../red-pizza.png" />
             <span>{coupon.name}</span>
             <span>
               {coupon.description}
             </span>
-            <button onClick={() => handleAddCoupon(coupon.id)}>add to your collection</button>
+            <button onClick={() => handleAddCoupon(coupon.id, coupon)}>add to your collection</button>
           </div>
-        }
+        ))}
       </div>
     </div>
   )

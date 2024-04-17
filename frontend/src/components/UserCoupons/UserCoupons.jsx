@@ -9,7 +9,7 @@ const UserCoupons = () => {
 
   const coupons = Object.values(useSelector(state => state.coupon))
 
-  console.log(coupons.map(coupon => console.log(coupon)))
+
   const [redeemedCoupons, setRedeemedCoupons] = useState([]);
 
   useEffect(() => {
