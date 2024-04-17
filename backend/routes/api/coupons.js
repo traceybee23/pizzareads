@@ -26,8 +26,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
       return res.status(404).json({ "message": "User Coupon not found" });
     }
 
-    const couponList = coupons.map(coupon => coupon.toJSON());
-    res.json({ UserCoupons: couponList })
+    res.json( coupons )
   } catch (error) {
     next(error); // Pass the error to the error handling middleware
   }
@@ -102,7 +101,7 @@ router.get('/', requireAuth, async (req, res, next) => {
       return res.status(404).json({ "message": "Coupon not found" });
     }
 
-    res.json({ coupon })
+    res.json( coupon )
   } catch (error) {
     next(error); // Pass the error to the error handling middleware
   }

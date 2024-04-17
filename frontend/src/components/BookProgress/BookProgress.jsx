@@ -27,14 +27,12 @@ const BookProgress = () => {
   }, [dispatch, user.id ])
 
 
-
   const percentage = (x, y) => {
     let total = +x
     let read = +y
     let per = (read / total) * 100
     return Math.floor(per)
   }
-
 
   return (
     progresses &&

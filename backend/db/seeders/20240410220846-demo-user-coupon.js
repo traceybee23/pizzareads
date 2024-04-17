@@ -14,18 +14,18 @@ module.exports = {
       {
         userId: 1,
         couponId: 1,
-        redeemedDate: null
+        redeemedDate: "2024-04-17T18:03:56.337Z"
       },
       {
         userId: 2,
         couponId: 2,
-        redeemedDate: null
+        redeemedDate: "2024-04-17T18:03:56.337Z"
 
       },
       {
         userId: 3,
         couponId: 3,
-        redeemedDate: null
+        redeemedDate: "2024-04-17T18:03:56.337Z"
       }
     ])
   },

@@ -2,33 +2,36 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import './AvailableCoupons.css'
-import { fetchAvailCoup } from "../../store/coupons";
+import { addCoupon, fetchAvailCoup } from "../../store/coupons";
 
 const AvailableCoupons = () => {
 
   const dispatch = useDispatch();
 
-  const coupon = Object.values(useSelector(state => state.coupon))
-
-  console.log(coupon)
+  const coupon = useSelector(state => state.coupon[1]);
 
   useEffect(() => {
     dispatch(fetchAvailCoup())
   }, [dispatch])
 
+  const handleAddCoupon = (couponId) => {
+
+    dispatch(addCoupon(couponId, coupon))
+  }
+
   return (
     <div className="avail-coup">
       <div className="coupons-container">
-        {coupon && coupon.map(coup => (
-          <div key={coup.id} className="coupon-cards">
+        {coupon &&
+          <div key={coupon.id} className="coupon-cards">
             <img src="../../red-pizza.png" />
-            <span>{coup.coupon.name}</span>
+            <span>{coupon.name}</span>
             <span>
-              {coup.coupon.description}
+              {coupon.description}
             </span>
-            <button>add to your collection</button>
+            <button onClick={() => handleAddCoupon(coupon.id)}>add to your collection</button>
           </div>
-        ))}
+        }
       </div>
     </div>
   )
