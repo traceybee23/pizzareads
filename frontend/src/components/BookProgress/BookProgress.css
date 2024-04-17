@@ -18,6 +18,8 @@
   flex-direction: column;
   width: fit-content;
   margin: 10px 40px;
+  overflow-y: scroll;
+  height: 658px;
 }
 
 .book-progress-cards {
@@ -114,17 +116,13 @@ span.cr-text {
 }
 
 .goal-progress-container {
-  position: absolute;
+  position: relative;
   background-color: #bae264;
   width: fit-content;
-  right: 100px;
-  top: 260px;
   border-radius: 5px;
   padding: 0 25px;
   border: 2px solid ;
   z-index: -1;
-}
-
-.goal-progress-container h2 {
-  text-align: right;
+  left: 700px;
+  bottom: 580px;
 }
