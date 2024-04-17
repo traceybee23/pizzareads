@@ -1,5 +1,5 @@
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import ProgressButton from "../ProgressFormModal/ProgressButton";
+
 import AvailableCoupons from "./AvailableCouponModal";
 
 const AvailableCouponButton = () => {
