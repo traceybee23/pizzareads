@@ -19,6 +19,7 @@
   width: fit-content;
   margin: 10px 40px;
   overflow-y: scroll;
+  scrollbar-color: transparent transparent;
   height: 658px;
 }
 
@@ -121,8 +122,7 @@ span.cr-text {
   width: fit-content;
   border-radius: 5px;
   padding: 0 25px;
-  border: 2px solid ;
-  z-index: -1;
+  border: 2px solid;
   left: 700px;
   bottom: 580px;
 }

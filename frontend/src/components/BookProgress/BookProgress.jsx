@@ -20,15 +20,13 @@ const BookProgress = () => {
 
   const progresses = Object.values(useSelector(state => state.progress))
 
-  console.log(user)
-
   useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
     .then(() => dispatch(restoreUser()))
   }, [dispatch, user.id ])
 
- 
+
 
   const percentage = (x, y) => {
     let total = +x

@@ -1,13 +1,11 @@
 
 import { useSelector } from 'react-redux';
-
+import { Link } from 'react-router-dom'
 
 const GoalProgress = () => {
 
   const progresses = Object.values(useSelector(state => state.progress));
-
   const complete = progresses.filter(progress => progress.completed === true)
-
   const count = complete.length
 
   const milestone = (count) => {
@@ -22,7 +20,7 @@ const GoalProgress = () => {
   return (
     <div className='goal-progress-container'>
       {count < 5 && <h2> You are {milestone(count)} books away from a free pizza!</h2>}
-      {count === 5 && <span>Click for free pizza</span>}
+      {count === 5 && <Link to={'/coupons'}>Click for free pizza</Link>}
       {(count > 5 && count < 10) && <h2> You are {milestone(count)} books away from a free pizza!</h2>}
       {count === 10 && <span>Click for free pizza</span>}
       {/* Add similar conditions for other milestones */}

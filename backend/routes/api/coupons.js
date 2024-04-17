@@ -33,6 +33,45 @@ router.get('/current', requireAuth, async (req, res, next) => {
   }
 })
 
+router.post('/:couponId', requireAuth, async(req, res, next) => {
+  const { user } = req;
+
+  const couponId = Number(req.params.couponId);
+
+  if (!user) {
+    return res.status(401).json({
+      "message": "Authentication required"
+    })
+  }
+
+  if (user.totalBooksRead < 5 ) {
+    return res.status(403).json({
+      "message": "Read more books!"
+    })
+  }
+
+  if (user.totalBooksRead !== 5 && user.totalBooksRead < 10) {
+    return res.status(403).json({
+      "message": "Read more books!"
+    })
+  }
+
+  const coupon = await Coupon.findOne({
+    where: {
+      id: couponId
+    }
+  })
+
+  let newCoupon = {
+    userId: user.id,
+    couponId: couponId
+  }
+
+  const userCoupon = await UserCoupon.create(newCoupon)
+
+  res.json({ coupon, userCoupon })
+})
+
 
 router.get('/', requireAuth, async (req, res, next) => {
   const { user } = req;
