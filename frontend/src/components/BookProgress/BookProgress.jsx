@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import UpdateButton from "../UpdateProgress/UpdateButton";
 import { fetchBooks } from "../../store/books";
 import DeleteProgressButton from "../DeleteProgressModal/DeleteProgressButton";
+import GoalProgress from "./GoalProgress";
+import { restoreUser } from "../../store/session";
 
 
 const BookProgress = () => {
@@ -21,7 +23,9 @@ const BookProgress = () => {
   useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
-  }, [dispatch, user.id])
+    .then(() => dispatch(restoreUser()))
+  }, [dispatch, user.id ])
+
 
   const percentage = (x, y) => {
     let total = +x
@@ -36,7 +40,7 @@ const BookProgress = () => {
       <h1 className="currentlyreading-h1">currently reading</h1>
       <div className="book-progress-container">
         {user && progresses && progresses.map(progress => (
-
+          progress.completed === false &&
           progress.Book &&
           <div
             className="book-progress-cards"
@@ -61,6 +65,7 @@ const BookProgress = () => {
 
         ))}
       </div>
+      <GoalProgress />
     </>
   )
 }

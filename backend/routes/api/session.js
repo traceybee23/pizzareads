@@ -3,10 +3,11 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Books, BookProgress } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+
 
 const router = express.Router();
 
@@ -31,8 +32,15 @@ router.post('/', validateLogin, async (req, res, next) => {
           username: credential,
           email: credential
         }
-      }
+      },
     });
+
+    const count = await BookProgress.count({
+      where: {
+        userId: user.id,
+        completed: true
+      }
+    })
 
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
       const err = new Error('Login failed');
@@ -48,7 +56,7 @@ router.post('/', validateLogin, async (req, res, next) => {
       lastName: user.lastName,
       email: user.email,
       username: user.username,
-      totalBooksRead: user.totalBooksRead
+      totalBooksRead: count
     };
 
     await setTokenCookie(res, safeUser);
@@ -67,16 +75,24 @@ router.delete('/', (_req, res) => {
 );
 
 // Restore session user
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
     const { user } = req;
+
     if (user) {
+      const count = await BookProgress.count({
+        where: {
+          userId: user.id,
+          completed: true
+        }
+      })
+
       const safeUser = {
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
         username: user.username,
-        totalBooksRead: user.totalBooksRead
+        totalBooksRead: count
       };
       return res.json({
         user: safeUser

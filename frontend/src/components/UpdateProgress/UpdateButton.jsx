@@ -10,7 +10,6 @@ const UpdateButton = ({progressId, book}) => {
   const user = useSelector(state => state.session.user)
 
 
-
   return (
     <>
       {user ? (

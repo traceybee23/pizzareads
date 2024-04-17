@@ -36,15 +36,14 @@ const router = express.Router();
 router.post('/', validateSignup, async (req, res) => {
     const { email, password, username, firstName, lastName } = req.body;
     const hashedPassword = bcrypt.hashSync(password);
-    const user = await User.create({ email, username, hashedPassword, firstName, lastName, totalBooksRead: 0 });
+    const user = await User.create({ email, username, hashedPassword, firstName, lastName });
 
     const safeUser = {
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      username: user.username,
-      totalBooksRead: user.totalBooksRead
+      username: user.username
     };
 
     await setTokenCookie(res, safeUser);

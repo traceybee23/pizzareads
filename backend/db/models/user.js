@@ -65,10 +65,6 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60]
         }
       },
-      totalBooksRead: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
-      }
     }, {
       sequelize,
       modelName: 'User',

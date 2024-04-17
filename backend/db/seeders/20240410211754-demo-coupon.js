@@ -15,32 +15,38 @@ module.exports = {
       {
         name: 'Free Pizza',
         code: 'PIZZA123',
-        description: 'Get a free pizza!'
+        description: 'Get a free pizza!',
+        used: true
       },
       {
         name: 'Free Pizza',
         code: 'PIZZA456',
-        description: 'Get a free pizza!'
+        description: 'Get a free pizza!',
+        used: true
       },
       {
         name: 'Free Pizza',
         code: 'PIZZA789',
-        description: 'Get a free pizza!'
+        description: 'Get a free pizza!',
+        used: true
       },
       {
         name: 'Free Pizza',
         code: 'PIZZA987',
-        description: 'Get a free pizza!'
+        description: 'Get a free pizza!',
+        used: false
       },
       {
         name: 'Free Pizza',
         code: 'PIZZA654',
-        description: 'Get a free pizza!'
+        description: 'Get a free pizza!',
+        used: false
       },
       {
         name: 'Free Pizza',
         code: 'PIZZA321',
-        description: 'Get a free pizza!'
+        description: 'Get a free pizza!',
+        used: false
       },
     ])
   },

@@ -57,7 +57,7 @@ const ProgressFormModal = () => {
     if (pagesRead && pagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
     if (pagesRead && pagesRead < 0) errObj.pagesRead = "pages read is invalid"
     if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
-
+    if (pagesRead && +pagesRead === totalPages) errObj.pagesRead = 'start book progress before completing the book'
     setErrors(errObj)
 
   }, [pagesRead, totalPages, setErrors])

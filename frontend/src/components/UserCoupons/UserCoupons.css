@@ -1,0 +1,43 @@
+.coupons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.coupon-cards {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e1709a;
+  width: fit-content;
+  align-self: center;
+  padding: 20px;
+  border-radius: 0 20px;
+  background-color: white;
+}
+
+.coupon-cards span {
+  margin: 10px;
+  padding-left: 100px;
+  font-size: large;
+  font-weight: 600;
+}
+
+.coupon-cards button {
+  background-color:#bae264;
+  color: black;
+  align-self: center;
+  margin: 10px;
+  font-size: medium;
+}
+
+.coupon-cards img {
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+span.coupon-code {
+  font-weight: 400;
+  padding-left: 0;
+}

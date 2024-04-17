@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
+import DemoUser from './DemoUser';
 
 import './LoginForm.css';
 
@@ -32,7 +33,6 @@ function LoginFormModal() {
   };
 
 
-
   return (
     <div className='login-modal'>
       <h1>Log In</h1>
@@ -51,16 +51,17 @@ function LoginFormModal() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {errors.credential && <p>{errors.credential}</p>}
+        <span className='errors'>{errors.credential && <p>{errors.credential}</p>}</span>
         <button className='login-button' type="submit">Log In</button>
       </form>
       <span >
-          New to pizzareads?
+          new to pizzareads?
           <OpenModalMenuItem
-          itemText={<span className="modalLink">Sign Up</span>}
+          itemText={<span className="modalLink">sign up</span>}
           modalComponent={<SignupFormModal />}
           />
       </span>
+      <div><DemoUser /></div>
     </div>
   );
 }

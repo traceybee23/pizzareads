@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import * as sessionActions from '../../store/session';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import LoginFormModal from '../LoginFormModal';
 import './SignupForm.css';
 
 function SignupFormModal() {
@@ -50,7 +52,7 @@ function SignupFormModal() {
 
   return (
     <div className='signup-modal'>
-      <h1>Sign Up</h1>
+      <h1>sign up</h1>
       <form onSubmit={handleSubmit}>
         {errors.email && <span className='errors'>{errors.email}</span>}
         {errors.username && <span className='errors'>{errors.username}</span>}
@@ -102,11 +104,18 @@ function SignupFormModal() {
           />
         <div className='signupButton'>
           <button
-          className='login-button' 
+          className='login-button'
           type="submit"
           disabled={!email || !password || !username || !firstName || !lastName || !!Object.values(errors).length}>Sign Up</button>
         </div>
       </form>
+      <span >
+          already on pizzareads?
+          <OpenModalMenuItem
+          itemText={<span className="modalLink">log in</span>}
+          modalComponent={<LoginFormModal />}
+          />
+      </span>
     </div>
   );
 }

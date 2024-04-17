@@ -2,13 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 750px;
+  overflow-y: scroll;
+  padding-top: 20px;
 }
 
 .books-header {
   text-align: left;
   align-self: start;
-  margin-left: 15px;
-  color: #922e21
+  margin: 0 15px;
+  color: #922e21;
+  position: absolute;
 }
 
 .book-cards {
@@ -31,8 +35,8 @@
   text-align: left;
   margin-left: 10px;
   justify-content: space-around;
-  color: #922e21;
-  font-weight: 600;
+  color: black;
+
 }
 
 
@@ -47,12 +51,14 @@
   display: flex;
   flex-direction: column;
   font-size: large;
+  font-weight: 700;
 }
 
 .book-author {
   display: flex;
   flex-direction: column;
   font-size: 13px;
+  font-weight: 500;
 }
 
 .book-genre {
@@ -64,3 +70,11 @@
 .book-description {
   font-size: 14px;
 }
+
+/* .pizza-dood-list {
+  position: absolute;
+  top: 352px;
+  z-index: -1;
+  left: 10px;
+  height: 400px;
+} */

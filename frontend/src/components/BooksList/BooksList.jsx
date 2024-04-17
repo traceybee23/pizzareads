@@ -23,28 +23,34 @@ const BooksList = () => {
   }
 
   return (
-    <div className="books-container">
-      <h1 className="books-header" >Books</h1>
-      {books && books.map(book => (
-        <div
-          className="book-cards"
-          key={book.id}
-        >
-          <Link className="link-books" to={`/books/${book.id}`}>
+    <>
+      <div className="books-container">
+        <h1 className="books-header" >books</h1>
+        {books && books.map(book => (
+          <div
+            className="book-cards"
+            key={book.id}
+          >
+            <Link className="link-books" to={`/books/${book.id}`}>
 
-            <img className='book-images' src={book.coverImageUrl} />
-            <div className="book-deets">
-              <span className="book-title">{book.title}</span>
-              <span className="book-author">{book.author}</span>
-              <span className="book-genre">{book.genre}</span>
-              <span className="book-description">{descriptionSubstr(book.description)}</span>
-            </div>
+              <img className='book-images' src={book.coverImageUrl} />
+              <div className="book-deets">
+                <span className="book-title">{book.title}</span>
+                <span className="book-author">{book.author}</span>
+                <span className="book-genre">{book.genre}</span>
+                <span className="book-description">{descriptionSubstr(book.description)}</span>
+              </div>
 
-          </Link>
+            </Link>
 
-        </div>
-      ))}
-    </div>
+          </div>
+        ))}
+      </div>
+      <img className="purple-grid" src="../../purple-grid.png" />
+      {/* <img className="pizza-dood-list" src="../../pizza-dood.png" /> */}
+      <img className="ribbon-accent" src="../../ribbon-accent.png" />
+      <img className="blue-grid" src="../../blue-grid.png" />
+    </>
   )
 }
 

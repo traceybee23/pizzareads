@@ -14,27 +14,56 @@ module.exports = {
       {
         userId: 1,
         bookId: 1,
-        pagesRead: 313
+        pagesRead: 313,
+        completed: false
       },
       {
         userId: 1,
         bookId: 4,
-        pagesRead: 30
+        pagesRead: 30,
+        completed: false
+      },
+      {
+        userId: 1,
+        bookId: 7,
+        pagesRead: 227,
+        completed: true
+      },
+      {
+        userId: 1,
+        bookId: 8,
+        pagesRead: 141,
+        completed: true
+      },
+      {
+        userId: 1,
+        bookId: 9,
+        pagesRead: 274,
+        completed: true
+      },
+      {
+        userId: 1,
+        bookId: 10,
+        pagesRead: 481,
+        completed: true
       },
       {
         userId: 2,
         bookId: 5,
-        pagesRead: 50
+        pagesRead: 50,
+        completed: false
       },
       {
         userId: 3,
         bookId: 5,
-        pagesRead: 60
+        pagesRead: 60,
+        completed: false
       },
       {
         userId: 2,
         bookId: 10,
-        pagesRead: 55
+        pagesRead: 55,
+        completed: false
       }
     ])
   },

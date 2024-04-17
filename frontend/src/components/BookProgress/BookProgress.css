@@ -18,6 +18,9 @@
   flex-direction: column;
   width: fit-content;
   margin: 10px 40px;
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent;
+  height: 658px;
 }
 
 .book-progress-cards {
@@ -111,4 +114,24 @@ span.cr-text {
 .progress-buttons button {
   width: fit-content;
 
+}
+
+.goal-progress-container {
+  position: relative;
+  width: fit-content;
+  padding: 0 25px;
+  left: 700px;
+  bottom: 580px;
+}
+
+.get-pizza-butt button {
+  background-color: #bae264;
+  color: black;
+}
+
+.goal-progress-banner {
+  background-color: #bae264;
+  border: 2px solid;
+  padding: 15px;
+  border-radius: 5px;
 }

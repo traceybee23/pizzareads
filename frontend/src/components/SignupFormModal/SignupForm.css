@@ -5,6 +5,8 @@
   flex-direction: column;
   justify-content: space-around;
   align-content: space-around;
+  width: 500px;
+  height: 600px;
 }
 
 .signup-modal button {
@@ -14,4 +16,14 @@
 
 .signup-modal span {
   padding-bottom: 20px;
+}
+
+.signup-modal input {
+  margin: 10px;
+  align-self: center;
+
+}
+
+.signup-modal.errors {
+  position: absolute;
 }

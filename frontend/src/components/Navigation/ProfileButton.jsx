@@ -47,6 +47,13 @@ function ProfileButton({ user }) {
     navigate('/books')
   }
 
+  const navCoupons = e => {
+    e.preventDefault()
+    closeMenu()
+    navigate('/coupons/current')
+  }
+
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
@@ -57,17 +64,20 @@ function ProfileButton({ user }) {
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <div className='user-menu'>
-            <li style={{paddingBottom: 15}}>{user.username}</li>
+            <li style={{ paddingBottom: 15 }}>{user.username}</li>
             <li className='booksLink' onClick={navBooks} >
               books
             </li>
-            <li style={{borderBottom: "2px solid #e1709a"}}>
+            <li
+              className='couponLink'
+              onClick={navCoupons}
+              style={{ borderBottom: "2px solid #e1709a" }}>
               coupons
             </li>
-            <li style={{borderBottom: "2px solid #d3a8d3"}}>
+            <li style={{ borderBottom: "2px solid #d3a8d3" }}>
               friends
             </li>
-            <li style={{borderBottom: "2px solid #84dcc6"}}>
+            <li style={{ borderBottom: "2px solid #84dcc6" }}>
               shop
             </li>
             <li>
