@@ -41,3 +41,9 @@ span.coupon-code {
   font-weight: 400;
   padding-left: 0;
 }
+
+.no-coupons {
+  padding: 100px;
+  margin: auto;
+  font-size: larger;
+}

@@ -9,20 +9,21 @@ const UserCoupons = () => {
 
   const coupons = Object.values(useSelector(state => state.coupon))
 
-
   const [redeemedCoupons, setRedeemedCoupons] = useState([]);
 
   useEffect(() => {
+    if (coupons.length) {
     dispatch(fetchCoupons())
-  }, [dispatch])
+    }
+  }, [dispatch, coupons.length])
 
   const redeemCoupon = (couponId) => {
     setRedeemedCoupons([...redeemedCoupons, couponId])
-   
+
   }
 
   return (
-    coupons &&
+    coupons.length !== 0 ? (
     <div className="coupons-container">
       <h1>your coupons</h1>
       {coupons && coupons.map(coupon => (
@@ -51,6 +52,11 @@ const UserCoupons = () => {
       ))
       }
     </div>
+    ) : (
+      <div className="no-coupons">
+      you dont have any coupons yet! read more books!
+      </div>
+    )
   )
 }
 
