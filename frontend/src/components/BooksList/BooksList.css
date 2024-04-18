@@ -5,6 +5,7 @@
   height: 750px;
   overflow-y: scroll;
   padding-top: 20px;
+  scrollbar-color: transparent transparent;
 }
 
 .books-header {

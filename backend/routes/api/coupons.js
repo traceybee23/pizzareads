@@ -4,6 +4,7 @@ const { Coupon, User, UserCoupon } = require("../../db/models");
 
 const router = express.Router();
 
+
 router.get('/current', requireAuth, async (req, res, next) => {
   const { user } = req;
 
@@ -27,6 +28,60 @@ router.get('/current', requireAuth, async (req, res, next) => {
     }
 
     res.json(coupons)
+  } catch (error) {
+    next(error); // Pass the error to the error handling middleware
+  }
+})
+
+router.put('/:couponId',  async (req, res, next) => {
+  const { user } = req;
+
+  const couponId = Number(req.params.couponId);
+
+
+  if (!user) {
+    return res.status(401).json({
+      "message": "Authentication required"
+    })
+  }
+
+  if (user.totalBooksRead < 5) {
+    return res.status(403).json({
+      "message": "Read more books!"
+    })
+  }
+
+  if (user.totalBooksRead !== 5 && user.totalBooksRead < 10) {
+    return res.status(403).json({
+      "message": "Read more books!"
+    })
+  }
+  try {
+    const coupon = await UserCoupon.findOne({
+      where: { couponId: couponId },
+      include: [
+        { model: Coupon }
+      ]
+    })
+
+    const currDate = Date.now();
+
+    const date = new Date(currDate);
+
+    const jsonDate = date.toJSON();
+
+
+    if (coupon) {
+      coupon.set({ redeemedDate: jsonDate })
+      await coupon.save();
+    } else {
+      return res.status(404).json({
+        message: "coupon couldn't be found or is already used"
+      })
+    }
+
+    res.json(coupon)
+
   } catch (error) {
     next(error); // Pass the error to the error handling middleware
   }
@@ -75,8 +130,8 @@ router.post('/:couponId', requireAuth, async (req, res, next) => {
     const userCoupon = await UserCoupon.create(newCoupon)
 
     res.json({ coupon, userCoupon })
-  } catch {
-    res.json({"MESSAGE": "FAILURE"})
+  } catch (error) {
+    next(error); // Pass the error to the error handling middleware
   }
 
 })

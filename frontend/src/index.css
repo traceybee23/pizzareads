@@ -45,3 +45,10 @@ button:disabled {
   background-color: rgb(146, 119, 117);
   cursor: not-allowed;
 }
+
+link:hover {
+  cursor: pointer;
+  color: #e1709a;
+  text-decoration: underline;
+  font-weight: bold;
+}

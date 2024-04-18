@@ -135,3 +135,27 @@ span.cr-text {
   padding: 15px;
   border-radius: 5px;
 }
+
+.redeem-coupon-link {
+  background-color: #bae264;
+  border: 2px solid;
+  padding: 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+
+.redeem-coupon-link:hover {
+  cursor: pointer;
+  color: #e1709a;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.get-pizza-butt button:hover {
+  cursor: pointer;
+  color: #e1709a;
+  text-decoration: underline;
+  font-weight: bold;
+}

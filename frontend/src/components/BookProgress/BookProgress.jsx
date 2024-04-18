@@ -8,6 +8,7 @@ import { fetchBooks } from "../../store/books";
 import DeleteProgressButton from "../DeleteProgressModal/DeleteProgressButton";
 import GoalProgress from "./GoalProgress";
 import { restoreUser } from "../../store/session";
+import { fetchCoupons } from "../../store/coupons";
 
 
 const BookProgress = () => {
@@ -20,11 +21,16 @@ const BookProgress = () => {
 
   const progresses = Object.values(useSelector(state => state.progress))
 
+  const coupons = Object.values(useSelector(state => state.coupon))
+
   useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
     .then(() => dispatch(restoreUser()))
-  }, [dispatch, user.id ])
+    
+    dispatch(fetchCoupons())
+
+  }, [dispatch, user.id, coupons.length ])
 
 
   const percentage = (x, y) => {
