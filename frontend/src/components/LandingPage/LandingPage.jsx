@@ -7,6 +7,7 @@ const LandingPage = () => {
 
 
   const user = useSelector(state => state.session.user)
+  
 
 
   return (

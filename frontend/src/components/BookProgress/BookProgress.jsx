@@ -8,6 +8,7 @@ import { fetchBooks } from "../../store/books";
 import DeleteProgressButton from "../DeleteProgressModal/DeleteProgressButton";
 import GoalProgress from "./GoalProgress";
 import { restoreUser } from "../../store/session";
+import { fetchCoupons } from "../../store/coupons";
 
 
 const BookProgress = () => {
@@ -24,6 +25,7 @@ const BookProgress = () => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
     .then(() => dispatch(restoreUser()))
+    .then(()=> dispatch(fetchCoupons()))
   }, [dispatch, user.id ])
 
 

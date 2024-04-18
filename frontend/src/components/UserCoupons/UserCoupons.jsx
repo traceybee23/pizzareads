@@ -18,6 +18,7 @@ const UserCoupons = () => {
 
   const redeemCoupon = (couponId) => {
     setRedeemedCoupons([...redeemedCoupons, couponId])
+   
   }
 
   return (

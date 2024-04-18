@@ -73,7 +73,7 @@ const couponReducer = (state = {}, action) => {
       return couponState;
     }
     case ADD_COUPON: {
-      const couponState = {...state}
+      const couponState = {}
       couponState[action.coupon.id] = action.coupon
       return couponState;
     }
