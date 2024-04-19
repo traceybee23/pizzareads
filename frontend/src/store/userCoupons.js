@@ -17,7 +17,7 @@ const receiveCoupon = (coupon) => ({
 export const fetchCoupons = () => async dispatch => {
 
   const response = await csrfFetch('/api/coupons/current')
-
+console.log(response, "THUNK")
   if (response.ok) {
     const coupons = await response.json();
     dispatch(loadCoupons(coupons))
@@ -33,7 +33,7 @@ export const addCoupon = (couponId, coupon) => async dispatch => {
     method: "POST"
   })
   if (response.ok) {
-    const { coupon }= await response.json()
+    const  coupon = await response.json()
     dispatch(receiveCoupon(coupon))
   } else {
     const errors = await response.json();
@@ -45,7 +45,8 @@ export const addCoupon = (couponId, coupon) => async dispatch => {
 const userCouponReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_COUPONS: {
-      const couponState = {}
+      console.log(state, "REDUCER")
+      const couponState = {...state}
       action.coupon.forEach(coupon => {
         couponState[coupon.id] = coupon
       })

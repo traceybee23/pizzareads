@@ -5,6 +5,7 @@ import { fetchCoupons } from '../../store/userCoupons';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+
 const GoalProgress = () => {
 
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const GoalProgress = () => {
           You are {milestone(count)} book away from a free pizza!
         </h2>
       }
-      {count === 5 && !coupwithnoredeemdate && coupons.length === 0 &&
+      {count === 5 && coupwithnoredeemdate && coupons.length === 0 &&
         <div className="get-pizza-butt">
           <AvailableCouponButton coupons={coupons}/>
         </div>

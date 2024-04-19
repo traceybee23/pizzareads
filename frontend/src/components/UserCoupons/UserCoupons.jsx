@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import './UserCoupons.css'
 import { fetchCoupons } from "../../store/userCoupons";
 
+
 const UserCoupons = () => {
 
   const dispatch = useDispatch();
 
-  const coupons = Object.values(useSelector(state => state.coupon))
+  const coupons = Object.values(useSelector(state => state.userCoupon))
 
+  console.log(coupons)
 
   const [redeemedCoupons, setRedeemedCoupons] = useState([]);
 
   useEffect(() => {
+
     dispatch(fetchCoupons());
   }, [dispatch]);
 
