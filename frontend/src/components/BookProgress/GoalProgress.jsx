@@ -1,8 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import AvailableCouponButton from '../AvailableCoupons/AvailableCouponButton';
+import { fetchCoupons } from '../../store/userCoupons';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const GoalProgress = () => {
+
+  const dispatch = useDispatch();
 
   const progresses = Object.values(useSelector(state => state.progress));
   const complete = progresses.filter(progress => progress.completed === true)
@@ -12,9 +17,11 @@ const GoalProgress = () => {
 
   const coupwithnoredeemdate = coupons.find(coupon => coupon.redeemedDate === null)
 
-  console.log(!coupwithnoredeemdate)
 
-  console.log(coupons)
+  useEffect(() => {
+    dispatch(fetchCoupons())
+  }, [dispatch])
+
   const milestone = (count) => {
     if (count < 5) {
       return 5 - count;
@@ -38,7 +45,7 @@ const GoalProgress = () => {
       }
       {count === 5 && !coupwithnoredeemdate && coupons.length === 0 &&
         <div className="get-pizza-butt">
-          <AvailableCouponButton />
+          <AvailableCouponButton coupons={coupons}/>
         </div>
       }
       { coupons.length !== 0 && (count >= 5 && count < 10) && milestone(count) !== 1 &&
@@ -65,7 +72,7 @@ const GoalProgress = () => {
       }
       {count === 10 && coupwithnoredeemdate && coupons.length === 1 &&
         <div className="get-pizza-butt">
-          <AvailableCouponButton />
+          <AvailableCouponButton coupons={coupons} />
         </div>
       }
     </div>

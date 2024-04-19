@@ -4,13 +4,15 @@ import sessionReducer from './session';
 import booksReducer from './books';
 import progressReducer from './progress';
 import couponReducer from './coupons';
+import userCouponReducer from './userCoupons';
 
 const rootReducer = combineReducers({
   // ADD REDUCERS HERE
   session: sessionReducer,
   books: booksReducer,
   progress: progressReducer,
-  coupon: couponReducer
+  coupon: couponReducer,
+  userCoupon: userCouponReducer
 });
 
 let enhancer;

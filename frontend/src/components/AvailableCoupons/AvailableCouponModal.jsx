@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { addCoupon, fetchAvailCoup } from "../../store/coupons";
+import { fetchAvailCoup } from "../../store/coupons";
+import { addCoupon } from "../../store/userCoupons";
 import './AvailableCoupon.css'
 
 const AvailableCoupons = () => {

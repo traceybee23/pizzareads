@@ -16,19 +16,19 @@ module.exports = {
         name: 'Free Pizza',
         code: 'PIZZA123',
         description: 'Get a free pizza!',
-        used: true
+        used: false
       },
       {
         name: 'Free Pizza',
         code: 'PIZZA456',
         description: 'Get a free pizza!',
-        used: true
+        used: false
       },
       {
         name: 'Free Pizza',
         code: 'PIZZA789',
         description: 'Get a free pizza!',
-        used: true
+        used: false
       },
       {
         name: 'Free Pizza',
