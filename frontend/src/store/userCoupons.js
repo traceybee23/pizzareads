@@ -46,7 +46,7 @@ const userCouponReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_COUPONS: {
       console.log(state, "REDUCER")
-      const couponState = {...state}
+      const couponState = {}
       action.coupon.forEach(coupon => {
         couponState[coupon.id] = coupon
       })

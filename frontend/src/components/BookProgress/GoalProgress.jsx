@@ -14,7 +14,7 @@ const GoalProgress = () => {
   const complete = progresses.filter(progress => progress.completed === true)
   const count = complete.length
 
-  const coupons = Object.values(useSelector(state => state.coupon))
+  const coupons = Object.values(useSelector(state => state.userCoupon))
 
   const coupwithnoredeemdate = coupons.find(coupon => coupon.redeemedDate === null)
 
@@ -44,10 +44,15 @@ const GoalProgress = () => {
           You are {milestone(count)} book away from a free pizza!
         </h2>
       }
-      {count === 5 && coupwithnoredeemdate && coupons.length === 0 &&
+      {count === 5 && !coupwithnoredeemdate && coupons.length === 0 &&
         <div className="get-pizza-butt">
           <AvailableCouponButton coupons={coupons}/>
         </div>
+      }
+      {count === 5 && coupwithnoredeemdate && coupons.length === 0 &&
+        <Link to={'/coupons/current'} className='redeem-coupon-link'>
+          please redeem your first coupon
+        </Link>
       }
       { coupons.length !== 0 && (count >= 5 && count < 10) && milestone(count) !== 1 &&
         <h2 className='goal-progress-banner'>

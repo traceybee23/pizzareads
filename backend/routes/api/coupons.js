@@ -23,10 +23,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
       ]
     })
 
-    if (!coupons || coupons.length === 0) {
-      return res.status(404).json({ "message": "User Coupon not found" });
-    }
-
     res.json(coupons)
   } catch (error) {
     next(error); // Pass the error to the error handling middleware
