@@ -21,7 +21,8 @@ const DeleteCouponModal = ({couponId}) => {
     <>
     <div className='confirm-delete-modal'>
       <h1>confirm delete</h1>
-      <span>are you sure you want to delete this coupon?</span>
+      <span>are you sure you want to delete this coupon? </span>
+      <span>action cannot be reversed</span>
       <button onClick={handleDelete}>yes (delete coupon)</button>
       <button style={{backgroundColor: "rgb(146, 119, 117)"}} onClick={closeModal}>no (keep coupon)</button>
     </div>

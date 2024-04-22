@@ -41,7 +41,9 @@ const UserCoupons = () => {
             <span style={{ color: "red" }}>
               redeemed
             </span>
-            <DeleteCouponButton couponId={coupon.Coupon.id} />
+            <div className="delete-coup">
+              <DeleteCouponButton couponId={coupon.Coupon.id} />
+            </div>
             </>
           ) : (
             <button

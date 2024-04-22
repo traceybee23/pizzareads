@@ -111,8 +111,12 @@ router.post('/:couponId', requireAuth, async (req, res, next) => {
   const currUser = await User.findByPk(user.id)
 
   if (coupon) {
+
+    let milestone = currUser.milestone
+    milestone += 1
+
     coupon.set({ used: true })
-    currUser.set({ milestone: 1 })
+    currUser.set({ milestone: milestone })
     await coupon.save();
     await currUser.save();
   } else {

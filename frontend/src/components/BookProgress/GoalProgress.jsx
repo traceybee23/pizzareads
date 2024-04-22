@@ -37,17 +37,17 @@ const GoalProgress = () => {
 
   return (
     <div className='goal-progress-container'>
-      { (count < 5) && milestone(count) !== 1 && coupons.length === 0 && user.milestone === 0 &&
+      { (count < 5) && milestone(count) !== 1 && coupons.length === 0 && user.milestone === null &&
         <h2 className='goal-progress-banner'>
           You are {milestone(count)} books away from a free pizza!
         </h2>
       }
-      { !coupwithnoredeemdate && milestone(count) === 1 && coupons.length === 0 && user.milestone === 0 &&
+      { !coupwithnoredeemdate && milestone(count) === 1 && coupons.length === 0 && user.milestone === null &&
         <h2 className='goal-progress-banner'>
           You are {milestone(count)} book away from a free pizza!
         </h2>
       }
-      {count === 5 && !coupwithnoredeemdate && coupons.length === 0 && user.milestone === 0 &&
+      {count === 5 && !coupwithnoredeemdate && coupons.length === 0 && user.milestone === null &&
         <div className="get-pizza-butt">
           <AvailableCouponButton coupons={coupons}/>
         </div>
@@ -79,10 +79,15 @@ const GoalProgress = () => {
           please redeem your first coupon
         </Link>
       }
-      {count === 10 && coupwithnoredeemdate && coupons.length === 1 && user.milestone === 1 &&
+      {count === 10 && !coupwithnoredeemdate && coupons.length === 1 && user.milestone === 1 &&
         <div className="get-pizza-butt">
           <AvailableCouponButton coupons={coupons} />
         </div>
+      }
+      {count === 10 && coupwithnoredeemdate && 
+        <Link to={'/coupons/current'} className='redeem-coupon-link'>
+          please redeem your coupon
+        </Link>
       }
     </div>
   );

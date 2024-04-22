@@ -26,7 +26,7 @@ export const fetchAvailCoup = () => async dispatch => {
 const couponReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_SINGLE_COUPON: {
-      const couponState = {...state}
+      const couponState = {}
       couponState[action.coupon.id] = action.coupon
       return couponState;
     }

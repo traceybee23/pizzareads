@@ -1,0 +1,25 @@
+div.delete-coup {
+  align-self: center;
+}
+
+.delete-coup button {
+  width: 200px;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+span.trash-icon {
+  color: #e1709a;
+  width: 20px;
+  padding: 0;
+
+}
+
+span.delete-text {
+  padding: 0;
+
+}
