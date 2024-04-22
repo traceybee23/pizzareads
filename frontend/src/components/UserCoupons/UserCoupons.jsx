@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './UserCoupons.css'
-import { fetchCoupons } from "../../store/userCoupons";
+import { fetchCoupons, redeemCoupon } from "../../store/userCoupons";
+import DeleteCouponButton from "../DeleteCouponModal/DeleteCouponButton";
 
 
 const UserCoupons = () => {
@@ -19,9 +20,9 @@ const UserCoupons = () => {
     dispatch(fetchCoupons());
   }, [dispatch]);
 
-  const redeemCoupon = (couponId) => {
+  const handleRedeem = (couponId) => {
     setRedeemedCoupons([...redeemedCoupons, couponId])
-
+    dispatch(redeemCoupon(couponId))
   }
 
   return (
@@ -36,12 +37,15 @@ const UserCoupons = () => {
           <span>{coupon.Coupon.name}</span>
           <span>{coupon.Coupon.description}</span>
           {coupon.redeemedDate ? (
+            <>
             <span style={{ color: "red" }}>
               redeemed
             </span>
+            <DeleteCouponButton couponId={coupon.Coupon.id} />
+            </>
           ) : (
             <button
-              onClick={() => redeemCoupon(coupon.Coupon.id)}
+              onClick={() => handleRedeem(coupon.Coupon.id)}
               disabled={redeemedCoupons.includes(coupon.Coupon.id)}
             >
               Redeem
@@ -50,6 +54,7 @@ const UserCoupons = () => {
           {redeemedCoupons.includes(coupon.Coupon.id) && (
             <span className="coupon-code">Coupon Code: {coupon.Coupon.code}</span>
           )}
+
         </div>
       ))
       }

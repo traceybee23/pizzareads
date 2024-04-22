@@ -2,6 +2,8 @@ import { csrfFetch } from './csrf'
 
 const LOAD_COUPONS = 'coupons/LOAD_COUPONS'
 const ADD_COUPON = 'coupons/ADD_COUPON'
+const UPDATE_COUPON = 'coupon/UPDATE_COUPON'
+const DELETE_COUPON = 'coupon/DELETE_COUPON'
 
 const loadCoupons = (coupon) => ( console.log("ACTION", coupon),{
   type: LOAD_COUPONS,
@@ -13,11 +15,19 @@ const receiveCoupon = (coupon) => ({
   coupon
 })
 
+const updateCoupon = (coupon) => ({
+  type: UPDATE_COUPON,
+  coupon
+})
+
+const removeCoupon = (coupon) => ({
+  type: DELETE_COUPON,
+  coupon
+})
 
 export const fetchCoupons = () => async dispatch => {
-
   const response = await csrfFetch('/api/coupons/current')
-console.log(response, "THUNK")
+  console.log(response, "THUNK")
   if (response.ok) {
     const coupons = await response.json();
     dispatch(loadCoupons(coupons))
@@ -27,14 +37,40 @@ console.log(response, "THUNK")
   }
 }
 
-export const addCoupon = (couponId, coupon) => async dispatch => {
-  console.log(couponId, coupon)
+export const addCoupon = (couponId) => async dispatch => {
   const response = await csrfFetch(`/api/coupons/${couponId}`, {
     method: "POST"
   })
   if (response.ok) {
-    const  coupon = await response.json()
+    const coupon = await response.json()
     dispatch(receiveCoupon(coupon))
+  } else {
+    const errors = await response.json();
+    return errors
+  }
+}
+
+export const redeemCoupon = (couponId) => async dispatch => {
+  const response = await csrfFetch(`/api/coupons/${couponId}`, {
+    method: "PUT"
+  })
+  if (response.ok) {
+    const coupon = await response.json()
+    dispatch(updateCoupon(coupon))
+  } else {
+    const errors = await response.json();
+    return errors
+  }
+}
+
+export const deleteCoupon = (couponId) => async dispatch => {
+  console.log(couponId, 'THUNK')
+  const response = await csrfFetch(`/api/coupons/${couponId}`, {
+    method: "DELETE"
+  })
+  if (response.ok) {
+    const coupon = await response.json()
+    dispatch(removeCoupon(coupon))
   } else {
     const errors = await response.json();
     return errors
@@ -56,6 +92,14 @@ const userCouponReducer = (state = {}, action) => {
       const couponState = {}
       couponState[action.coupon.id] = action.coupon
       return couponState;
+    }
+    case UPDATE_COUPON: {
+      return {...state, [action.coupon.id]: action.coupon };
+    }
+    case DELETE_COUPON:  {
+      const newState = {...state}
+      delete newState[action.coupon.id]
+      return newState
     }
     default:
       return state

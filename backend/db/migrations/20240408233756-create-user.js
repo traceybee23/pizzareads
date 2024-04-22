@@ -32,6 +32,10 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      milestone: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+      },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false

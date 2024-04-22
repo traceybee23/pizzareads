@@ -108,9 +108,13 @@ router.post('/:couponId', requireAuth, async (req, res, next) => {
 
   const coupon = await Coupon.findByPk(couponId)
 
+  const currUser = await User.findByPk(user.id)
+
   if (coupon) {
     coupon.set({ used: true })
+    currUser.set({ milestone: 1 })
     await coupon.save();
+    await currUser.save();
   } else {
     return res.status(404).json({
       message: "coupon couldn't be found or is already used"
@@ -125,13 +129,45 @@ router.post('/:couponId', requireAuth, async (req, res, next) => {
 
     const userCoupon = await UserCoupon.create(newCoupon)
 
-    res.json({ coupon, userCoupon })
+    res.json( userCoupon )
   } catch (error) {
     next(error); // Pass the error to the error handling middleware
   }
 
 })
 
+router.delete('/:couponId', requireAuth, async (req, res, next) => {
+  const { user } = req;
+  const couponId = Number(req.params.couponId);
+  if (!user) {
+    return res.status(401).json({
+      "message": "Authentication required"
+    })
+  }
+  try {
+
+    const coupon = await UserCoupon.findOne({
+      where: {
+        couponId: couponId
+      }
+    })
+
+    if (!coupon || coupon.length === 0) {
+      return res.status(404).json({ "message": "Coupon not found" });
+    }
+
+    if (user) {
+
+      await coupon.destroy(coupon)
+
+      return res.status(200).json(coupon)
+  }
+
+
+  } catch (error) {
+    next(error); // Pass the error to the error handling middleware
+  }
+})
 
 router.get('/', requireAuth, async (req, res, next) => {
   const { user } = req;

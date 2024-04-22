@@ -58,6 +58,10 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: true
         }
       },
+      milestone: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
         allowNull: false,
