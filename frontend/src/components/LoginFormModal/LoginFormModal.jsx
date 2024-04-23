@@ -8,7 +8,7 @@ import DemoUser from './DemoUser';
 
 import './LoginForm.css';
 
-function LoginFormModal() {
+function LoginFormModal({navigate}) {
 
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
@@ -22,6 +22,7 @@ function LoginFormModal() {
     setErrors({});
 
     return dispatch(sessionActions.login({ credential, password }))
+      .then(navigate('/'))
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
@@ -60,7 +61,7 @@ function LoginFormModal() {
           modalComponent={<SignupFormModal />}
           />
       </span>
-      <div><DemoUser /></div>
+      <div><DemoUser navigate={navigate}/></div>
     </div>
   );
 }

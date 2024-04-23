@@ -5,7 +5,7 @@ import LoginFormModal from "../LoginFormModal"
 import { GiOpenBook } from "react-icons/gi";
 import './ProgressForm.css'
 
-const ProgressButton = () => {
+const ProgressButton = ({navigate}) => {
 
   const user = useSelector(state => state.session.user)
 
@@ -21,7 +21,7 @@ const ProgressButton = () => {
               <span className='cr-text'>&nbsp;currently reading </span>
             </span>
           }
-          modalComponent={<ProgressFormModal />}
+          modalComponent={<ProgressFormModal navigate={navigate}/>}
         />
       ) : (
 
@@ -34,7 +34,7 @@ const ProgressButton = () => {
               <span className='cr-text'>&nbsp;currently reading </span>
             </span>
           }
-          modalComponent={<LoginFormModal />}
+          modalComponent={<LoginFormModal navigate={navigate}/>}
         />
       )
     }

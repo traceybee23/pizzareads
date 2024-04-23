@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useModal } from '../../context/Modal'
 
-function DemoUser() {
+function DemoUser({navigate}) {
 
   const dispatch = useDispatch();
 
@@ -13,6 +13,7 @@ function DemoUser() {
 
     return dispatch(sessionActions.login({ credential: "Demo-lition" , password: "password" }))
     .then(closeModal)
+    .then(navigate('/'))
 
   };
 

@@ -29,6 +29,10 @@ const UserCoupons = () => {
 
     <div className="coupons-container">
       <h1>your coupons</h1>
+      <div className="warning-container">
+        <span>please write down your coupon code once you redeem</span>
+        <span> it will not be visible after leaving this page</span>
+      </div>
       {coupons && coupons.map(coupon => (
         coupon.Coupon &&
         <div className="coupon-cards"
@@ -38,12 +42,12 @@ const UserCoupons = () => {
           <span>{coupon.Coupon.description}</span>
           {coupon.redeemedDate ? (
             <>
-            <span style={{ color: "red" }}>
-              redeemed
-            </span>
-            <div className="delete-coup">
-              <DeleteCouponButton couponId={coupon.Coupon.id} />
-            </div>
+              <span style={{ color: "red" }}>
+                redeemed
+              </span>
+              <div className="delete-coup">
+                <DeleteCouponButton couponId={coupon.Coupon.id} />
+              </div>
             </>
           ) : (
             <button

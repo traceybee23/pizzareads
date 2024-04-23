@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks, fetchSingleBook } from '../../store/books';
@@ -11,7 +11,7 @@ import { clearProgress } from '../../store/progress';
 const SingleBook = () => {
 
   const { bookId } = useParams();
-
+  const navigate = useNavigate();
   const book = useSelector(state => state.books ? state.books[bookId] : null);
 
   const userProgress = Object.values(useSelector(state => state.progress));
@@ -29,7 +29,7 @@ const SingleBook = () => {
     } else {
       dispatch(clearProgress())
     }
-  }, [dispatch, bookId ])
+  }, [dispatch, bookId, user ])
 
 
   return (
@@ -44,13 +44,13 @@ const SingleBook = () => {
                 {progress.completed ? (
                   <span>you already read this book</span>
                 ) : (
-                  <UpdateButton progressId={progress.id} book={book}/>
+                  <UpdateButton progressId={progress.id} book={book} navigate={navigate}/>
                 )}
               </div>
             ))
           ) : (
             <div className='curr-read-butt'>
-              <ProgressButton   />
+              <ProgressButton  navigate={navigate} />
             </div>
           )}
 

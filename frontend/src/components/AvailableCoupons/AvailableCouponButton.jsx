@@ -2,13 +2,13 @@ import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 import AvailableCoupons from "./AvailableCouponModal";
 
-const AvailableCouponButton = () => {
+const AvailableCouponButton = ({navigate}) => {
 
   return (
     <>
       <OpenModalButton
         buttonText="click for free pizza"
-        modalComponent={<AvailableCoupons/>}
+        modalComponent={<AvailableCoupons navigate={navigate} />}
       />
     </>
   )

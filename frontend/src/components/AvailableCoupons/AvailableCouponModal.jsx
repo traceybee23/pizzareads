@@ -5,7 +5,7 @@ import { fetchAvailCoup } from "../../store/coupons";
 import { addCoupon } from "../../store/userCoupons";
 import './AvailableCoupon.css'
 
-const AvailableCoupons = () => {
+const AvailableCoupons = ({navigate}) => {
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -19,6 +19,7 @@ const AvailableCoupons = () => {
 
     dispatch(addCoupon(couponId, coupon))
     closeModal()
+    navigate('/coupons/current')
   }
 
   return (

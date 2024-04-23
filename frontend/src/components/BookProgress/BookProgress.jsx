@@ -61,7 +61,7 @@ const BookProgress = () => {
                   </progress>&nbsp;&nbsp;
                   {percentage(`${progress.Book.totalPages}`, `${progress.pagesRead}`)}%</span>
                 <div className="progress-buttons">
-                  <UpdateButton progressId={progress.id} book={progress.Book} />
+                  <UpdateButton progressId={progress.id} book={progress.Book} navigate={navigate}/>
                   <DeleteProgressButton progressId={progress.id} />
                 </div>
               </div>

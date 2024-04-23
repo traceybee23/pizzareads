@@ -6,7 +6,7 @@ import { fetchProgresses } from '../../store/progress';
 import { fetchBooks } from '../../store/books';
 import { restoreUser } from '../../store/session';
 
-const UpdateProgressModal = ({progressId, book}) => {
+const UpdateProgressModal = ({progressId, book, navigate}) => {
 
   const dispatch = useDispatch();
 
@@ -42,15 +42,10 @@ const UpdateProgressModal = ({progressId, book}) => {
     .then(() => {
       dispatch(fetchProgresses(user.id));
       closeModal();
-    })
-      .catch(async (response) => {
-        const data = await response.json();
-        if (data && data.errors) {
-          setErrors(data.errors)
-          return errors
-        }
+      navigate('/')
     })
   }
+  
   useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))

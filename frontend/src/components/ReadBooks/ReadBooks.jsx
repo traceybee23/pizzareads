@@ -1,9 +1,11 @@
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 import DeleteProgressButton from '../DeleteProgressModal/DeleteProgressButton';
 import './ReadBooks.css';
 
 const ReadBooks = () => {
-
+  
+  const navigate = useNavigate();
   const user = useSelector(state => state.session.user)
 
   const progresses = Object.values(useSelector(state => state.progress))

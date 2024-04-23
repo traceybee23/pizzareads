@@ -5,7 +5,7 @@ import './ProgressForm.css'
 import { createProgress } from '../../store/progress';
 import { fetchProgresses } from '../../store/progress';
 
-const ProgressFormModal = () => {
+const ProgressFormModal = ({navigate}) => {
 
   const dispatch = useDispatch();
 
@@ -40,6 +40,7 @@ const ProgressFormModal = () => {
     await dispatch(createProgress(bookId, newProgress))
     dispatch(fetchProgresses(user.id))
       .then(closeModal)
+      .then(navigate('/'))
       .catch(async (response) => {
         const data = await response.json();
         if (data && data.errors) {

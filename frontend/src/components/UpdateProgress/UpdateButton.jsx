@@ -5,7 +5,7 @@ import LoginFormModal from "../LoginFormModal"
 import { GiOpenBook } from "react-icons/gi";
 
 
-const UpdateButton = ({progressId, book}) => {
+const UpdateButton = ({progressId, book, navigate}) => {
 
   const user = useSelector(state => state.session.user)
 
@@ -22,7 +22,7 @@ const UpdateButton = ({progressId, book}) => {
               <span className='cr-text'>&nbsp;update progress</span>
             </span>
           }
-          modalComponent={<UpdateProgressModal progressId={progressId} book={book}/>}
+          modalComponent={<UpdateProgressModal progressId={progressId} book={book} navigate={navigate}/>}
         />
       ) : (
 
@@ -35,7 +35,7 @@ const UpdateButton = ({progressId, book}) => {
               <span className='cr-text'>&nbsp;update progress</span>
             </span>
           }
-          modalComponent={<LoginFormModal />}
+          modalComponent={<LoginFormModal navigate={navigate}/>}
         />
       )
     }
