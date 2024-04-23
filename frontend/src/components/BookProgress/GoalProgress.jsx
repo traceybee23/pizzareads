@@ -21,6 +21,7 @@ const GoalProgress = () => {
   const user = useSelector(state => state.session.user)
 
 
+
   useEffect(() => {
     dispatch(fetchCoupons())
   }, [dispatch])
@@ -72,13 +73,13 @@ const GoalProgress = () => {
           You are {milestone(count)} book away from a free pizza!
         </h2>
       }
-      {count === 10 && !coupwithnoredeemdate && coupons.length === 1 && user.milestone === 1 &&
+      {count === 10 && !coupwithnoredeemdate && user.milestone === 1 &&
         <div className="get-pizza-butt">
           <AvailableCouponButton coupons={coupons} navigate={navigate} />
         </div>
       }
       {
-        count === 10 && coupwithnoredeemdate && user.milestone === 2 &&
+        count === 10 && coupwithnoredeemdate && user.milestone === 1 &&
         <Link to={'/coupons/current'} className='redeem-coupon-link'>
           please redeem your existing coupon
         </Link>
