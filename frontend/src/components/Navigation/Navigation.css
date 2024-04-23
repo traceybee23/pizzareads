@@ -104,11 +104,12 @@ li {
   text-decoration: none;
   background-color: #922e21;
   padding: 5px;
-  color:#ed9c36;
+  color:#f4e9dc;
   display: flex;
   flex-direction: row;
   border-radius: 5px;
   padding: 10px;
+  border: 1px solid #f4e9dc;
 }
 
 .all-books-container {

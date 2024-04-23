@@ -5,7 +5,7 @@ const ADD_COUPON = 'coupons/ADD_COUPON'
 const UPDATE_COUPON = 'coupon/UPDATE_COUPON'
 const DELETE_COUPON = 'coupon/DELETE_COUPON'
 
-const loadCoupons = (coupon) => ( console.log("ACTION", coupon),{
+const loadCoupons = (coupon) => ({
   type: LOAD_COUPONS,
   coupon
 })
@@ -27,7 +27,6 @@ const removeCoupon = (coupon) => ({
 
 export const fetchCoupons = () => async dispatch => {
   const response = await csrfFetch('/api/coupons/current')
-  console.log(response, "THUNK")
   if (response.ok) {
     const coupons = await response.json();
     dispatch(loadCoupons(coupons))
@@ -64,7 +63,6 @@ export const redeemCoupon = (couponId) => async dispatch => {
 }
 
 export const deleteCoupon = (couponId) => async dispatch => {
-  console.log(couponId, 'THUNK')
   const response = await csrfFetch(`/api/coupons/${couponId}`, {
     method: "DELETE"
   })
@@ -81,7 +79,6 @@ export const deleteCoupon = (couponId) => async dispatch => {
 const userCouponReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_COUPONS: {
-      console.log(state, "REDUCER")
       const couponState = {}
       action.coupon.forEach(coupon => {
         couponState[coupon.id] = coupon

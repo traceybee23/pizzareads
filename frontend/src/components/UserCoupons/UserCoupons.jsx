@@ -11,12 +11,9 @@ const UserCoupons = () => {
 
   const coupons = Object.values(useSelector(state => state.userCoupon))
 
-  console.log(coupons)
-
   const [redeemedCoupons, setRedeemedCoupons] = useState([]);
 
   useEffect(() => {
-
     dispatch(fetchCoupons());
   }, [dispatch]);
 
@@ -64,6 +61,7 @@ const UserCoupons = () => {
         </div>
       ))
       }
+      {!coupons.length && <div className="read-more">read books to earn coupons!</div>}
       <img className="purple-grid" src="../../purple-grid.png" />
       <img className="ribbon-accent" src="../../ribbon-accent.png" />
       <img className="blue-grid" src="../../blue-grid.png" />

@@ -56,3 +56,13 @@ span.coupon-code {
   width: fit-content;
   align-self: center;
 }
+
+.read-more {
+  align-self: center;
+  display: flex;
+  padding: 20px;
+  font-size: larger;
+  background-color: #e1709a;
+  width: fit-content;
+  margin: 20px;
+}

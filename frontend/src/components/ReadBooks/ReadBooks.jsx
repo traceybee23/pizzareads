@@ -9,13 +9,12 @@ const ReadBooks = () => {
 
   const progresses = Object.values(useSelector(state => state.progress))
 
-  console.log(user, progresses, "DFJHSKDJFHKFDJH")
 
   return (
     progresses &&
     <>
       <h1>
-        books that you have completed
+        book trophies
       </h1>
       <div className="book-progress-completed">
         {user && progresses && progresses.map(progress => (
@@ -27,7 +26,6 @@ const ReadBooks = () => {
           >
             <>
               <img className="read-image" src={progress.Book.coverImageUrl} onClick={() => navigate(`/books/${progress.Book.id}`)} />
-
             </>
           </div>
         ))}

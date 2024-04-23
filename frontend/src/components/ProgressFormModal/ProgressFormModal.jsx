@@ -37,7 +37,7 @@ const ProgressFormModal = ({navigate}) => {
       pagesRead
     }
 
-    await dispatch(createProgress(bookId, newProgress))
+    dispatch(createProgress(bookId, newProgress))
     dispatch(fetchProgresses(user.id))
       .then(closeModal)
       .then(navigate('/'))
