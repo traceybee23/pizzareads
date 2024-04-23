@@ -10,9 +10,7 @@ import './LoginForm.css';
 
 function LoginFormModal() {
 
-
   const dispatch = useDispatch();
-
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -22,6 +20,7 @@ function LoginFormModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
+
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       .catch(async (res) => {

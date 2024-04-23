@@ -1,0 +1,9 @@
+.book-progress-completed {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: auto;
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent;
+  height: 658px;
+}

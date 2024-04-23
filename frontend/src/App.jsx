@@ -9,6 +9,7 @@ import BookProgress from './components/BookProgress';
 import LandingPage from './components/LandingPage';
 import UserCoupons from './components/UserCoupons';
 import AvailableCoupons from './components/AvailableCoupons';
+import ReadBooks from './components/ReadBooks';
 
 
 function Layout() {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: '/coupons',
         element: <AvailableCoupons />
+      },
+      {
+        path: '/books/read',
+        element: <ReadBooks />
       }
     ]
   }

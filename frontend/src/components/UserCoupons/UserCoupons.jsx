@@ -60,6 +60,9 @@ const UserCoupons = () => {
         </div>
       ))
       }
+      <img className="purple-grid" src="../../purple-grid.png" />
+      <img className="ribbon-accent" src="../../ribbon-accent.png" />
+      <img className="blue-grid" src="../../blue-grid.png" />
     </div>
 
   )

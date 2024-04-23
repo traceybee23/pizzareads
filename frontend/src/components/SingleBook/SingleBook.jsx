@@ -6,6 +6,7 @@ import ProgressButton from '../ProgressFormModal/ProgressButton';
 import './SingleBook.css'
 import UpdateButton from '../UpdateProgress/UpdateButton';
 import { fetchProgresses } from '../../store/progress';
+import { clearProgress } from '../../store/progress';
 
 const SingleBook = () => {
 
@@ -15,26 +16,29 @@ const SingleBook = () => {
 
   const userProgress = Object.values(useSelector(state => state.progress));
 
-  const bookProgress = userProgress.filter(progress => progress.bookId === +bookId)
-
   const user = useSelector(state => state.session.user);
+  const bookProgress = userProgress.filter(progress => progress.bookId === +bookId )
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchBooks())
-    dispatch(fetchProgresses(user.id))
     dispatch(fetchSingleBook(bookId));
-  }, [dispatch, bookId, user.id])
+    if (user) {
+      dispatch(fetchProgresses(user.id))
+    } else {
+      dispatch(clearProgress())
+    }
+  }, [dispatch, bookId ])
 
 
   return (
-    book &&
+    book && bookId &&
     <>
       <div className='single-book-card'>
         <div className='image-container'>
           <img className='book-image' src={book.coverImageUrl} />
-          {bookProgress.length ? (
+          {bookProgress && bookProgress.length ? (
             bookProgress.map(progress => (
               <div className='curr-read-butt' key={progress.id}>
                 {progress.completed ? (

@@ -4,6 +4,7 @@ const LOAD_PROGRESS = 'progress/LOAD_PROGRESS'
 const SINGLE_PROGRESS = 'progress/SINGLE_PROGRESS'
 const UPDATE_PROGRESS = 'progress/UPDATE_PROGRESS'
 const REMOVE_PROGRESS = 'progress/REMOVE_PROGRESS'
+const CLEAR_PROGRESS_DATA = 'progress/CLEAR_PROGRESS_DATA'
 
 const loadProgresses = (progress) => ({
   type: LOAD_PROGRESS,
@@ -23,6 +24,10 @@ const editProgress = (progress) => ({
 const removeProgress = (progressId) => ({
   type: REMOVE_PROGRESS,
   progressId
+})
+
+export const clearProgress = () => ({
+  type: CLEAR_PROGRESS_DATA
 })
 
 export const fetchProgresses = (userId) => async dispatch => {
@@ -107,6 +112,9 @@ const progressReducer = (state = {}, action) => {
       const newState = {...state}
       delete newState[action.progressId]
       return newState
+    }
+    case CLEAR_PROGRESS_DATA: {
+      return {}
     }
     default:
       return state

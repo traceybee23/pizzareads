@@ -44,7 +44,7 @@ function ProfileButton({ user }) {
   const navBooks = e => {
     e.preventDefault()
     closeMenu()
-    navigate('/books')
+    navigate('/books/read')
   }
 
   const navCoupons = e => {
@@ -74,10 +74,16 @@ function ProfileButton({ user }) {
               style={{ borderBottom: "2px solid #e1709a" }}>
               coupons
             </li>
-            <li style={{ borderBottom: "2px solid #d3a8d3" }}>
+            <li
+              className='friendsLink'
+              onClick={() => window.alert("Feature Coming Soon...")}
+              style={{ borderBottom: "2px solid #d3a8d3" }}>
               friends
             </li>
-            <li style={{ borderBottom: "2px solid #84dcc6" }}>
+            <li
+              className='friendsLink'
+              onClick={() => window.alert("Feature Coming Soon...")}
+              style={{ borderBottom: "2px solid #84dcc6" }}>
               shop
             </li>
             <li>

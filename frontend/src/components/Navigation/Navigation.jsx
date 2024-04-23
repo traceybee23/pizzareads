@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import { GiOpenBook } from "react-icons/gi";
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -9,7 +10,16 @@ function Navigation({ isLoaded }) {
   return (
 
     <div className='nav-bar'>
-        <NavLink to="/"><img className='logo' src='../../red-pizza.png'/></NavLink>
+      <NavLink to="/"><img className='logo' src='../../red-pizza.png' /></NavLink>
+      <div className='all-books-container'>
+        <NavLink className='all-books' to="/books">
+          <span className='book-icon-nav'>
+            <GiOpenBook />
+          </span>
+          <span className='text-nav'>
+            pick a book to read
+          </span></NavLink>
+      </div>
       {isLoaded && (
         <div className='profile-button'>
           <ProfileButton user={sessionUser} />

@@ -75,7 +75,7 @@ export default function sessionReducer(state = initialState, action) {
       return { ...state, user: action.payload }
     }
     case REMOVE_USER: {
-      return { ...state, user: null };
+      return { user: null };
     }
     default:
       return state;

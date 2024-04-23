@@ -89,3 +89,46 @@ li {
 .couponLink:hover {
   cursor: pointer;
 }
+
+.friendsLink:hover {
+  cursor: pointer;
+}
+
+.friendsLink {
+  margin: 5px 0 0 0;
+}
+
+
+.all-books {
+  font-size: large;
+  text-decoration: none;
+  background-color: #922e21;
+  padding: 5px;
+  color:#ed9c36;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.all-books-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+span.book-icon-nav {
+  color: #e1709a;
+  padding: 5px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.all-books:hover {
+  cursor: pointer;
+  color: #e1709a;
+  text-decoration: underline;
+  font-weight: bold;
+}
