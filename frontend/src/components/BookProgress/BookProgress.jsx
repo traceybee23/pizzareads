@@ -69,6 +69,7 @@ const BookProgress = () => {
           </div>
 
         ))}
+        {!progresses.length && <span>pick a book to add your progress here!</span>}
       </div>
       <GoalProgress />
     </>

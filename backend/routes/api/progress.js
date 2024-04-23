@@ -29,9 +29,7 @@ router.get('/user/:userId', requireAuth, async (req, res, next) => {
       ]
     });
 
-    if (!progresses || progresses.length === 0) {
-      return res.status(404).json({ "message": "Book Progress not found" });
-    }
+    
 
     const progressList = progresses.map(progress => progress.toJSON());
     res.json({ BookProgress: progressList });
