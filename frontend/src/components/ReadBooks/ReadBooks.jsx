@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import DeleteProgressButton from '../DeleteProgressModal/DeleteProgressButton';
 import './ReadBooks.css';
 
 const ReadBooks = () => {
-  
+
   const navigate = useNavigate();
   const user = useSelector(state => state.session.user)
 
@@ -23,18 +22,12 @@ const ReadBooks = () => {
           progress.completed === true &&
           progress.Book &&
           <div
-            className="book-progress-cards"
+            className="book-read-cards"
             key={progress.id}
           >
             <>
-              <img className="progress-image" src={progress.Book.coverImageUrl} onClick={() => navigate(`/books/${progress.Book.id}`)} />
-              <div className="progress-deets">
-                <span className="progress-title">{progress.Book.title}</span>
-                <span className="progress-author">by {progress.Book.author}</span>
-                <div className="progress-buttons">
-                  <DeleteProgressButton progressId={progress.id} />
-                </div>
-              </div>
+              <img className="read-image" src={progress.Book.coverImageUrl} onClick={() => navigate(`/books/${progress.Book.id}`)} />
+
             </>
           </div>
         ))}

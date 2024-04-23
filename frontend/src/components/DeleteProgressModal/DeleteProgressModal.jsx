@@ -12,10 +12,7 @@ const DeleteProgressModal = ({progressId}) => {
     e.preventDefault();
     dispatch(deleteProgress(progressId))
     .then(closeModal)
-    .catch(async (response) => {
-      const data = await response.json();
-      return data;
-    })
+    
   }
   return (
     <>
