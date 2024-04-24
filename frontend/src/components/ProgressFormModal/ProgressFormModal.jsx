@@ -13,11 +13,11 @@ const ProgressFormModal = ({navigate}) => {
 
   const book = Object.values(useSelector(state => state.books));
 
-  const userProgress = Object.values(useSelector(state => state.progress));
+  // const userProgress = Object.values(useSelector(state => state.progress));
   const bookId = book[0].id
   const totalPages = book[0].totalPages
 
-  const bookProgress = userProgress.filter(progress => progress.bookId === bookId)
+  // const bookProgress = userProgress.filter(progress => progress.bookId === bookId)
 
   const [pagesRead, setPagesRead] = useState(0);
   const [userId, setUserId] = useState('')
@@ -64,7 +64,7 @@ const ProgressFormModal = ({navigate}) => {
   }, [pagesRead, totalPages, setErrors])
 
   return (
-    !bookProgress.length &&
+
     <div className='progress-form'>
       <h1>what page are you on?</h1>
 
