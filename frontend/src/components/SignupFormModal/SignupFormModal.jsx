@@ -41,12 +41,14 @@ function SignupFormModal() {
   };
 
   useEffect(() => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let errObj = {}
+    if (email && !emailRegex.test(email)) errObj.email = "Email is invalid."
     if(username && username.length < 4) errObj.password = "Username must be more than 4 characters"
     if(password && password.length < 6) errObj.password = "Password must be more than 6 characters"
     if(password !== confirmPassword) errObj.confirmPassword = "Confirm Password field must be the same as the Password field"
     setErrors(errObj)
-  }, [password, confirmPassword, username])
+  }, [password, confirmPassword, username, email])
 
 
 

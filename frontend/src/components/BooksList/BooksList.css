@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 750px;
+  height: 780px;
   overflow-y: scroll;
   padding-top: 20px;
-  scrollbar-color: transparent transparent;
+  scrollbar-color: #e1709a #bae264;
 }
 
 .books-header {

@@ -1,7 +1,7 @@
 .pizza-dood {
   position: absolute;
   z-index: -1;
-  bottom: 10px;
+  bottom: 30px;
   left: 600px;
 }
 
@@ -23,7 +23,7 @@
 .blue-grid {
   position: absolute;
   z-index: -4;
-  bottom: 1px;
+  bottom: 30px;
   left: 1px;
 }
 

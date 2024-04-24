@@ -19,8 +19,8 @@
   width: fit-content;
   margin: 10px 40px;
   overflow-y: scroll;
-  scrollbar-color: transparent transparent;
-  height: 658px;
+  scrollbar-color: #e1709a #bae264;
+  height: 630px;
 }
 
 .book-progress-cards {
