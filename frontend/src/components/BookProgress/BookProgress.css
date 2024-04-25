@@ -20,7 +20,7 @@
   margin: 10px 40px;
   overflow-y: scroll;
   scrollbar-color: #e1709a #bae264;
-  height: 630px;
+  max-height: 620px;
 }
 
 .book-progress-cards {
@@ -117,11 +117,12 @@ span.cr-text {
 }
 
 .goal-progress-container {
-  position: relative;
+  position: absolute;
   width: fit-content;
   padding: 0 25px;
   left: 700px;
   bottom: 580px;
+
 }
 
 .get-pizza-butt button {
@@ -134,6 +135,7 @@ span.cr-text {
   border: 2px solid;
   padding: 15px;
   border-radius: 5px;
+  font-size: 22px;
 }
 
 .redeem-coupon-link {

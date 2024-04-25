@@ -31,7 +31,7 @@ const UserCoupons = () => {
         <span>please write down your coupon code once you redeem</span>
         <span> it will not be visible after leaving this page</span>
       </div>
-      {coupons.length && coupons.map(coupon => (
+      {!!coupons.length && coupons.map(coupon => (
         coupon.Coupon &&
         <div className="coupon-cards"
           key={coupon.id}>

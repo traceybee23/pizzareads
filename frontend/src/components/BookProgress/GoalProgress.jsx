@@ -21,7 +21,6 @@ const GoalProgress = () => {
   const user = useSelector(state => state.session.user)
 
 
-
   useEffect(() => {
     dispatch(fetchCoupons())
   }, [dispatch])
