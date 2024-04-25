@@ -11,7 +11,7 @@ const loadSingleCoupon = (coupon) => ({
 
 
 export const fetchAvailCoup = () => async dispatch => {
-  const response = await csrfFetch('api/coupons')
+  const response = await csrfFetch('/api/coupons')
   if (response.ok) {
     const coupons = await response.json();
     dispatch(loadSingleCoupon(coupons))
