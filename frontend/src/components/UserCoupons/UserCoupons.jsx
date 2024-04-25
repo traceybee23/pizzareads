@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './UserCoupons.css'
 import { fetchCoupons, redeemCoupon } from "../../store/userCoupons";
 import DeleteCouponButton from "../DeleteCouponModal/DeleteCouponButton";
-
+import { fetchAvailCoup } from "../../store/coupons";
 
 const UserCoupons = () => {
 
@@ -15,6 +15,7 @@ const UserCoupons = () => {
 
   useEffect(() => {
     dispatch(fetchCoupons());
+    dispatch(fetchAvailCoup())
   }, [dispatch]);
 
   const handleRedeem = (couponId) => {

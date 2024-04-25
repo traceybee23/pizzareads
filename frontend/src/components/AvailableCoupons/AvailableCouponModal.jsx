@@ -17,11 +17,11 @@ const AvailableCoupons = ({navigate}) => {
     dispatch(fetchCoupons())
   }, [dispatch])
 
-  const handleAddCoupon = (couponId, coupon) => {
+  const handleAddCoupon = async (couponId, coupon) => {
 
-    dispatch(addCoupon(couponId, coupon))
-    closeModal()
-    navigate('/coupons/current')
+    await dispatch(addCoupon(couponId, coupon))
+    .then(closeModal())
+    .then(navigate('/coupons/current'))
   }
 
   return (
