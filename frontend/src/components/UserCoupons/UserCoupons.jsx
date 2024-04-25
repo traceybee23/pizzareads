@@ -18,6 +18,7 @@ const UserCoupons = () => {
   }, [dispatch]);
 
   const handleRedeem = (couponId) => {
+
     setRedeemedCoupons([...redeemedCoupons, couponId])
     dispatch(redeemCoupon(couponId))
   }
@@ -30,7 +31,7 @@ const UserCoupons = () => {
         <span>please write down your coupon code once you redeem</span>
         <span> it will not be visible after leaving this page</span>
       </div>
-      {coupons && coupons.map(coupon => (
+      {coupons.map(coupon => (
         coupon.Coupon &&
         <div className="coupon-cards"
           key={coupon.id}>

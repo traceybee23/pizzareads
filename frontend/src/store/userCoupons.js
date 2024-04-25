@@ -25,6 +25,8 @@ const removeCoupon = (coupon) => ({
   coupon
 })
 
+
+
 export const fetchCoupons = () => async dispatch => {
   const response = await csrfFetch('/api/coupons/current')
   if (response.ok) {
