@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { fetchAvailCoup } from "../../store/coupons";
 import { addCoupon } from "../../store/userCoupons";
+import { fetchCoupons } from "../../store/userCoupons";
 import './AvailableCoupon.css'
 
 const AvailableCoupons = ({navigate}) => {
@@ -13,6 +14,7 @@ const AvailableCoupons = ({navigate}) => {
 
   useEffect(() => {
     dispatch(fetchAvailCoup())
+    dispatch(fetchCoupons())
   }, [dispatch])
 
   const handleAddCoupon = (couponId, coupon) => {
