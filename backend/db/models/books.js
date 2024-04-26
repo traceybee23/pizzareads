@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 1200]
+        len: [1, 1300]
       }
     },
     coverImageUrl: {

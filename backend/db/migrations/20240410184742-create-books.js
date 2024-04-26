@@ -38,7 +38,7 @@ module.exports = {
       },
       description: {
         allowNull: false,
-        type: Sequelize.STRING(1200)
+        type: Sequelize.STRING(1300)
       },
       coverImageUrl: {
         allowNull: false,

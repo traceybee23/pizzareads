@@ -21,6 +21,16 @@ module.exports = {
         totalPages: 626
       },
       {
+        title: 'A Court of Wings and Ruin',
+        author: 'Sarah J. Maas',
+        genre: 'Fantasy',
+        publicationDate: 'June 2, 2020',
+        isbn: '9781635575606',
+        description: "Feyre has returned to the Spring Court, determined to gather information on Tamlin's actions and learn what she can about the invading king threatening to bring her land to its knees. But to do so she must play a deadly game of deceit. One slip could bring doom not only for Feyre, but for everything-and everyone-she holds dear. As war bears down upon them all, Feyre endeavors to take her place amongst the High Fae of the land, balancing her struggle to master her powers-both magical and political-and her love for her court and family. Amidst these struggles, Feyre and Rhysand must decide whom to trust amongst the cunning and lethal High Lords, and hunt for allies in unexpected places. In this thrilling third book in the #1 New York Times bestselling series from Sarah J. Maas, the fate of Feyre's world is at stake as armies grapple for power over the one thing that could destroy it.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1585623092i/50659472.jpg',
+        totalPages: 703
+      },
+      {
         title: 'Winterset Hollow',
         author: 'Jonathan Edward Durham',
         genre: 'Horror',
@@ -49,6 +59,16 @@ module.exports = {
         description: "In the ballrooms and drawing rooms of Regency London, rules abound. From their earliest days, children of aristocrats learn how to address an earl and curtsey before a prince—while other dictates of the ton are unspoken yet universally understood. A proper duke should be imperious and aloof. A young, marriageable lady should be amiable… but not too amiable. Daphne Bridgerton has always failed at the latter. The fourth of eight siblings in her close-knit family, she has formed friendships with the most eligible young men in London. Everyone likes Daphne for her kindness and wit. But no one truly desires her. She is simply too deuced honest for that, too unwilling to play the romantic games that captivate gentlemen. Amiability is not a characteristic shared by Simon Basset, Duke of Hastings. Recently returned to England from abroad, he intends to shun both marriage and society—just as his callous father shunned Simon throughout his painful childhood. ",
         coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1379594717i/110391.jpg',
         totalPages: 384
+      },
+      {
+        title: 'Harry Potter and the Chamber of Secrets',
+        author: 'J.K. Rowling',
+        genre: 'Young Adult',
+        publicationDate: 'June 2, 1999',
+        isbn: '9780439420105',
+        description: "Ever since Harry Potter had come home for the summer, the Dursleys had been so mean and hideous that all Harry wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he’s packing his bags, Harry receives a warning from a strange impish creature who says that if Harry returns to Hogwarts, disaster will strike.",
+        coverImageUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474169725i/15881.jpg",
+        totalPages: 352
       },
       {
         title: 'Harry Potter and the Order of the Phoenix',
@@ -109,6 +129,96 @@ module.exports = {
         description: "Wealth. Power. Murder. Magic. Alex Stern is back and the Ivy League is going straight to hell in #1 New York Times bestselling author Leigh Bardugo's Hell Bent. Find a gateway to the underworld. Steal a soul out of hell. A simple plan, except people who make this particular journey rarely come back. But Galaxy “Alex” Stern is determined to break Darlington out of purgatory―even if it costs her a future at Lethe and at Yale. Forbidden from attempting a rescue, Alex and Dawes can’t call on the Ninth House for help, so they assemble a team of dubious allies to save the gentleman of Lethe. Together, they will have to navigate a maze of arcane texts and bizarre artifacts to uncover the societies’ most closely guarded secrets, and break every rule doing it. But when faculty members begin to die off, Alex knows these aren’t just accidents. Something deadly is at work in New Haven, and if she is going to survive, she’ll have to reckon with the monsters of her past and a darkness built into the university’s very walls. Thick with history and packed with Bardugo’s signature twists, Hell Bent brings to life an intricate world full of magic, violence, and all too real monsters.",
         coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1648744814i/60652997.jpg',
         totalPages: 481
+      },
+      {
+        title: 'Weyward',
+        author: 'Emilia Hart',
+        genre: 'Historical Fiction',
+        publicationDate: 'March 7, 2023',
+        isbn: '9781250280800',
+        description: "I am a Weyward, and wild inside. 2019: Under cover of darkness, Kate flees London for ramshackle Weyward Cottage, inherited from a great aunt she barely remembers. But she begins to suspect that her great aunt had a secret. One that lurks in the bones of the cottage, hidden ever since the witch-hunts of the 17th century. 1619: Altha is awaiting trial for the murder of a local farmer who was stampeded to death by his herd. As a girl, Altha’s mother taught her their magic, a kind not rooted in spell casting but in a deep knowledge of the natural world. But unusual women have always been deemed dangerous, she knows it will take all of her powers to maintain her freedom. 1942: As World War II rages, Violet is trapped in her family's grand, crumbling estate. Straitjacketed by societal convention, she longs for the robust education her brother receives–and for her mother, long deceased, who was rumored to have gone mad before her death. Weaving together the stories of three extraordinary women across five centuries, Emilia Hart's Weyward is an enthralling novel of female resilience and the transformative power of the natural world.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1677756582i/60654349.jpg',
+        totalPages: 329
+      },
+      {
+        title: 'The Blade Itself',
+        author: 'Joe Abercrombie',
+        genre: 'Fantasy',
+        publicationDate: 'March 8, 2007',
+        isbn: '9780575079793',
+        description: "Logen Ninefingers, infamous barbarian, has finally run out of luck. He’s on the verge of becoming a dead barbarian – leaving nothing behind him but bad songs, dead friends, and a lot of happy enemies. Nobleman Captain Jezal dan Luthar, dashing officer, and paragon of selfishness, has nothing more dangerous in mind than fleecing his friends at cards and dreaming of glory in the fencing circle. But war is brewing, and on the battlefields of the frozen North they fight by bloodier rules. Inquisitor Glokta, cripple turned torturer, would like nothing better than to see Jezal come home in a box. But, Glokta hates everyone: cutting treason out of the Union one confession at a time leaves little room for friendship. His latest trail of corpses may lead him right to the rotten heart of government. Enter the wizard, Bayaz. A old man with a terrible temper and a pathetic assistant, he could be the First of the Magi, he could be a spectacular fraud, but whatever he is, he's about to make the lives of Logen, Jezal, and Glokta a lot more difficult. Murderous conspiracies rise to the surface, old scores are ready to be settled, and the line between hero and villain is sharp enough to draw blood.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1284167912l/944073.jpg',
+        totalPages: 515
+      },
+      {
+        title: 'Shatter Me',
+        author: 'Tahereh Mafi',
+        genre: 'Dystopia',
+        publicationDate: 'November 15, 2011',
+        isbn: '9780062085481',
+        description: "I have a curse I have a gift I am a monster I'm more than human My touch is lethal My touch is power I am their weapon I will fight back Juliette hasn't touched anyone in exactly 264 days. The last time she did, it was an accident, but The Reestablishment locked her up for murder. No one knows why Juliette's touch is fatal. As long as she doesn't hurt anyone else, no one really cares. The world is too busy crumbling to pieces to pay attention to a 17-year-old girl. Diseases are destroying the population, food is hard to find, birds don't fly anymore, and the clouds are the wrong color. The Reestablishment said their way was the only way to fix things, so they threw Juliette in a cell. Now so many people are dead that the survivors are whispering war—and The Reestablishment has changed its mind. Maybe Juliette is more than a tortured soul stuffed into a poisonous body. Maybe she's exactly what they need right now. Juliette has to make a choice: Be a weapon. Or be a warrior.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1338924054i/13455782.jpg',
+        totalPages: 338
+      },
+      {
+        title: 'Fourth Wing',
+        author: 'Rebecca Yarros',
+        genre: 'Fantasy',
+        publicationDate: 'May 2, 2023',
+        isbn: '9781649374042',
+        description: "Twenty-year-old Violet Sorrengail was supposed to enter the Scribe Quadrant, living a quiet life among books and history. Now, the commanding general—also known as her tough-as-talons mother—has ordered Violet to join the hundreds of candidates striving to become the elite of Navarre: dragon riders. But when you’re smaller than everyone else and your body is brittle, death is only a heartbeat away...because dragons don’t bond to “fragile” humans. They incinerate them. With fewer dragons willing to bond than cadets, most would kill Violet to better their own chances of success. The rest would kill her just for being her mother’s daughter—like Xaden Riorson, the most powerful and ruthless wingleader in the Riders Quadrant. She’ll need every edge her wits can give her just to see the next sunrise. Yet, with every day that passes, the war outside grows more deadly, the kingdom's protective wards are failing, and the death toll continues to rise. Even worse, Violet begins to suspect leadership is hiding a terrible secret. Friends, enemies, lovers. Everyone at Basgiath War College has an agenda—because once you enter, there are only two ways out: graduate or die",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1701980900i/61431922.jpg',
+        totalPages: 498
+      },
+      {
+        title: 'Twilight',
+        author: 'Stephenie Meyer',
+        genre: 'Fantasy',
+        publicationDate: 'September 6, 2006',
+        isbn: '9780316015844',
+        description: "Isabella Swan's move to Forks, a small, perpetually rainy town in Washington, could have been the most boring move she ever made. But once she meets the mysterious and alluring Edward Cullen, Isabella's life takes a thrilling and terrifying turn. Up until now, Edward has managed to keep his vampire identity a secret in the small community he lives in, but now nobody is safe, especially Isabella, the person Edward holds most dear. The lovers find themselves balanced precariously on the point of a knife -- between desire and danger. Deeply romantic and extraordinarily suspenseful, Twilight captures the struggle between defying our instincts and satisfying our desires. This is love story with bite.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700522826i/41865.jpg',
+        totalPages: 498
+      },
+      {
+        title: 'Throne of Glass',
+        author: 'Sarah J. Maas',
+        genre: 'Young Adult',
+        publicationDate: 'February 14, 2023',
+        isbn: '9781639730940',
+        description: "In a land without magic, where the king rules with an iron hand, an assassin is summoned to the castle. She comes not to kill the king, but to win her freedom. If she defeats twenty-three killers, thieves, and warriors in a competition, she is released from prison to serve as the king's champion. Her name is Celaena Sardothien.The Crown Prince will provoke her. The Captain of the Guard will protect her. But something evil dwells in the castle of glass—and it's there to kill. When her competitors start dying one by one, Celaena's fight for freedom becomes a fight for survival, and a desperate quest to root out the evil before it destroys her world.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1673566495i/76703559.jpg',
+        totalPages: 406
+      },
+      {
+        title: 'Frankenstien',
+        author: 'Mary Wollstonecraft Shelley',
+        genre: 'Horror',
+        publicationDate: 'January 1, 1818',
+        isbn: '9780141439471',
+        description: "'Now that I had finished, the beauty of the dream vanished, and breathless horror and disgust filled my heart ...' Obsessed with creating life itself, Victor Frankenstein plunders graveyards for the material to fashion a new being, which he shocks into life with electricity. But his botched creature, rejected by Frankenstein and denied human companionship, sets out to destroy his maker and all that he holds dear. Mary Shelley's chilling Gothic tale was conceived when she was only eighteen, living with her lover Percy Shelley near Byron's villa on Lake Geneva. It would become the world's most famous work of horror fiction, and remains a devastating exploration of the limits of human creativity. Based on the third edition of 1831, this volume contains all the revisions Mary Shelley made to her story, as well as her 1831 introduction and Percy Bysshe Shelley's preface to the first edition. This revised edition includes as appendices a select collation of the texts of 1818 and 1831 together with 'A Fragment' by Lord Byron and Dr John Polidori's 'The Vampyre: A Tale'.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1665008650i/18490.jpg',
+        totalPages: 273
+      },
+      {
+        title: "Alice’s Adventures in Wonderland & Through the Looking-Glass",
+        author: 'Lewis Carroll',
+        genre: 'Fantasy',
+        publicationDate: 'December 27, 1871',
+        isbn: '9780785824466',
+        description: "'I can't explain myself, I'm afraid, sir,' said Alice, 'Because I'm not myself, you see.' When Alice sees a white rabbit take a watch out of its waistcoat pocket she decides to follow it, and a sequence of most unusual events is set in motion. This mini book contains the entire topsy-turvy stories of Alice's Adventures in Wonderland and Through the Looking-Glass, accompanied by practical notes and Martina Pelouso's memorable full-colour illustrations.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630487234i/24213.jpg',
+        totalPages: 239
+      },
+      {
+        title: 'The Invisible Life of Addie LaRue',
+        author: 'V.E. Schwab',
+        genre: 'Fantasy',
+        publicationDate: 'October 6, 2020',
+        isbn: '9780765387561',
+        description: "France, 1714: in a moment of desperation, a young woman makes a Faustian bargain to live forever and is cursed to be forgotten by everyone she meets. Thus begins the extraordinary life of Addie LaRue, and a dazzling adventure that will play out across centuries and continents, across history and art, as a young woman learns how far she will go to leave her mark on the world. But everything changes when, after nearly 300 years, Addie stumbles across a young man in a hidden bookstore and he remembers her name.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1584633432i/50623864.jpg',
+        totalPages: 448
       }
     ])
   },
@@ -117,10 +227,12 @@ module.exports = {
     options.tableName = 'Books';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      title: { [Op.in]: ['A Court of Mist and Fury', 'Winterset Hollow',
-      'So Long, and Thanks for All the Fish', 'The Duke and I',
+      title: { [Op.in]: ['A Court of Mist and Fury', 'A Court of Wings and Ruin', 'Winterset Hollow',
+      'So Long, and Thanks for All the Fish', 'The Duke and I', 'Harry Potter and the Chamber of Secrets',
       'Harry Potter and the Order of the Phoenix', "Why Has Nobody Told Me This Before?",
-      'Fahrenheit 451', 'Animal Farm', 'Murder on the Orient Express', 'Hell Bent'] }
+      'Fahrenheit 451', 'Animal Farm', 'Murder on the Orient Express', 'Hell Bent', 'Weyward', 'The Blade Itself',
+      'Shatter Me', 'Fourth Wing', 'Twilight', 'Throne of Glass', 'Frankenstien',
+      "Alice’s Adventures in Wonderland & Through the Looking-Glass", 'The Invisible Life of Addie LaRue'] }
     }, {});
   }
 };
