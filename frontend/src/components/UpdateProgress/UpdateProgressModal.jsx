@@ -45,7 +45,7 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
       navigate('/')
     })
   }
-  
+
   useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
@@ -68,15 +68,16 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
   return (
     user &&
     <div className='progress-form'>
-      <h1>what page are you on?</h1>
+      <h1 style={{backgroundColor: "#ffffff"}}>what page are you on?</h1>
       <form onSubmit={handleSubmit}>
       <span>
         <input
+          style={{backgroundColor: "#ffffff"}}
           type="text"
           value={strPagesRead}
           onChange={e => setPagesRead(e.target.value)}
           placeholder='pages read'
-        /> /{totalPages}</span>
+        /> <span style={{backgroundColor: "#ffffff", fontSize: "large"}}>/{totalPages}</span></span>
         {errors.pagesRead && <span className="errors">&nbsp;{errors.pagesRead}</span>}
         <button
           disabled={!!Object.values(errors).length}

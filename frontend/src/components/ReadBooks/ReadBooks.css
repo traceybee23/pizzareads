@@ -9,7 +9,8 @@
 }
 
 .book-read-cards {
-  background-color: #bae264;
+  background-color: #ffffff;
+  background-image: url("../../modalBackgrounds.png");
   padding: 20px;
   margin: 20px;
   display: flex;
@@ -19,6 +20,7 @@
 
 .read-image {
   height: 200px;
+  border-radius: 0 15px 15px 0;
 }
 
 .book-read-cards:hover {

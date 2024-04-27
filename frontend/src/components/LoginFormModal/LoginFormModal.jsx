@@ -35,7 +35,7 @@ function LoginFormModal({navigate}) {
 
   return (
     <div className='login-modal'>
-      <h1>Log In</h1>
+      <h1 className='heading'>Log In</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -54,7 +54,7 @@ function LoginFormModal({navigate}) {
         <span className='errors'>{errors.credential && <p>{errors.credential}</p>}</span>
         <button className='login-button' type="submit">Log In</button>
       </form>
-      <span >
+      <span className="new-message">
           new to pizzareads?
           <OpenModalMenuItem
           itemText={<span className="modalLink">sign up</span>}

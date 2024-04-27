@@ -1,7 +1,7 @@
 form {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  margin: 0 auto;
   padding: 20px;
 }
 
@@ -15,6 +15,7 @@ input {
   width: 300px;
   display: flex;
   flex-direction: column;
+  background-image: url("../../modalBackgrounds.png");
 }
 
 #modal-content {
@@ -44,4 +45,18 @@ input {
 
 .login-modal input {
   margin-bottom: 15px;
+}
+
+.heading {
+  background-color: #ffffff;
+  width: fit-content;
+  align-self: center;
+  margin-bottom: 0;
+}
+
+.new-message {
+  background-color: #ffffff;
+  width: fit-content;
+  align-self: center;
+
 }

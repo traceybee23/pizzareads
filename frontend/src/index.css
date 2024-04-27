@@ -28,6 +28,7 @@ button {
 input {
   font-family: "Quicksand", sans-serif;
   margin: auto;
+  width: fit-content;
 
 }
 
@@ -38,7 +39,9 @@ button:hover {
 
 .errors {
   color: red;
-
+  background-color: #ffffff;
+  bottom: 70px;
+  font-weight: 500;
 }
 
 button:disabled {

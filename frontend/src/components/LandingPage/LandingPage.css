@@ -29,11 +29,9 @@
 
 .pizza-dood-0 {
   position: absolute;
-  padding-top: 190px;
-  left: 300px;
+  left: 200px;
   z-index: -1;
   bottom: 100px;
-
 }
 
 .ribbon-accent-0 {
@@ -54,7 +52,7 @@
 .blue-grid-0 {
   position: absolute;
   z-index: -4;
-  bottom: 170px;
+  top: 80px;
   left: -130px;
 }
 
@@ -62,11 +60,20 @@
  .purple-grid {
   right: -250px;
  }
+ .purple-grid-0 {
+  display: none;
+ }
 }
 
 .title {
   color: #922e21;
   font-size: 60px;
+  background-color: #f4e9dc;
+  width: fit-content;
+  margin: auto;
+  position: relative;
+  top: 50px;
+  border-radius: 5px;
 }
 
 h1 {

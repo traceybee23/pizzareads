@@ -1,12 +1,13 @@
 
 .signup-modal {
-  padding: 20px;
+  padding: 20px 20px 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-content: space-around;
   width: 500px;
   height: 600px;
+  background-image: url("../../modalBackgrounds.png");
 }
 
 .signup-modal button {
@@ -15,7 +16,9 @@
 }
 
 .signup-modal span {
-  padding-bottom: 20px;
+  background-color: #ffffff;
+  width: fit-content;
+  align-self: center;
 }
 
 .signup-modal input {
