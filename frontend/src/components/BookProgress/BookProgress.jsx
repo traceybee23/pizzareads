@@ -21,6 +21,9 @@ const BookProgress = () => {
 
   const progresses = Object.values(useSelector(state => state.progress))
 
+  const completed = progresses.filter(progress => progress.completed === false)
+
+  console.log(!completed.length)
 
   useEffect(() => {
     dispatch(fetchBooks())
@@ -52,23 +55,37 @@ const BookProgress = () => {
             key={progress.id}
           >
             <>
-              <img className="progress-image" src={progress.Book.coverImageUrl} onClick={() => navigate(`/books/${progress.Book.id}`)} />
+              <img
+                className="progress-image"
+                src={progress.Book.coverImageUrl}
+                onClick={() => navigate(`/books/${progress.Book.id}`)}
+              />
               <div className="progress-deets">
                 <span className="progress-title">{progress.Book.title}</span>
                 <span className="progress-author">by {progress.Book.author}</span>
                 <span className="progress-container">
-                  <progress className="progressBar" value={progress.pagesRead} max={progress.Book.totalPages}>
-                  </progress>&nbsp;&nbsp;
-                  {percentage(`${progress.Book.totalPages}`, `${progress.pagesRead}`)}%</span>
+                  <progress
+                    className="progressBar"
+                    value={progress.pagesRead}
+                    max={progress.Book.totalPages}
+                  ></progress>&nbsp;&nbsp;
+                  {percentage(
+                    `${progress.Book.totalPages}`,
+                    `${progress.pagesRead}`
+                  )}%</span>
                 <div className="progress-buttons">
-                  <UpdateButton progressId={progress.id} book={progress.Book} navigate={navigate}/>
+                  <UpdateButton
+                    progressId={progress.id}
+                    book={progress.Book}
+                    navigate={navigate}/>
                   <DeleteProgressButton progressId={progress.id} />
                 </div>
               </div>
             </>
           </div>
-        ))}
-        {!progresses.length && <span>pick a book to add your progress here!</span>}
+      ))}
+      {!completed.length && <span>pick a book to add your progress here!</span>}
+      {!progresses.length && <span>pick a book to add your progress here!</span>}
       </div>
       <GoalProgress />
     </>

@@ -21,16 +21,6 @@ module.exports = {
         totalPages: 626
       },
       {
-        title: 'A Court of Wings and Ruin',
-        author: 'Sarah J. Maas',
-        genre: 'Fantasy',
-        publicationDate: 'June 2, 2020',
-        isbn: '9781635575606',
-        description: "Feyre has returned to the Spring Court, determined to gather information on Tamlin's actions and learn what she can about the invading king threatening to bring her land to its knees. But to do so she must play a deadly game of deceit. One slip could bring doom not only for Feyre, but for everything-and everyone-she holds dear. As war bears down upon them all, Feyre endeavors to take her place amongst the High Fae of the land, balancing her struggle to master her powers-both magical and political-and her love for her court and family. Amidst these struggles, Feyre and Rhysand must decide whom to trust amongst the cunning and lethal High Lords, and hunt for allies in unexpected places. In this thrilling third book in the #1 New York Times bestselling series from Sarah J. Maas, the fate of Feyre's world is at stake as armies grapple for power over the one thing that could destroy it.",
-        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1585623092i/50659472.jpg',
-        totalPages: 703
-      },
-      {
         title: 'Winterset Hollow',
         author: 'Jonathan Edward Durham',
         genre: 'Horror',
@@ -161,6 +151,16 @@ module.exports = {
         totalPages: 338
       },
       {
+        title: 'Twilight',
+        author: 'Stephenie Meyer',
+        genre: 'Fantasy',
+        publicationDate: 'September 6, 2006',
+        isbn: '9780316015844',
+        description: "Isabella Swan's move to Forks, a small, perpetually rainy town in Washington, could have been the most boring move she ever made. But once she meets the mysterious and alluring Edward Cullen, Isabella's life takes a thrilling and terrifying turn. Up until now, Edward has managed to keep his vampire identity a secret in the small community he lives in, but now nobody is safe, especially Isabella, the person Edward holds most dear. The lovers find themselves balanced precariously on the point of a knife -- between desire and danger. Deeply romantic and extraordinarily suspenseful, Twilight captures the struggle between defying our instincts and satisfying our desires. This is love story with bite.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700522826i/41865.jpg',
+        totalPages: 498
+      },
+      {
         title: 'Fourth Wing',
         author: 'Rebecca Yarros',
         genre: 'Fantasy',
@@ -171,14 +171,14 @@ module.exports = {
         totalPages: 498
       },
       {
-        title: 'Twilight',
-        author: 'Stephenie Meyer',
+        title: 'A Court of Wings and Ruin',
+        author: 'Sarah J. Maas',
         genre: 'Fantasy',
-        publicationDate: 'September 6, 2006',
-        isbn: '9780316015844',
-        description: "Isabella Swan's move to Forks, a small, perpetually rainy town in Washington, could have been the most boring move she ever made. But once she meets the mysterious and alluring Edward Cullen, Isabella's life takes a thrilling and terrifying turn. Up until now, Edward has managed to keep his vampire identity a secret in the small community he lives in, but now nobody is safe, especially Isabella, the person Edward holds most dear. The lovers find themselves balanced precariously on the point of a knife -- between desire and danger. Deeply romantic and extraordinarily suspenseful, Twilight captures the struggle between defying our instincts and satisfying our desires. This is love story with bite.",
-        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700522826i/41865.jpg',
-        totalPages: 498
+        publicationDate: 'June 2, 2020',
+        isbn: '9781635575606',
+        description: "Feyre has returned to the Spring Court, determined to gather information on Tamlin's actions and learn what she can about the invading king threatening to bring her land to its knees. But to do so she must play a deadly game of deceit. One slip could bring doom not only for Feyre, but for everything-and everyone-she holds dear. As war bears down upon them all, Feyre endeavors to take her place amongst the High Fae of the land, balancing her struggle to master her powers-both magical and political-and her love for her court and family. Amidst these struggles, Feyre and Rhysand must decide whom to trust amongst the cunning and lethal High Lords, and hunt for allies in unexpected places. In this thrilling third book in the #1 New York Times bestselling series from Sarah J. Maas, the fate of Feyre's world is at stake as armies grapple for power over the one thing that could destroy it.",
+        coverImageUrl: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1585623092i/50659472.jpg',
+        totalPages: 703
       },
       {
         title: 'Throne of Glass',

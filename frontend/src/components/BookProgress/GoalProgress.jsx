@@ -30,6 +30,8 @@ const GoalProgress = () => {
       return 5 - count;
     } else if (count >= 5 && count < 10) {
       return 10 - count;
+    } else if (count >= 10 && count < 20) {
+      return 20 - count;
     }
   };
 
@@ -79,6 +81,33 @@ const GoalProgress = () => {
       }
       {
         count === 10 && coupwithnoredeemdate && user.milestone === 1 &&
+        <Link to={'/coupons/current'} className='redeem-coupon-link'>
+          please redeem your existing coupon
+        </Link>
+      }
+      {(count >= 10 && count < 20) && milestone(count) !== 2 && user.milestone === 2 &&
+        <h2 className='goal-progress-banner'>
+          You are {milestone(count)} books away from a free pizza!
+        </h2>
+      }
+      {
+        (count >= 10 && count < 20) && milestone(count) === 2 && coupwithnoredeemdate && user.milestone === 2 &&
+        <Link to={'/coupons/current'} className='redeem-coupon-link'>
+          please redeem your existing coupon
+        </Link>
+      }
+      {!coupwithnoredeemdate && (count >= 10 && count < 20) && milestone(count) === 2 && user.milestone === 2 &&
+        <h2 className='goal-progress-banner'>
+          You are {milestone(count)} book away from a free pizza!
+        </h2>
+      }
+      {count === 20 && !coupwithnoredeemdate && user.milestone === 2 &&
+        <div className="get-pizza-butt">
+          <AvailableCouponButton coupons={coupons} navigate={navigate} />
+        </div>
+      }
+      {
+        count === 20 && coupwithnoredeemdate && user.milestone === 2 &&
         <Link to={'/coupons/current'} className='redeem-coupon-link'>
           please redeem your existing coupon
         </Link>

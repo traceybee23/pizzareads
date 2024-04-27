@@ -13,37 +13,37 @@ module.exports = {
     await BookProgress.bulkCreate([
       {
         userId: 1,
-        bookId: 1,
+        bookId: 16,
         pagesRead: 313,
         completed: false
       },
       {
         userId: 1,
-        bookId: 4,
+        bookId: 17,
         pagesRead: 30,
         completed: false
       },
       {
         userId: 1,
-        bookId: 7,
+        bookId: 18,
         pagesRead: 227,
         completed: true
       },
       {
         userId: 1,
-        bookId: 8,
+        bookId: 19,
         pagesRead: 141,
         completed: true
       },
       {
         userId: 1,
-        bookId: 9,
+        bookId: 20,
         pagesRead: 274,
         completed: true
       },
       {
         userId: 1,
-        bookId: 10,
+        bookId: 21,
         pagesRead: 481,
         completed: true
       },
