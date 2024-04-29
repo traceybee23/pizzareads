@@ -23,8 +23,6 @@ const BookProgress = () => {
 
   const completed = progresses.filter(progress => progress.completed === false)
 
-  console.log(!completed.length)
-
   useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchProgresses(user.id))
