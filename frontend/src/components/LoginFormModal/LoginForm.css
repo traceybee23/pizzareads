@@ -15,7 +15,7 @@ input {
   width: 300px;
   display: flex;
   flex-direction: column;
-  background-image: url("../../modalBackgrounds.png");
+  background-image: url("../../zoom-ribbon.png");
 }
 
 #modal-content {
