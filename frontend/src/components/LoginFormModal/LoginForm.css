@@ -52,11 +52,14 @@ input {
   width: fit-content;
   align-self: center;
   margin-bottom: 0;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .new-message {
   background-color: #ffffff;
   width: fit-content;
   align-self: center;
-
+  border-radius: 5px;
+  padding: 5px;
 }

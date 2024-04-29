@@ -19,6 +19,8 @@
   background-color: #ffffff;
   width: fit-content;
   align-self: center;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .signup-modal input {
