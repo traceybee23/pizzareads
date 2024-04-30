@@ -44,11 +44,13 @@ function SignupFormModal() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let errObj = {}
     if (email && !emailRegex.test(email)) errObj.email = "Email is invalid."
-    if(username && username.length < 4) errObj.password = "Username must be more than 4 characters"
+    if(username && username.trim().length < 4) errObj.username = "Username must be more than 4 characters"
+    if(firstName && firstName.trim().length < 1) errObj.firstName = "First name must be more than 1 character"
+    if(lastName && lastName.trim().length < 1) errObj.lastName = "Last name must be more than 1 character"
     if(password && password.length < 6) errObj.password = "Password must be more than 6 characters"
     if(password !== confirmPassword) errObj.confirmPassword = "Confirm Password field must be the same as the Password field"
     setErrors(errObj)
-  }, [password, confirmPassword, username, email])
+  }, [password, confirmPassword, username, email, firstName, lastName])
 
 
 
