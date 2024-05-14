@@ -17,11 +17,22 @@ module.exports = (sequelize, DataTypes) => {
       });
       Friend.belongsTo(models.User, {
         foreignKey: 'userId2',
-        onDelete: 'CASCADE' 
+        onDelete: 'CASCADE'
+      });
+
+      Friend.hasMany(models.BookProgress, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+        sourceKey: 'userId2'
       });
     }
   }
   Friend.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     userId1: DataTypes.INTEGER,
     userId2: DataTypes.INTEGER,
     status: DataTypes.STRING
