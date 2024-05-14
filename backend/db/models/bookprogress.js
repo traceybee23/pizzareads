@@ -19,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'bookId',
         onDelete: 'CASCADE' // Optional: Configure cascade delete behavior
       });
+
+      BookProgress.belongsTo(models.Friend, { foreignKey: 'userId' });
     }
   }
   BookProgress.init({
