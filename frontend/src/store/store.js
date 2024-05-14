@@ -5,6 +5,7 @@ import booksReducer from './books';
 import progressReducer from './progress';
 import couponReducer from './coupons';
 import userCouponReducer from './userCoupons';
+import friendsReducer from './friends';
 
 const rootReducer = combineReducers({
   // ADD REDUCERS HERE
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   books: booksReducer,
   progress: progressReducer,
   coupon: couponReducer,
-  userCoupon: userCouponReducer
+  userCoupon: userCouponReducer,
+  friends: friendsReducer
 });
 
 let enhancer;

@@ -10,6 +10,7 @@ import LandingPage from './components/LandingPage';
 import UserCoupons from './components/UserCoupons';
 import AvailableCoupons from './components/AvailableCoupons';
 import ReadBooks from './components/ReadBooks';
+import Friends from './components/Friends';
 
 
 function Layout() {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: '/books/read',
         element: <ReadBooks />
+      },
+      {
+        path: '/friends',
+        element: <Friends />
       }
     ]
   }
