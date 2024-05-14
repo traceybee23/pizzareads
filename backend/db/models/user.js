@@ -23,6 +23,16 @@ module.exports = (sequelize, DataTypes) => {
           otherKey: 'couponId'
         }
       )
+
+      User.belongsToMany(
+        models.User,
+        {
+          as: "Friends",
+          through: models.Friend,
+          foreignKey: 'userId1',
+          otherKey: 'userId2'
+        }
+      )
     }
   };
 
