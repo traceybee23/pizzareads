@@ -20,9 +20,7 @@ const friendsReducer = ( state = {}, action ) => {
   switch (action.type) {
     case LOAD_FRIENDS: {
       const friendsState = {}
-      action.friends.Friends.forEach(friend => {
-        friendsState[friend.id] = friend;
-      })
+      friendsState[action.friends.id] = action.friends
       return friendsState
     }
     default:

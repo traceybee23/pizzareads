@@ -22,6 +22,16 @@ module.exports = {
         status: null
       },
       {
+        userId1: 1,
+        userId2: 4,
+        status: 'friends'
+      },
+      {
+        userId1: 1,
+        userId2: 5,
+        status: 'friends'
+      },
+      {
         userId1: 2,
         userId2: 3,
         status: 'friends'
