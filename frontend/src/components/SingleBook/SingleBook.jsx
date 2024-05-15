@@ -7,6 +7,8 @@ import './SingleBook.css'
 import UpdateButton from '../UpdateProgress/UpdateButton';
 import { fetchProgresses } from '../../store/progress';
 import { clearProgress } from '../../store/progress';
+import Reviews from '../Reviews';
+
 
 const SingleBook = () => {
 
@@ -15,6 +17,8 @@ const SingleBook = () => {
   const book = useSelector(state => state.books ? state.books[bookId] : null);
 
   const userProgress = Object.values(useSelector(state => state.progress));
+
+  const reviews = Object.values(useSelector(state => state.reviews))
 
   const user = useSelector(state => state.session.user);
   const bookProgress = userProgress.filter(progress => progress.bookId === +bookId )
@@ -64,6 +68,12 @@ const SingleBook = () => {
           <span><span className='deet-label'>Published:</span> {book.publicationDate}</span>
           <span><span className='deet-label'>ISBN:</span> {book.isbn}</span>
         </div>
+      </div>
+      <div className='reviews'>
+        {
+          reviews.length >= 1 &&
+          <Reviews bookId={bookId} />
+        }
       </div>
       <img className="purple-grid-0" src="../../purple-grid.png" />
       <img className="ribbon-accent-1" src="../../ribbon-accent.png" />
