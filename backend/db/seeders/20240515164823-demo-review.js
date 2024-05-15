@@ -17,55 +17,55 @@ const demoReviews = [
   {
     "userId": 2,
     "bookId": 1,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius tristique odio in vestibulum. Vestibulum placerat nisl et cursus consequat. Etiam non congue est. Praesent ut nisi non elit pellentesque dignissim. Sed nibh odio, luctus id purus quis, venenatis interdum tellus. Nam aliquam efficitur ipsum id gravida. Nulla maximus fringilla arcu in sodales. Fusce condimentum aliquam diam, vitae consectetur lorem euismod lacinia. Morbi sollicitudin ornare elementum.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sollicitudin mi mauris, vel ultrices libero vehicula consectetur. Sed pharetra integer.",
     "stars": 4
   },
   {
     "userId": 3,
     "bookId": 1,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed lacus sed erat ultrices ultrices ut sed risus. Vestibulum at nisi et arcu semper lobortis et a urna. Nullam sed turpis arcu. Proin aliquam in metus quis faucibus. Quisque vitae dolor diam. Curabitur iaculis efficitur odio eget convallis. Nullam sit amet bibendum metus, eu sagittis dui.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In posuere leo nunc, eu placerat neque sodales in. Donec in massa libero lectus.",
     "stars": 4
   },
   {
     "userId": 4,
     "bookId": 2,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tortor sem, volutpat ut est ac, tempor semper est. Nulla gravida lorem ac condimentum ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tortor sem, volutpat ut est ac, tempor semper est. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "stars": 4
   },
   {
     "userId": 5,
     "bookId": 2,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada est velit, sit amet rutrum velit rhoncus ut. Etiam ut velit a risus varius fermentum ac vitae sapien. Maecenas id diam vulputate, malesuada enim in, dapibus enim. Aenean vehicula neque non congue fermentum.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in metus non ex posuere faucibus. Sed ornare fringilla nisi quis venenatis. Proin sit amet odio id leo euismod consequat. Ut lectus.",
     "stars": 5
   },
   {
     "userId": 6,
     "bookId": 3,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum imperdiet semper. Fusce nec neque quam. Vestibulum pretium dignissim aliquet. Etiam ac ipsum erat. Vestibulum dignissim turpis non lectus varius varius. Integer sollicitudin lacus id ante sagittis molestie.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in metus non ex posuere faucibus. Sed ornare fringilla nisi quis venenatis. Proin sit amet odio id leo euismod consequat. Ut lectus.",
     "stars": 5
   },
   {
     "userId": 7,
     "bookId": 4,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum imperdiet semper. Fusce nec neque quam. Vestibulum pretium dignissim aliquet. Etiam ac ipsum erat. Vestibulum dignissim turpis non lectus varius varius. Integer sollicitudin lacus id ante sagittis molestie.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in metus non ex posuere faucibus. Sed ornare fringilla nisi quis venenatis. Proin sit amet odio id leo euismod consequat. Ut lectus.",
     "stars": 5
   },
   {
     "userId": 8,
     "bookId": 5,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum imperdiet semper. Fusce nec neque quam. Vestibulum pretium dignissim aliquet. Etiam ac ipsum erat. Vestibulum dignissim turpis non lectus varius varius. Integer sollicitudin lacus id ante sagittis molestie.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in metus non ex posuere faucibus. Sed ornare fringilla nisi quis venenatis. Proin sit amet odio id leo euismod consequat. Ut lectus.",
     "stars": 5
   },
   {
     "userId": 9,
     "bookId": 6,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum imperdiet semper. Fusce nec neque quam. Vestibulum pretium dignissim aliquet. Etiam ac ipsum erat. Vestibulum dignissim turpis non lectus varius varius. Integer sollicitudin lacus id ante sagittis molestie.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in metus non ex posuere faucibus. Sed ornare fringilla nisi quis venenatis. Proin sit amet odio id leo euismod consequat. Ut lectus.",
     "stars": 5
   },
   {
     "userId": 10,
     "bookId": 1,
-    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vehicula at tellus quis efficitur. Vivamus ut ultricies nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed urna odio, sagittis ac velit in, condimentum semper nibh. Morbi faucibus iaculis neque. Nulla egestas lectus at euismod pulvinar. Mauris at lacus vulputate risus commodo cursus et sit amet magna. Nam posuere pulvinar dolor vitae tristique. Praesent ut metus mattis, mollis sapien vel, cursus mi. Ut imperdiet eget velit sed sagittis. Ut lectus arcu, fermentum ac scelerisque et, venenatis at velit.",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod purus non magna auctor venenatis. Praesent lobortis a sapien et posuere. Maecenas semper orci at urna vestibulum, vel biam.",
     "stars": 2
   },
 ]
