@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFriends } from "../../store/friends";
+import { useNavigate } from 'react-router-dom'
 import './Friends.css';
 
 const Friends = () => {
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const friends = Object.values(useSelector(state => state.friends))
@@ -38,10 +39,15 @@ const Friends = () => {
               <td>
                 {friend.BookProgresses && friend.BookProgresses.length > 0 ? (
                   <div className="friend-book-prog" key={friend.BookProgresses[0].id}>
-                    <img className="friend-book-img" src={friend.BookProgresses[0].Book.coverImageUrl} alt={friend.BookProgresses[0].Book.title} />
+                    <img
+                      className="friend-book-img"
+                      src={friend.BookProgresses[0].Book.coverImageUrl}
+                      alt={friend.BookProgresses[0].Book.title}
+                      onClick={() => navigate(`/books/${friend.BookProgresses[0].Book.id}`)}
+                      />
                     <div className="friend-prog">
                       {friend.BookProgresses[0].Book.title}
-                      <div >
+                      <div>
                         <span className="progress-container">
                           <progress
                             className="progressBar"

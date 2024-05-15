@@ -2,6 +2,10 @@
   height: 100px;
 }
 
+.friend-book-img:hover {
+  cursor: pointer;
+}
+
 
 table {
   border-collapse: collapse;
@@ -39,4 +43,5 @@ td:last-of-type {
 
 .friend-prog {
   margin-left: 10px;
+  font-size: medium;
 }
