@@ -33,10 +33,10 @@ router.get('/:bookId/reviews', async (req, res, next) => {
   })
 
   if (!reviewList.length) {
-    res.json({ Reviews: "Be the first to write a review"})
+    res.json({ Reviews: "New"})
   }
 
-  res.json(reviewList)
+  res.json({ Reviews: reviewList})
 
 })
 
