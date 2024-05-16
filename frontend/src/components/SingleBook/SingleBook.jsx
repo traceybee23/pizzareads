@@ -19,7 +19,7 @@ const SingleBook = () => {
   const userProgress = Object.values(useSelector(state => state.progress));
 
   const user = useSelector(state => state.session.user);
-  const bookProgress = userProgress.filter(progress => progress.bookId === +bookId )
+  const bookProgress = userProgress.filter(progress => progress.bookId === +bookId)
 
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const SingleBook = () => {
     } else {
       dispatch(clearProgress())
     }
-  }, [dispatch, bookId, user ])
+  }, [dispatch, bookId, user])
 
 
   return (
@@ -46,13 +46,13 @@ const SingleBook = () => {
                 {progress.completed ? (
                   <span>you already read this book</span>
                 ) : (
-                  <UpdateButton progressId={progress.id} book={book} navigate={navigate}/>
+                  <UpdateButton progressId={progress.id} book={book} navigate={navigate} />
                 )}
               </div>
             ))
           ) : (
             <div className='curr-read-butt'>
-              <ProgressButton  navigate={navigate} />
+              <ProgressButton navigate={navigate} />
             </div>
           )}
 
@@ -68,10 +68,13 @@ const SingleBook = () => {
         </div>
       </div>
       <div className='reviews'>
-        {
-
+      {
+        book.avgStarRating !== "New" ? (
           <Reviews bookId={bookId} />
-        }
+        ) : (
+          <div className='bethefirst'>be the first to write a review</div>
+        )
+      }
       </div>
       <img className="purple-grid-0" src="../../purple-grid.png" />
       <img className="ribbon-accent-1" src="../../ribbon-accent.png" />

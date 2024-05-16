@@ -13,6 +13,7 @@ const Reviews = () => {
 
   const reviews = Object.values(useSelector(state => state.reviews))
   const sessionUser = useSelector(state => state.session.user);
+  const book = Object.values(useSelector(state => state.books))
 
   reviews.sort((a, b) => b.id - a.id)
 
@@ -29,25 +30,26 @@ const Reviews = () => {
 
   return (
     <>
-      
+      <span className="rating"><span style={{fontWeight: "700"}}>{book[0].avgStarRating} stars</span> out of {reviews.length} reviews</span>
       {reviews && reviews.map(review => (
         <li
-          className="reviewsList"
-          key={review.id}>
-          <span>
-            {review.User.username}
-          </span>
-          <span style={{ fontSize: '14px', color: 'grey' }}>
-            {review.createdAt &&
-              getDate(review.createdAt)
-            }
-          </span>
-          <span style={{ fontSize: '12px' }}>
-            {review.review}
-          </span>
-          {sessionUser && sessionUser.id === review.User?.id &&
-            <span className="deleteReviewButton"><button/></span>
-            }
+        className="reviewsList"
+        key={review.id}>
+
+            <span className="review-username">
+              {review.User.username}&nbsp;&nbsp;&nbsp;
+              <span style={{fontSize: "15px"}}>
+                {review.createdAt &&
+                  getDate(review.createdAt)
+                }
+              </span>
+            </span>
+            <span className="review-content">
+              {review.review}&nbsp;&nbsp;&nbsp;
+              {sessionUser && sessionUser.id === review.User?.id &&
+                <span className="deleteReviewButton"><button>delete</button></span>
+              }
+            </span>
         </li>
       ))}
     </>
