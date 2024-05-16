@@ -18,8 +18,6 @@ const SingleBook = () => {
 
   const userProgress = Object.values(useSelector(state => state.progress));
 
-  const reviews = Object.values(useSelector(state => state.reviews))
-
   const user = useSelector(state => state.session.user);
   const bookProgress = userProgress.filter(progress => progress.bookId === +bookId )
 
@@ -71,7 +69,7 @@ const SingleBook = () => {
       </div>
       <div className='reviews'>
         {
-          reviews.length >= 1 &&
+
           <Reviews bookId={bookId} />
         }
       </div>

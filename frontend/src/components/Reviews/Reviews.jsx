@@ -29,7 +29,7 @@ const Reviews = () => {
 
   return (
     <>
-      Reviews
+      
       {reviews && reviews.map(review => (
         <li
           className="reviewsList"

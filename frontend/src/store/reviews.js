@@ -22,7 +22,7 @@ export const fetchReviews = (bookId) => async (dispatch) => {
 const reviewsReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_REVIEWS: {
-      const reviewState = {...state}
+      const reviewState = {}
       if(action.reviews.Reviews !== "New") {
         action.reviews.Reviews.forEach(review => {
           reviewState[review.id] = review
