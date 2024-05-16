@@ -8,6 +8,7 @@ const couponRouter = require('./coupons.js')
 const friendsRouter = require('./friends.js');
 
 
+
 router.use(restoreUser);
 
 router.use('/session', sessionRouter);
@@ -21,6 +22,7 @@ router.use('/progress', progressRouter);
 router.use('/coupons', couponRouter);
 
 router.use('/friends', friendsRouter);
+
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });

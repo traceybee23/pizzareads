@@ -1,0 +1,24 @@
+.reviewsList {
+  padding: 10px;
+
+}
+
+.review-username {
+  display: flex;
+  font-size: 20px;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.review-content {
+  display: flex;
+  text-align: left;
+  padding: 10px 0;
+  justify-content: space-between;
+  font-size: large;
+
+}
+
+.rating {
+  font-size: 20px;
+}

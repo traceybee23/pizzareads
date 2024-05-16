@@ -1,6 +1,5 @@
 const express = require('express');
 const { requireAuth } = require('../../utils/auth');
-const { Op } = require('sequelize');
 const { Friend, User, Books, BookProgress } = require("../../db/models");
 
 const router = express.Router();

@@ -15,6 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       )
 
       Books.hasMany(models.BookProgress, { foreignKey: 'bookId' });
+
+      Books.hasMany(models.Review, { foreignKey: 'bookId' })
     }
   }
   Books.init({

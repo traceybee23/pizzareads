@@ -5,7 +5,7 @@
   width: 1000px;
   background-color: #ed9c36;
   margin-top: 50px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   overflow-y: hidden;
 }
 
@@ -62,4 +62,25 @@
   right: 10px;
   top: -15px;
   overflow-y: hidden;
+}
+
+.reviews {
+  width: 1000px;
+  margin: auto;
+  height: 200px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-color:  #922e21 #ed9c36;
+  background-color: #ed9c36;
+  padding: 20px;
+  border-top: 4px solid transparent;
+  border-radius: 0 0 5px 5px;
+}
+
+.bethefirst {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  padding-top: 20px;
 }
