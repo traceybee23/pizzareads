@@ -14,7 +14,7 @@ const Reviews = () => {
 
   const reviews = Object.values(useSelector(state => state.reviews))
   const sessionUser = useSelector(state => state.session.user);
-  const book = Object.values(useSelector(state => state.books))
+ 
 
   reviews.sort((a, b) => b.id - a.id)
 
