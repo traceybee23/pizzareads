@@ -7,6 +7,8 @@ import './SingleBook.css'
 import UpdateButton from '../UpdateProgress/UpdateButton';
 import { fetchProgresses } from '../../store/progress';
 import { clearProgress } from '../../store/progress';
+import Reviews from '../Reviews';
+
 
 const SingleBook = () => {
 
@@ -17,7 +19,7 @@ const SingleBook = () => {
   const userProgress = Object.values(useSelector(state => state.progress));
 
   const user = useSelector(state => state.session.user);
-  const bookProgress = userProgress.filter(progress => progress.bookId === +bookId )
+  const bookProgress = userProgress.filter(progress => progress.bookId === +bookId)
 
   const dispatch = useDispatch();
 
@@ -29,7 +31,7 @@ const SingleBook = () => {
     } else {
       dispatch(clearProgress())
     }
-  }, [dispatch, bookId, user ])
+  }, [dispatch, bookId, user])
 
 
   return (
@@ -44,13 +46,13 @@ const SingleBook = () => {
                 {progress.completed ? (
                   <span>you already read this book</span>
                 ) : (
-                  <UpdateButton progressId={progress.id} book={book} navigate={navigate}/>
+                  <UpdateButton progressId={progress.id} book={book} navigate={navigate} />
                 )}
               </div>
             ))
           ) : (
             <div className='curr-read-butt'>
-              <ProgressButton  navigate={navigate} />
+              <ProgressButton navigate={navigate} />
             </div>
           )}
 
@@ -64,6 +66,18 @@ const SingleBook = () => {
           <span><span className='deet-label'>Published:</span> {book.publicationDate}</span>
           <span><span className='deet-label'>ISBN:</span> {book.isbn}</span>
         </div>
+      </div>
+      <div className='reviews'>
+      {
+        book.avgStarRating !== "New" ? (
+          <span className="rating">
+            <span style={{fontWeight: "700"}}>{book.avgStarRating} stars</span> out of {book.numReviews} reviews
+            <Reviews bookId={bookId} />
+          </span>
+        ) : (
+          <div className='bethefirst'>be the first to write a review</div>
+        )
+      }
       </div>
       <img className="purple-grid-0" src="../../purple-grid.png" />
       <img className="ribbon-accent-1" src="../../ribbon-accent.png" />
