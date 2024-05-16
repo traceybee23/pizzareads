@@ -15,9 +15,10 @@
   text-align: left;
   padding: 10px 0;
   justify-content: space-between;
+  font-size: large;
+
 }
 
 .rating {
   font-size: 20px;
 }
-

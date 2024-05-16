@@ -70,7 +70,10 @@ const SingleBook = () => {
       <div className='reviews'>
       {
         book.avgStarRating !== "New" ? (
-          <Reviews bookId={bookId} />
+          <span className="rating">
+            <span style={{fontWeight: "700"}}>{book.avgStarRating} stars</span> out of {book.numReviews} reviews
+            <Reviews bookId={bookId} />
+          </span>
         ) : (
           <div className='bethefirst'>be the first to write a review</div>
         )

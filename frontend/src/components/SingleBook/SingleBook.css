@@ -70,10 +70,10 @@
   height: 200px;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  scrollbar-color: #e1709a #bae264;
+  scrollbar-color:  #922e21 #ed9c36;
   background-color: #ed9c36;
   padding: 20px;
-  border-top: 4px solid #bae264;
+  border-top: 4px solid transparent;
   border-radius: 0 0 5px 5px;
 }
 

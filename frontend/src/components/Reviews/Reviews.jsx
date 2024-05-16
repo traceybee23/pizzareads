@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import './Reviews.css'
+import { fetchSingleBook } from "../../store/books";
 
 const Reviews = () => {
 
@@ -18,6 +19,7 @@ const Reviews = () => {
   reviews.sort((a, b) => b.id - a.id)
 
   useEffect(() => {
+    dispatch(fetchSingleBook(bookId))
     dispatch(fetchReviews(bookId))
   }, [dispatch, bookId])
 
@@ -30,7 +32,6 @@ const Reviews = () => {
 
   return (
     <>
-      <span className="rating"><span style={{fontWeight: "700"}}>{book[0].avgStarRating} stars</span> out of {reviews.length} reviews</span>
       {reviews && reviews.map(review => (
         <li
         className="reviewsList"
