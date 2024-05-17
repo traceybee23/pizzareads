@@ -6,7 +6,7 @@ const booksRouter = require('./books.js')
 const progressRouter = require('./progress.js')
 const couponRouter = require('./coupons.js')
 const friendsRouter = require('./friends.js');
-
+const reviewsRouter = require('./reviews.js')
 
 
 router.use(restoreUser);
@@ -22,6 +22,8 @@ router.use('/progress', progressRouter);
 router.use('/coupons', couponRouter);
 
 router.use('/friends', friendsRouter);
+
+router.use('/reviews', reviewsRouter);
 
 
 router.post('/test', (req, res) => {

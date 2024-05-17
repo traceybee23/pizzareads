@@ -22,3 +22,45 @@
 .rating {
   font-size: 20px;
 }
+
+.reviewsList {
+  padding-bottom: 15px;
+}
+.reviewsList span {
+  margin: 2px 0 ;
+}
+
+.reviewForm {
+  padding: 10px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../zoom-ribbon.png");
+}
+
+.reviewForm h2 {
+  align-self: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.reviewTextArea {
+  width: 100%;
+  font-size: large;
+}
+
+.rating-input {
+  display: flex;
+  margin: 5px;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.rating-input .filled {
+  color: #ed9c36;
+}
+.rating-input .empty {
+  color: rgb(168, 168, 168)
+}

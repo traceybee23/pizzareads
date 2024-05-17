@@ -7,7 +7,9 @@ import './SingleBook.css'
 import UpdateButton from '../UpdateProgress/UpdateButton';
 import { fetchProgresses } from '../../store/progress';
 import { clearProgress } from '../../store/progress';
+import ReviewButton from '../Reviews/ReviewButton';
 import Reviews from '../Reviews';
+import { fetchReviews } from '../../store/reviews';
 
 
 const SingleBook = () => {
@@ -20,10 +22,12 @@ const SingleBook = () => {
 
   const user = useSelector(state => state.session.user);
   const bookProgress = userProgress.filter(progress => progress.bookId === +bookId)
+  const reviews = Object.values(useSelector(state => state.reviews))
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchReviews(bookId))
     dispatch(fetchBooks())
     dispatch(fetchSingleBook(bookId));
     if (user) {
@@ -33,6 +37,10 @@ const SingleBook = () => {
     }
   }, [dispatch, bookId, user])
 
+  const shouldDisplayReviewButton =
+    user &&
+    book &&
+    !reviews.some((review) => review.userId === user.id && review.bookId === book.id)
 
   return (
     book && bookId &&
@@ -44,7 +52,15 @@ const SingleBook = () => {
             bookProgress.map(progress => (
               <div className='curr-read-butt' key={progress.id}>
                 {progress.completed ? (
-                  <span>you already read this book</span>
+                  <span>you already read this book
+                    <div>
+                      {shouldDisplayReviewButton &&
+                        <div className="reviewButton">
+                          <ReviewButton bookId={bookId}/>
+                        </div>
+                      }
+                    </div>
+                  </span>
                 ) : (
                   <UpdateButton progressId={progress.id} book={book} navigate={navigate} />
                 )}
@@ -68,16 +84,18 @@ const SingleBook = () => {
         </div>
       </div>
       <div className='reviews'>
-      {
-        book.avgStarRating !== "New" ? (
-          <span className="rating">
-            <span style={{fontWeight: "700"}}>{book.avgStarRating} stars</span> out of {book.numReviews} reviews
-            <Reviews bookId={bookId} />
-          </span>
-        ) : (
-          <div className='bethefirst'>be the first to write a review</div>
-        )
-      }
+        {
+          book.avgStarRating !== "New" ? (
+            <span className="rating">
+              <span style={{ fontWeight: "700" }}>{book.avgStarRating} stars</span> out of {book.numReviews} reviews
+              <Reviews bookId={bookId} />
+            </span>
+          ) : (
+            <div className='bethefirst'>be the first to write a review
+
+            </div>
+          )
+        }
       </div>
       <img className="purple-grid-0" src="../../purple-grid.png" />
       <img className="ribbon-accent-1" src="../../ribbon-accent.png" />
