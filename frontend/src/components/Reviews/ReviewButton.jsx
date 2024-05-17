@@ -6,7 +6,7 @@ const ReviewButton = ({bookId}) => {
 
   return (
     <OpenModalButton
-      buttonText="Post Your Review"
+      buttonText="post your review"
       modalComponent={<CreateReviewModal bookId={bookId}/>}
       />
   )
