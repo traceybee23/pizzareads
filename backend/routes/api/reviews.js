@@ -5,7 +5,7 @@ const { Book, Review, User } = require('../../db/models');
 const router = express.Router();
 
 router.put('/:reviewId', requireAuth, async (req, res, next) => {
-  const user = req;
+  const { user }= req;
   const reviewId = Number(req.params.reviewId)
 
   try {
@@ -49,3 +49,5 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
     next(error)
   }
 })
+
+module.exports = router;
