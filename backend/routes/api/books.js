@@ -1,9 +1,64 @@
 const express = require('express');
-
+const { requireAuth } = require('../../utils/auth');
 const { Books, Review, User } = require("../../db/models");
 
 
 const router = express.Router();
+
+
+router.post('/:bookId/reviews', requireAuth, async (req, res, next) => {
+
+  const { user } = req;
+  if (!user) {
+    return res.status(401).json({
+      "message": "Authentication required"
+    })
+  }
+
+  const bookId = Number(req.params.bookId)
+
+  const { review, stars } = req.body
+
+  const book = await Books.findOne({
+    where: { id: bookId },
+    include: [
+      {
+        model: Review,
+        attributes: ['userId']
+      }
+    ]
+  })
+
+  if (!book) {
+    return res.status(404).json({
+      message: "Book couldn't be found"
+    })
+  }
+
+  try {
+    let errors = [];
+
+    book.Reviews.forEach(review => {
+      if (review.userId === user.id) {
+        const err = new Error("User already has a review for this spot")
+        errors.push(err)
+      }
+    })
+
+    if (errors.length) {
+      return res.status(500).json({
+        "message": "User already has a review for this spot"
+      })
+    }
+
+    const newReview = await Review.create({ userId: user.id, bookId, review, stars })
+    res.status(201).json(newReview)
+  } catch (error) {
+    error.message = "Bad Request"
+    error.status = 400
+    next(error)
+  }
+})
 
 router.get('/:bookId/reviews', async (req, res, next) => {
 
@@ -33,10 +88,10 @@ router.get('/:bookId/reviews', async (req, res, next) => {
   })
 
   if (!reviewList.length) {
-    res.json({ Reviews: "New"})
+    res.json({ Reviews: "New" })
   }
 
-  res.json({ Reviews: reviewList})
+  res.json({ Reviews: reviewList })
 
 })
 
@@ -65,7 +120,7 @@ router.get('/:bookId', async (req, res, next) => {
       stars += review.stars
       bookData.numReviews = bookData.Reviews.length
       if (book.Reviews.length > 1) {
-        bookData.avgStarRating = ( stars / bookData.Reviews.length).toFixed(1)
+        bookData.avgStarRating = (stars / bookData.Reviews.length).toFixed(1)
       } else {
         bookData.avgStarRating = review.stars.toFixed(1)
       }
