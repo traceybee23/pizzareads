@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { createReview, fetchReviews } from '../../store/reviews';
+import { createReview } from '../../store/reviews';
 import StarRatingInput from './StarRatingInput';
-import { fetchSingleBook } from '../../store/books';
+
 
 const CreateReview = ({bookId}) => {
 
@@ -29,8 +29,7 @@ const CreateReview = ({bookId}) => {
         username: username
       }
     await dispatch(createReview(bookId, newReview))
-    .then(dispatch(fetchReviews(bookId)))
-    .then(dispatch(fetchSingleBook(bookId)))
+
     .then(closeModal)
     .catch(async (response) => {
       const data = await response.json();

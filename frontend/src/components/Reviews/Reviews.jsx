@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-
 import './Reviews.css'
 import { fetchSingleBook } from "../../store/books";
 
-const Reviews = ({bookId}) => {
 
+const Reviews = ({bookId}) => {
 
   const dispatch = useDispatch();
 
@@ -36,7 +35,7 @@ const Reviews = ({bookId}) => {
         key={review.id}>
 
             <span className="review-username">
-              {review.User.username && review.User.username}&nbsp;&nbsp;&nbsp;
+              {review.User?.username}&nbsp;&nbsp;&nbsp;
               <span style={{fontSize: "15px"}}>
                 {review.createdAt &&
                   getDate(review.createdAt)

@@ -1,3 +1,4 @@
+import { fetchSingleBook } from "./books";
 import { csrfFetch } from "./csrf"
 
 const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
@@ -10,10 +11,9 @@ const loadReviews = (reviews, bookId) => ({
   bookId
 })
 
-const receiveReview = (review, bookId) => ({
+const receiveReview = (review) => ({
   type: CREATE_REVIEW,
-  review,
-  bookId
+  review
 })
 
 export const createReview = (bookId, review) => async (dispatch, getState) => {
@@ -29,6 +29,7 @@ export const createReview = (bookId, review) => async (dispatch, getState) => {
     const data = await response.json();
     dispatch(receiveReview(data));
     dispatch(fetchReviews(bookId))
+    dispatch(fetchSingleBook(bookId))
 
     return data;
   } else {

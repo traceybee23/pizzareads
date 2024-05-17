@@ -27,9 +27,9 @@ const SingleBook = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchReviews(bookId))
     dispatch(fetchBooks())
     dispatch(fetchSingleBook(bookId));
-    dispatch(fetchReviews(bookId))
     if (user) {
       dispatch(fetchProgresses(user.id))
     } else {
