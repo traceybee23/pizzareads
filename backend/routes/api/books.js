@@ -40,14 +40,14 @@ router.post('/:bookId/reviews', requireAuth, async (req, res, next) => {
 
     book.Reviews.forEach(review => {
       if (review.userId === user.id) {
-        const err = new Error("User already has a review for this spot")
+        const err = new Error("User already has a review for this book")
         errors.push(err)
       }
     })
 
     if (errors.length) {
       return res.status(500).json({
-        "message": "User already has a review for this spot"
+        "message": "User already has a review for this book"
       })
     }
 

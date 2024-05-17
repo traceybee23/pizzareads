@@ -19,7 +19,7 @@ const receiveReview = (review, bookId) => ({
 export const createReview = (bookId, review) => async (dispatch, getState) => {
   const sessionUser = getState().session.user;
 
-  const response = await csrfFetch(`/api/spots/${bookId}/reviews`, {
+  const response = await csrfFetch(`/api/books/${bookId}/reviews`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...review, userId: sessionUser.id }),
@@ -28,6 +28,7 @@ export const createReview = (bookId, review) => async (dispatch, getState) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(receiveReview(data));
+    dispatch(fetchReviews(bookId))
 
     return data;
   } else {
