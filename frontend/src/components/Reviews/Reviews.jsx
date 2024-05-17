@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import './Reviews.css'
 import { fetchSingleBook } from "../../store/books";
+import DeleteReviewButton from "./DeleteReviewButton";
 
 
 const Reviews = ({bookId}) => {
@@ -45,7 +46,7 @@ const Reviews = ({bookId}) => {
             <span className="review-content">
               {review.review}&nbsp;&nbsp;&nbsp;
               {sessionUser && sessionUser.id === review.User?.id &&
-                <span className="deleteReviewButton"><button>delete</button></span>
+                <span className="deleteReviewButton"><DeleteReviewButton reviewId={review.id}/></span>
               }
             </span>
         </li>
