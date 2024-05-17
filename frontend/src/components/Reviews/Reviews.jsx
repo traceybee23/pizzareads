@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import './Reviews.css'
 import { fetchSingleBook } from "../../store/books";
 import DeleteReviewButton from "./DeleteReviewButton";
+import UpdateReviewButton from "./UpdateReviewButton";
 
 
 const Reviews = ({bookId}) => {
@@ -46,7 +47,10 @@ const Reviews = ({bookId}) => {
             <span className="review-content">
               {review.review}&nbsp;&nbsp;&nbsp;
               {sessionUser && sessionUser.id === review.User?.id &&
-                <span className="deleteReviewButton"><DeleteReviewButton reviewId={review.id}/></span>
+              <span>
+                <span className="deleteReviewButton"><DeleteReviewButton reviewId={review.id} bookId={bookId}/></span>
+                <span className="deleteReviewButton"><UpdateReviewButton reviewId={review.id} bookId={bookId}/></span>
+              </span>
               }
             </span>
         </li>

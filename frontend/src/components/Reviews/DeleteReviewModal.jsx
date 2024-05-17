@@ -1,21 +1,28 @@
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { deleteReview } from '../../store/reviews';
+import { deleteReview, fetchReviews } from '../../store/reviews';
+import { fetchSingleBook } from '../../store/books';
 
-const DeleteReview = ({reviewId}) => {
+const DeleteReview = ({reviewId, bookId}) => {
+
+  console.log(reviewId, "REVIEW ID")
+  console.log(bookId)
 
   const dispatch = useDispatch();
 
   const {closeModal} = useModal();
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
-    dispatch(deleteReview(reviewId.reviewId))
-    .then(closeModal)
-    .catch(async (response) => {
-      const data = await response.json();
-      return data;
-    })
+
+    try {
+      await dispatch(deleteReview(reviewId))
+      await dispatch(fetchSingleBook(bookId))
+      await dispatch(fetchReviews(+bookId))
+      .then(closeModal)
+    } catch (error) {
+      console.error("Error deleting review", error);
+    }
   }
 
   return (

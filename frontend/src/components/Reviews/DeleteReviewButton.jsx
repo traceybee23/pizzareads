@@ -1,13 +1,13 @@
 import OpenModalButton from "../OpenModalButton";
 import DeleteReviewModal from "./DeleteReviewModal"
 
-const DeleteReviewButton = (reviewId) => {
+const DeleteReviewButton = ({reviewId, bookId}) => {
 
   return (
     <OpenModalButton
-    buttonText="Delete"
+    buttonText="delete"
     reviewId={reviewId}
-    modalComponent={<DeleteReviewModal reviewId={reviewId} />}
+    modalComponent={<DeleteReviewModal reviewId={reviewId} bookId={bookId}/>}
     />
   )
 }
