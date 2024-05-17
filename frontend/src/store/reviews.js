@@ -1,10 +1,41 @@
+import { csrfFetch } from "./csrf"
+
 const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
+const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
+
 
 const loadReviews = (reviews, bookId) => ({
   type: LOAD_REVIEWS,
   reviews,
   bookId
 })
+
+const receiveReview = (review, bookId) => ({
+  type: CREATE_REVIEW,
+  review,
+  bookId
+})
+
+export const createReview = (bookId, review) => async (dispatch, getState) => {
+  const sessionUser = getState().session.user;
+
+  const response = await csrfFetch(`/api/spots/${bookId}/reviews`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...review, userId: sessionUser.id }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(receiveReview(data));
+
+    return data;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+};
+
 
 export const fetchReviews = (bookId) => async (dispatch) => {
 
@@ -28,6 +59,11 @@ const reviewsReducer = (state = {}, action) => {
           reviewState[review.id] = review
         })
       }
+      return reviewState
+    }
+    case CREATE_REVIEW : {
+      const reviewState = {...state}
+      reviewState[action.review.id] = action.review
       return reviewState
     }
     default:
