@@ -72,7 +72,7 @@ span.coupon-code {
 .blue-grid-3 {
   position: relative;
   z-index: -4;
-  top: -1600px;
+  top: -1700px;
   width: 35vw;
   right: -1300px;
 }
@@ -80,7 +80,7 @@ span.coupon-code {
 .purple-grid-3 {
   position: relative;
   z-index: -4;
-  top: -300px;
+  top: -350px;
   right: 0px;
   width: 30vw;
 }
@@ -89,7 +89,7 @@ span.coupon-code {
   position: relative;
   z-index: -1;
   left: 1200px;
-  top: -950px;
+  top: -850px;
   width: 40vw;
 }
 
@@ -97,8 +97,8 @@ span.coupon-code {
   position: relative;
   z-index: -1;
   left: 80px;
-  top: -2500px;
-  width: 35vw;
+  top: -2300px;
+  width: 30vw;
 }
 
 .friends-page {
