@@ -72,7 +72,7 @@ span.coupon-code {
 .blue-grid-3 {
   position: relative;
   z-index: -4;
-  top: -1700px;
+  top: -1400px;
   width: 35vw;
   right: -1300px;
 }
@@ -88,8 +88,8 @@ span.coupon-code {
 .ribbon-accent-3 {
   position: relative;
   z-index: -1;
-  left: 1200px;
-  top: -850px;
+  left: 1100px;
+  top: -900px;
   width: 40vw;
 }
 
