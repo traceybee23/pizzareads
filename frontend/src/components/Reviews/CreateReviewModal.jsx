@@ -46,7 +46,7 @@ const CreateReview = ({ bookId }) => {
   useEffect(() => {
     let errObj = {}
     if (!review) errObj.review = "review is required."
-    if (review && review.length < 10) errObj.review = "reviews must be at least 85 characters in length.";
+    if (review && review.length < 10) errObj.review = "reviews must be at least 10 characters in length.";
     if (review && review.length > 2000) errObj.review = "reviews must be 2000 characters in length at most.";
     if (!stars) errObj.stars = "star rating is required."
     setErrors(errObj);

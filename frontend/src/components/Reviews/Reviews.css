@@ -64,3 +64,15 @@
 .rating-input .empty {
   color: rgb(168, 168, 168)
 }
+
+.reviewForm span {
+  align-self: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.reviewForm button {
+  align-self: center;
+
+}

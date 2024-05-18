@@ -1,16 +1,16 @@
 .pizza-dood {
   position: relative;
   z-index: -1;
-  height: 46vh;
-  left: -260px
+  height: 50vh;
+  left: -100px
 }
 
 .ribbon-accent {
   position: relative;
   z-index: -2;
-  height: 70vh;
-  top: -600px;
-  right: -600px;
+  height: 90vh;
+  top: -10px;
+  right: -10px;
 
   /* bottom: 10px; */
 }
@@ -18,8 +18,8 @@
 .purple-grid {
   position: relative;
   z-index: -3;
-  top: 5px;
-  left: 600px;
+  top: -150px;
+  left: 900px;
 }
 
 .blue-grid {
