@@ -73,8 +73,8 @@ span.coupon-code {
   position: relative;
   z-index: -4;
   top: -1600px;
-  width: 45vw;
-  right: -790px;
+  width: 35vw;
+  right: -1300px;
 }
 
 .purple-grid-3 {
@@ -82,23 +82,23 @@ span.coupon-code {
   z-index: -4;
   top: -300px;
   right: 0px;
-  width: 45vw;
+  width: 30vw;
 }
 
 .ribbon-accent-3 {
   position: relative;
   z-index: -1;
-  left: 500px;
-  top: -1000px;
-  width: 60vw;
+  left: 1200px;
+  top: -950px;
+  width: 40vw;
 }
 
 .pizza-dood-3 {
   position: relative;
   z-index: -1;
   left: 80px;
-  top: -2200px;
-  width: 40vw;
+  top: -2500px;
+  width: 35vw;
 }
 
 .friends-page {
