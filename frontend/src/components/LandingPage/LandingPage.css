@@ -2,7 +2,8 @@
   position: relative;
   z-index: -1;
   height: 50vh;
-  left: -100px
+  left: -100px;
+  bottom: 80px;
 }
 
 .ribbon-accent {
