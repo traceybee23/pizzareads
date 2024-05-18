@@ -19,13 +19,13 @@ const Footer = () => {
       <span>
         developed by:
         <div>
-        <a href="https://www.linkedin.com/in/tracey-beard/" target='_blank'>
+        <a href="https://www.linkedin.com/in/tracey-beard/" target='_blank' rel="noreferrer">
           <FaLinkedin />
         </a>
-        <a href="https://github.com/traceybee23" target='_blank'>
+        <a href="https://github.com/traceybee23" target='_blank' rel="noreferrer">
           <FaGithubSquare />
         </a>
-        <a href='https://traceybee23.github.io' target="_blank">
+        <a href='https://traceybee23.github.io' target="_blank" rel="noreferrer">
           <IoPizzaOutline />
         </a>
         tracey beard
@@ -47,7 +47,7 @@ const Footer = () => {
       <span>
         the code:
         <div>
-        <a href='https://github.com/traceybee23/pizzareads' target='_blank'><FaGithubAlt /></a>
+        <a href='https://github.com/traceybee23/pizzareads' rel="noreferrer" target='_blank'><FaGithubAlt /></a>
         </div>
       </span>
     </div>
