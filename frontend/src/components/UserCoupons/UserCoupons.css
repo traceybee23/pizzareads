@@ -1,6 +1,8 @@
 .coupons-container {
   display: flex;
   flex-direction: column;
+  position: relative;
+  height: 810px;
 }
 
 .coupon-cards {
@@ -65,4 +67,40 @@ span.coupon-code {
   background-color: #e1709a;
   width: fit-content;
   margin: 20px;
+}
+
+.blue-grid-3 {
+  position: relative;
+  z-index: -4;
+  top: -1600px;
+  width: 45vw;
+  right: -790px;
+}
+
+.purple-grid-3 {
+  position: relative;
+  z-index: -4;
+  top: -300px;
+  right: 0px;
+  width: 45vw;
+}
+
+.ribbon-accent-3 {
+  position: relative;
+  z-index: -1;
+  left: 500px;
+  top: -1000px;
+  width: 60vw;
+}
+
+.pizza-dood-3 {
+  position: relative;
+  z-index: -1;
+  left: 80px;
+  top: -2200px;
+  width: 40vw;
+}
+
+.friends-page {
+  height: 795px;
 }

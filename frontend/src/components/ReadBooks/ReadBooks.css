@@ -26,3 +26,29 @@
 .book-read-cards:hover {
   cursor: pointer;
 }
+
+.book-trophies-page {
+  height: 810px;
+}
+
+.purple-grid-2 {
+  position: relative;
+  top: -560px;
+  z-index: -1;
+  left: -90px;
+}
+
+.ribbon-accent-2 {
+  position: relative;
+  top: -560px;
+  z-index: -1;
+  left: -90px;
+  height: 53vw;
+}
+
+.blue-grid-2 {
+  position: relative;
+  top: -1340px;
+  z-index: -2;
+  left: 380px;
+}

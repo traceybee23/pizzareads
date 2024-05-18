@@ -12,7 +12,7 @@ const ReadBooks = () => {
 
   return (
     progresses &&
-    <>
+    <div className='book-trophies-page'>
       <h1>
         book trophies
       </h1>
@@ -30,10 +30,10 @@ const ReadBooks = () => {
           </div>
         ))}
       </div>
-      <img className="purple-grid" src="../../purple-grid.png" />
-      <img className="ribbon-accent" src="../../ribbon-accent.png" />
-      <img className="blue-grid" src="../../blue-grid.png" />
-    </>
+      <img className="purple-grid-2" src="../../purple-grid.png" />
+      <img className="ribbon-accent-2" src="../../ribbon-accent.png" />
+      <img className="blue-grid-2" src="../../blue-grid.png" />
+    </div>
   )
 }
 
