@@ -62,9 +62,10 @@ const UserCoupons = () => {
       ))
       }
       {!coupons.length && <div className="read-more">read books to earn coupons!</div>}
-      <img className="purple-grid" src="../../purple-grid.png" />
-      <img className="ribbon-accent" src="../../ribbon-accent.png" />
-      <img className="blue-grid" src="../../blue-grid.png" />
+      <img className="purple-grid-3" src="../../purple-grid.png" />
+      <img className="ribbon-accent-3" src="../../ribbon-accent.png" />
+      <img className="blue-grid-3" src="../../blue-grid.png" />
+      <img className="pizza-dood-3" src="../../pizza-dood.png" />
     </div>
 
   )

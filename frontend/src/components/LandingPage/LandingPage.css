@@ -1,51 +1,54 @@
 .pizza-dood {
-  position: absolute;
+  position: relative;
   z-index: -1;
-  bottom: 30px;
-  left: 600px;
+  height: 46vh;
+  left: -260px
 }
 
 .ribbon-accent {
-  position: absolute;
+  position: relative;
   z-index: -2;
-  height: 900px;
-  right: 10px;
-  bottom: 10px;
+  height: 70vh;
+  top: -600px;
+  right: -600px;
+
+  /* bottom: 10px; */
 }
 
 .purple-grid {
-  position: absolute;
+  position: relative;
   z-index: -3;
-  top: 85px;
-  right: 1px;
+  top: 5px;
+  left: 600px;
 }
 
 .blue-grid {
-  position: absolute;
+  position: relative;
   z-index: -4;
-  bottom: 30px;
-  left: 1px;
+  top: -500px;
+  left: -700px;
 }
 
 .pizza-dood-0 {
-  position: absolute;
-  left: 200px;
+  position: relative;
+  left: 100px;
   z-index: -1;
-  bottom: 100px;
+  top: -100px;
 }
 
 .ribbon-accent-0 {
-  position: absolute;
+  position: relative;
   z-index: -2;
-  height: 800px;
+  height: 81vh;
   right: 10px;
-  top: -2px;
+  top: -100px;
+
 }
 
 .purple-grid-0 {
   position: absolute;
   z-index: -3;
-  bottom: 1px;
+  bottom: 100px;
   right: 1px;
 }
 
@@ -78,4 +81,8 @@
 
 h1 {
   color: #922e21;
+}
+
+.landing-page {
+  height: 810px;
 }

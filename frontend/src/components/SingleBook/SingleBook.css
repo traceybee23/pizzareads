@@ -2,7 +2,7 @@
   display: flex;
   padding: 20px;
   margin: auto;
-  width: 1000px;
+  width: 800px;
   background-color: #ed9c36;
   margin-top: 50px;
   border-radius: 5px 5px 0 0;
@@ -55,17 +55,24 @@
   left: -130px;
 }
 
+.purple-grid-1 {
+  position: absolute;
+  z-index: -4;
+  top: 440px;
+  right: 0px;
+}
+
 .ribbon-accent-1 {
   position: absolute;
   z-index: -2;
-  height: 900px;
+  height: 90vh;
   right: 10px;
   top: -15px;
   overflow-y: hidden;
 }
 
 .reviews {
-  width: 1000px;
+  width: 800px;
   margin: auto;
   height: 200px;
   overflow-y: scroll;
@@ -75,6 +82,7 @@
   padding: 20px;
   border-top: 4px solid transparent;
   border-radius: 0 0 5px 5px;
+  margin-bottom: 40px;
 }
 
 .bethefirst {

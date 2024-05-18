@@ -22,7 +22,7 @@ const Friends = () => {
   }
 
   return (
-    <>
+    <div className="friends-page">
       <h2>Friends</h2>
       <table>
         <thead>
@@ -72,7 +72,7 @@ const Friends = () => {
           {friends && friends.length === 0 && <tr><td colSpan="3">No friends found.</td></tr>}
         </tbody>
       </table>
-    </>
+    </div>
   )
 }
 

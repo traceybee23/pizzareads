@@ -23,7 +23,7 @@ const BooksList = () => {
   }
 
   return (
-    <>
+    <div className="books-page">
       <div className="books-container">
         <h1 className="books-header" >books</h1>
         {books && books.map(book => (
@@ -46,11 +46,11 @@ const BooksList = () => {
           </div>
         ))}
       </div>
-      <img className="purple-grid" src="../../purple-grid.png" />
+      <img className="purple-grid-bookslist" src="../../purple-grid.png" />
       {/* <img className="pizza-dood-list" src="../../pizza-dood.png" /> */}
-      <img className="ribbon-accent" src="../../ribbon-accent.png" />
-      <img className="blue-grid" src="../../blue-grid.png" />
-    </>
+      <img className="ribbon-accent-bookslist" src="../../ribbon-accent.png" />
+      <img className="blue-grid-bookslist" src="../../blue-grid.png" />
+    </div>
   )
 }
 

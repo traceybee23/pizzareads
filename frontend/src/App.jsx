@@ -12,6 +12,7 @@ import AvailableCoupons from './components/AvailableCoupons';
 import ReadBooks from './components/ReadBooks';
 import Friends from './components/Friends';
 import Reviews from './components/Reviews';
+import Footer from './components/Footer';
 
 
 function Layout() {
@@ -28,6 +29,7 @@ function Layout() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Outlet />}
+      <Footer />
     </>
   );
 }
