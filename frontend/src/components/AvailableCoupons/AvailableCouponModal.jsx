@@ -25,7 +25,7 @@ const AvailableCoupons = ({navigate}) => {
   }
 
   return (
-    <div className="avail-coup">
+    <div className="reviewForm">
       <div className="coupons-container">
         {coupons && coupons.map(coupon => (
           <div key={coupon.id} className="coupon-cards">

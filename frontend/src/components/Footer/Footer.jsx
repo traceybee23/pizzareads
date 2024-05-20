@@ -34,14 +34,14 @@ const Footer = () => {
       <span>
         the tech:
         <div>
-          <a href=''><IoLogoJavascript /></a>
-          <a href=''><SiExpress /></a>
-          <a href=''><SiPostgresql /></a>
-          <a href=''><FaReact /></a>
-          <a href=''><SiRedux /></a>
-          <a href=''><SiSequelize /></a>
-          <a href=''><FaHtml5 /></a>
-          <a href=''><FaCss3Alt /></a>
+          <a href='#'><IoLogoJavascript /></a>
+          <a href='#'><SiExpress /></a>
+          <a href='#'><SiPostgresql /></a>
+          <a href='#'><FaReact /></a>
+          <a href='#'><SiRedux /></a>
+          <a href='#'><SiSequelize /></a>
+          <a href='#'><FaHtml5 /></a>
+          <a href='#'><FaCss3Alt /></a>
         </div>
       </span>
       <span>
