@@ -64,9 +64,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className='menu' onClick={toggleMenu}>
-        <CiUser />
-      </button>
+      <div>
+        <img className='menu' onClick={toggleMenu} src='../../profile.png' />
+      </div>
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <div className='user-menu'>

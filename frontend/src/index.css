@@ -1,9 +1,7 @@
 /* TODO: Add sitewide styles */
 
 html {
-  background-color:#F4E9DC;
-  overflow-y: scroll;
-  scrollbar-color:  #922e21 #ed9c36;
+  background-color: #1b998b;
 
 }
 
@@ -13,8 +11,7 @@ body {
   font-family: "Quicksand", sans-serif;
   font-weight: 400;
   text-align: center;
-  overflow: hidden;
-
+  height: 100%;
 }
 
 

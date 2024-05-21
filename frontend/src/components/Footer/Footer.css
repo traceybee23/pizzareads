@@ -1,5 +1,5 @@
 .footer-container {
-  background-color: #ed9c36;
+  background-color: #2e294e;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -7,10 +7,15 @@
   font-size: larger;
   padding-top: 10px;
   padding-bottom: 40px;
+  color: #ffffff;
 }
 
 .footer-container a {
   padding: 3px;
-  color: #922e21;
+  color: #ed9c36;
+  margin: 3px;
+}
 
+.plugs {
+  margin-top: 10px;
 }

@@ -18,7 +18,7 @@ const Footer = () => {
     <div className='footer-container'>
       <span>
         developed by:
-        <div>
+        <div className="plugs">
         <a href="https://www.linkedin.com/in/tracey-beard/" target='_blank' rel="noreferrer">
           <FaLinkedin />
         </a>
@@ -33,7 +33,7 @@ const Footer = () => {
       </span>
       <span>
         the tech:
-        <div>
+        <div className="plugs">
           <a href='#'><IoLogoJavascript /></a>
           <a href='#'><SiExpress /></a>
           <a href='#'><SiPostgresql /></a>
@@ -46,7 +46,7 @@ const Footer = () => {
       </span>
       <span>
         the code:
-        <div>
+        <div className="plugs">
         <a href='https://github.com/traceybee23/pizzareads' rel="noreferrer" target='_blank'><FaGithubAlt /></a>
         </div>
       </span>
