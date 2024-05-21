@@ -2,10 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 750px;
+  height: 78.25vh;
   overflow-y: scroll;
   padding-top: 20px;
-  scrollbar-color: #922e21 #ed9c36;
 }
 
 .books-header {
@@ -75,5 +74,5 @@
 
 
 .books-page {
-  height: 84.6vh;
+  height: 80.75vh !important;
 }

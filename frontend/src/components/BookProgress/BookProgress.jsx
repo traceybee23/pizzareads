@@ -42,7 +42,7 @@ const BookProgress = () => {
 
   return (
     progresses &&
-    <>
+    <div>
       <h1 className="currentlyreading-h1">currently reading</h1>
       <div className="book-progress-container">
         {user && progresses && progresses.map(progress => (
@@ -85,8 +85,9 @@ const BookProgress = () => {
       {!completed.length && !!progresses.length && <span>pick a book to add your progress here!</span>}
       {!progresses.length && <span>pick a book to add your progress here!</span>}
       </div>
+
       <GoalProgress />
-    </>
+    </div>
   )
 }
 

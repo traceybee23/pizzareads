@@ -14,5 +14,14 @@ h1 {
 }
 
 .landing-page {
-  height: 84.6vh;
+  height: 80.75vh !important;
+  display: flex;
 }
+
+.book-progress-lp {
+  display: flex;
+
+
+}
+
+

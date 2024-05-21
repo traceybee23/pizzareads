@@ -9,7 +9,7 @@
 }
 
 .book-read-cards {
-  background-color: #922e21;
+  background-color: #ed9c36;
   padding: 20px;
   margin: 20px;
   display: flex;
@@ -30,4 +30,3 @@
 .book-trophies-page {
   height: 100vh;
 }
-

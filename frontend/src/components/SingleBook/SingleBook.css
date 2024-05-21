@@ -2,11 +2,11 @@
   display: flex;
   padding: 20px;
   margin: auto;
-  width: 800px;
+  width: 1000px;
   background-color: #ed9c36;
-  margin-top: 50px;
+  margin-top: 10px;
   border-radius: 5px 5px 0 0;
-  overflow-y: hidden;
+
 }
 
 .book-image {
@@ -49,12 +49,10 @@
 
 
 .reviews {
-  width: 800px;
+  width: 1000px;
   margin: auto;
-  height: 200px;
+  height: 130px;
   overflow-y: scroll;
-  scroll-behavior: smooth;
-  scrollbar-color:  #922e21 #ed9c36;
   background-color: #ed9c36;
   padding: 20px;
   border-top: 4px solid transparent;
@@ -68,4 +66,8 @@
   align-items: center;
   font-size: 30px;
   padding-top: 20px;
+}
+
+.single-book-page {
+  height: 79.75vh !important;
 }
