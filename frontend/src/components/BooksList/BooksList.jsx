@@ -46,10 +46,6 @@ const BooksList = () => {
           </div>
         ))}
       </div>
-      <img className="purple-grid-bookslist" src="../../purple-grid.png" />
-      {/* <img className="pizza-dood-list" src="../../pizza-dood.png" /> */}
-      <img className="ribbon-accent-bookslist" src="../../ribbon-accent.png" />
-      <img className="blue-grid-bookslist" src="../../blue-grid.png" />
     </div>
   )
 }

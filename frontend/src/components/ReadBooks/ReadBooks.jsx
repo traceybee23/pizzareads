@@ -30,9 +30,6 @@ const ReadBooks = () => {
           </div>
         ))}
       </div>
-      <img className="purple-grid-2" src="../../purple-grid.png" />
-      <img className="ribbon-accent-2" src="../../ribbon-accent.png" />
-      <img className="blue-grid-2" src="../../blue-grid.png" />
     </div>
   )
 }

@@ -1,13 +1,12 @@
 .footer-container {
   background-color: #ed9c36;
-  position: relative;
   width: 100%;
   display: flex;
   justify-content: space-around;
   height: 20px;
   font-size: larger;
   padding-top: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
 .footer-container a {

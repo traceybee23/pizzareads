@@ -72,36 +72,8 @@
   font-size: 14px;
 }
 
-/* .pizza-dood-list {
-  position: absolute;
-  top: 352px;
-  z-index: -1;
-  left: 10px;
-  height: 400px;
-} */
+
 
 .books-page {
-  height: 810px;
-}
-
-.purple-grid-bookslist {
-  position: relative;
-  top: -800px;
-  z-index: -1;
-  left: -60px;
-}
-
-.ribbon-accent-bookslist {
-  position: relative;
-  top: -800px;
-  z-index: -1;
-  left: 30px;
-  height: 80vh;
-}
-
-.blue-grid-bookslist {
-  position: relative;
-  top: -1500px;
-  z-index: -2;
-  right: -400px;
+  height: 84.6vh;
 }

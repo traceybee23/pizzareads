@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 810px;
+  height: 84.6vh;
 }
 
 .coupon-cards {
@@ -69,38 +69,7 @@ span.coupon-code {
   margin: 20px;
 }
 
-.blue-grid-3 {
-  position: relative;
-  z-index: -4;
-  top: -1400px;
-  width: 35vw;
-  right: -1300px;
-}
-
-.purple-grid-3 {
-  position: relative;
-  z-index: -4;
-  top: -350px;
-  right: 0px;
-  width: 30vw;
-}
-
-.ribbon-accent-3 {
-  position: relative;
-  z-index: -1;
-  left: 1100px;
-  top: -900px;
-  width: 40vw;
-}
-
-.pizza-dood-3 {
-  position: relative;
-  z-index: -1;
-  left: 80px;
-  top: -2000px;
-  width: 30vw;
-}
 
 .friends-page {
-  height: 795px;
+  height: 100vh;
 }

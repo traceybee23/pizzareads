@@ -48,29 +48,6 @@
 }
 
 
-.blue-grid-1 {
-  position: absolute;
-  z-index: -4;
-  top: 86px;
-  left: -130px;
-}
-
-.purple-grid-1 {
-  position: absolute;
-  z-index: -4;
-  top: 440px;
-  right: 0px;
-}
-
-.ribbon-accent-1 {
-  position: absolute;
-  z-index: -2;
-  height: 90vh;
-  right: 10px;
-  top: -15px;
-  overflow-y: hidden;
-}
-
 .reviews {
   width: 800px;
   margin: auto;

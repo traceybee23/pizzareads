@@ -62,7 +62,7 @@ const CreateReview = ({ bookId }) => {
           {errors.stars && <span className='errors'>{errors.stars}</span>}
           <textarea
             className='reviewTextArea'
-            placeholder='Leave your review here...'
+            placeholder='leave your review here...it must be more than 10 characters'
             value={review}
             onChange={(e) => setReview(e.target.value)}
             rows="4"

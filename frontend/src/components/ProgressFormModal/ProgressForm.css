@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-image: url("../../zoom-ribbon.png");
   border-radius: 5px;
 }
 

@@ -97,9 +97,6 @@ const SingleBook = () => {
           )
         }
       </div>
-      <img className="purple-grid-1" src="../../purple-grid.png" />
-      <img className="ribbon-accent-1" src="../../ribbon-accent.png" />
-      <img className="blue-grid-1" src="../../blue-grid.png" />
     </div>
   )
 }
