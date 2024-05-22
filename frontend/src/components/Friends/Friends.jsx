@@ -10,6 +10,8 @@ const Friends = () => {
 
   const friends = Object.values(useSelector(state => state.friends))
 
+  console.log(friends)
+
   useEffect(() => {
     dispatch(fetchFriends())
   }, [dispatch])
@@ -23,57 +25,73 @@ const Friends = () => {
 
   return (
     <div className="friends-page">
-      <h2>Friends</h2>
+      <h1>Friends</h1>
       <table>
         <thead>
           <tr>
-            <th scope="col">Friend</th>
-            <th scope="col">Progress</th>
-            <th scope="col">Status</th>
+            <th scope="col">friend</th>
+            <th scope="col">currently reading</th>
+            <th scope='col'>completed books</th>
+            <th scope="col">friend status</th>
           </tr>
         </thead>
         <tbody>
-          {friends && friends.map(friend => (
-            <tr key={friend.id} className="friend-cards">
-              <td>{friend.User.username}</td>
-              <td>
-                {friend.BookProgresses && friend.BookProgresses.length > 0 ? (
-                  <div className="friend-book-prog" key={friend.BookProgresses[0].id}>
-                    <img
-                      className="friend-book-img"
-                      src={friend.BookProgresses[0].Book.coverImageUrl}
-                      alt={friend.BookProgresses[0].Book.title}
-                      onClick={() => navigate(`/books/${friend.BookProgresses[0].Book.id}`)}
-                      />
-                    <div className="friend-prog">
-                      {friend.BookProgresses[0].Book.title}
-                      <div>
-                        <span className="progress-container">
-                          <progress
-                            className="progressBar"
-                            value={friend.BookProgresses[0].pagesRead}
-                            max={friend.BookProgresses[0].Book.totalPages}
-                          ></progress>&nbsp;&nbsp;
-                          {percentage(
-                            `${friend.BookProgresses[0].Book.totalPages}`,
-                            `${friend.BookProgresses[0].pagesRead}`
-                          )}%</span>
+          {friends && friends.map(friend => {
+            // Filter the BookProgresses to get only in-progress books
+            const inProgressBooks = friend.BookProgresses.filter(progress => !progress.completed);
+
+            // Filter the BookProgresses to get only completed books
+            const completedBooksCount = friend.BookProgresses.filter(progress => progress.completed).length;
+
+            return (
+              <tr key={friend.id} className="friend-cards">
+                <td>{friend.User.username}</td>
+                {inProgressBooks.length > 0 ? (
+                  <td>
+                    {inProgressBooks.map(progress => (
+                      <div className="friend-book-prog" key={progress.id}>
+                        <img className="friend-book-img"
+                          src={progress.Book.coverImageUrl}
+                          alt={progress.Book.title}
+                          onClick={() => navigate(`/books/${progress.Book.id}`)}
+                        />
+                        <div className="friend-prog">
+                          {progress.Book.title}
+                          <div>
+                            <div className="progress-container">
+                              <progress
+                                className="progressBar"
+                                value={progress.pagesRead}
+                                max={progress.Book.totalPages}
+                              ></progress>&nbsp;&nbsp;
+                              {percentage(
+                                `${progress.Book.totalPages}`,
+                                `${progress.pagesRead}`
+                              )}%
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    ))}
+                  </td>
                 ) : (
-                  <div>not reading anything right now</div>
+                  <td>
+                    <div>not reading anything right now</div>
+                  </td>
                 )}
-              </td>
-              <td>{friend.status}</td>
-            </tr>
-          ))}
-          {!friends && <tr><td colSpan="3">Loading...</td></tr>}
-          {friends && friends.length === 0 && <tr><td colSpan="3">No friends found.</td></tr>}
+                <td>
+                  {completedBooksCount}
+                </td>
+                <td>{friend.status}</td>
+              </tr>
+            );
+          })}
+          {!friends && <tr><td colSpan="4">Loading...</td></tr>}
+          {friends && friends.length === 0 && <tr><td colSpan="4">No friends found.</td></tr>}
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
 export default Friends;
