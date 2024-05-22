@@ -2,15 +2,15 @@
   display: flex;
   padding: 20px;
   margin: auto;
-  width: 1000px;
+  width: 70vw;
   background-color: #ed9c36;
   margin-top: 10px;
   border-radius: 5px 5px 0 0;
-
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 .book-image {
-  height: 500px;
+  height: 420px;
   border-radius: 0 15px 15px 0;
 }
 
@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: space-around;
   text-align: left;
-  margin-left: 25px;
+  margin-left: 40px;
   font-weight: 500;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .single-book-desc {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 
@@ -49,15 +49,16 @@
 
 
 .reviews {
-  width: 1000px;
+  width: 70vw;
   margin: auto;
-  height: 130px;
+  height: 210px;
   overflow-y: scroll;
   background-color: #ed9c36;
   padding: 20px;
-  border-top: 4px solid transparent;
+  /* border-top: 4px solid transparent; */
   border-radius: 0 0 5px 5px;
   margin-bottom: 40px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 .bethefirst {
