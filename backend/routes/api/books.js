@@ -1,4 +1,5 @@
 const express = require('express');
+const https = require('https');
 const { requireAuth } = require('../../utils/auth');
 const { Books, Review, User } = require("../../db/models");
 
@@ -94,6 +95,49 @@ router.get('/:bookId/reviews', async (req, res, next) => {
   res.json({ Reviews: reviewList })
 
 })
+router.get('/google/:query', async (req, res, next) => {
+  const {query} = req.params;
+  // const apiKey = BOOKS_API_KEY;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}`
+
+  https.get(url, (response) => {
+    let data = '';
+
+    // A chunk of data has been received.
+    response.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    // The whole response has been received.
+    response.on('end', () => {
+      try {
+        const apiResponse = JSON.parse(data);
+        const books = apiResponse.items.map((item, index) => {
+          const volumeInfo = item.volumeInfo;
+
+          return {
+            id: item.id,
+            title: volumeInfo.title || 'No title available',
+            author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
+            genre: volumeInfo.categories ? volumeInfo.categories.join(', ') : 'No genre available',
+            publicationDate: volumeInfo.publishedDate || 'No publication date available',
+            isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
+            description: volumeInfo.description || 'No description available',
+            coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'No cover image available',
+            totalPages: volumeInfo.pageCount || 'No page count available'
+          };
+        });
+
+        res.json({ Books: books });
+      } catch (error) {
+        res.status(500).json({ error: 'Error parsing response from Google Books API' });
+      }
+    });
+
+  }).on('error', (err) => {
+    res.status(500).json({ error: 'Error fetching data from Google Books API' });
+  });
+})
 
 router.get('/:bookId', async (req, res, next) => {
 
@@ -150,5 +194,7 @@ router.get('/', async (req, res, next) => {
   res.json({ Books: booksList })
 
 })
+
+
 
 module.exports = router
