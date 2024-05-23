@@ -1,53 +1,64 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks } from "../../store/books";
-import { Link } from "react-router-dom";
-import './BooksList.css'
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchGoogleBooks } from '../../store/books'; // Modify this action according to your implementation
+import { Link } from 'react-router-dom';
+import './BooksList.css';
 
 const BooksList = () => {
-
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { loading, error, books, itemCount } = useSelector(state => state.books);
 
-  const books = Object.values(useSelector(state => state.books))
+  console.log(loading, error, books, itemCount, "())()()()()(")
 
   useEffect(() => {
-    dispatch(fetchBooks())
-  }, [dispatch])
+    dispatch(fetchGoogleBooks('', currentPage)); // Fetch books for the initial page
+  }, [dispatch, currentPage]);
 
-  const descriptionSubstr = (text) => {
-    if (text.length > 100) {
-      return text.substring(0, 265) + '...'
-    } else {
-      return text
+  const handleNextPage = () => {
+    if (currentPage < itemCount) {
+      setCurrentPage(currentPage + 1); // Increment page number
     }
-  }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1); // Decrement page number
+    }
+  };
 
   return (
     <div className="books-page">
       <div className="books-container">
-        <h1 className="books-header" >books</h1>
-        {books && books.map(book => (
-          <div
-            className="book-cards"
-            key={book.id}
-          >
-            <Link className="link-books" to={`/books/${book.id}`}>
-
-              <img className='book-images' src={book.coverImageUrl} />
-              <div className="book-deets">
-                <span className="book-title">{book.title}</span>
-                <span className="book-author">{book.author}</span>
-                <span className="book-genre">{book.genre}</span>
-                <span className="book-description">{descriptionSubstr(book.description)}</span>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error: {error.message}</p>
+        ) : (
+          <>
+            {books && books.map(book => (
+              <div className="book-card" key={book.id}>
+                <Link className="book-link" to={`/books/${book.id}`}>
+                  <img className="book-list-image" src={book.coverImageUrl} alt={book.title} />
+                  <div className="book-details">
+                    <span className="book-title">{book.title}</span>
+                    <span className="book-author">{book.author}</span>
+                    <span className="book-genre">{book.genre}</span>
+                    <span className="book-description">{book.description}</span>
+                  </div>
+                </Link>
               </div>
-
-            </Link>
-
-          </div>
-        ))}
+            ))}
+            <div className="pagination">
+              <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+              <span>Page {currentPage} of {itemCount}</span>
+              <button onClick={handleNextPage} disabled={currentPage === itemCount}>Next</button>
+            </div>
+          </>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default BooksList;
