@@ -41,9 +41,9 @@ router.get('/google/:query', async (req, res, next) => {
           };
         });
 
-        const itemCount = Math.ceil(apiResponse.totalItems / maxResults) || 1; // Calculate total pages based on totalItems and maxResults
-
-        res.json({ Books: books, itemCount });
+        const pageCount = Math.ceil(apiResponse.totalItems / maxResults) || 1; // Calculate total pages based on totalItems and maxResults
+        const pageNumber = startIndex
+        res.json({ Books: books, pageCount, pageNumber });
       } catch (error) {
         res.status(500).json({ error: 'Error parsing response from Google Books API' });
       }

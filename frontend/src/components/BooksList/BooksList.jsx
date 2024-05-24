@@ -2,30 +2,50 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchGoogleBooks } from '../../store/books'; // Modify this action according to your implementation
 import { Link } from 'react-router-dom';
+import { selectSearchQuery } from '../../store/search';
 import './BooksList.css';
 
 const BooksList = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const { loading, error, books, itemCount } = useSelector(state => state.books);
+  const { loading, error, books, pageCount } = useSelector(state => state.books);
+  const searchQuery = useSelector(selectSearchQuery);
 
-  console.log(loading, error, books, itemCount, "())()()()()(")
 
   useEffect(() => {
-    dispatch(fetchGoogleBooks('', currentPage)); // Fetch books for the initial page
-  }, [dispatch, currentPage]);
+    dispatch(fetchGoogleBooks(searchQuery)); // Fetch books for the initial page
+  }, [dispatch, searchQuery]);
 
-  const handleNextPage = () => {
-    if (currentPage < itemCount) {
-      setCurrentPage(currentPage + 1); // Increment page number
+  const itemsPerPage = 10; // 10 items per page
+
+  const handleNextPage = (e) => {
+    e.preventDefault();
+    const nextPage = currentPage + 1;
+    const startIndex = (nextPage - 1) * itemsPerPage;
+    console.log(startIndex, "{}{}{}{}{}")
+    if (nextPage <= pageCount) {
+      setCurrentPage(nextPage); // Increment page number
+      dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)); // Fetch books for the next page
     }
   };
 
-  const handlePrevPage = () => {
+  const handlePrevPage = (e) => {
+    e.preventDefault
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1); // Decrement page number
+      const prevPage = currentPage - 1;
+      const startIndex = (prevPage - 1) * itemsPerPage;
+      setCurrentPage(prevPage); // Decrement page number
+      dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)); // Fetch books for the previous page
     }
   };
+
+  const descriptionSubstr = (text) => {
+    if (text.length > 100) {
+      return text.substring(0, 265) + '...'
+    } else {
+      return text
+    }
+  }
 
   return (
     <div className="books-page">
@@ -44,15 +64,15 @@ const BooksList = () => {
                     <span className="book-title">{book.title}</span>
                     <span className="book-author">{book.author}</span>
                     <span className="book-genre">{book.genre}</span>
-                    <span className="book-description">{book.description}</span>
+                    <span className="book-description">{descriptionSubstr(book.description)}</span>
                   </div>
                 </Link>
               </div>
             ))}
             <div className="pagination">
               <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-              <span>Page {currentPage} of {itemCount}</span>
-              <button onClick={handleNextPage} disabled={currentPage === itemCount}>Next</button>
+              <span>Page {currentPage} of {pageCount}</span>
+              <button onClick={handleNextPage} disabled={currentPage === pageCount}>Next</button>
             </div>
           </>
         )}

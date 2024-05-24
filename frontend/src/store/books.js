@@ -13,19 +13,20 @@ const loadSingleBook = (book) => ({
 })
 
 
-const googleBooks = (books, itemCount) => ({
+const googleBooks = (books, pageCount) => ({
   type: GOOGLE_BOOKS,
   books,
-  itemCount
+  pageCount
 })
 
 export const fetchGoogleBooks = (query, startIndex=0, maxResults=10) => async (dispatch) => {
+  console.log(query, startIndex, maxResults)
   try {
     const response = await fetch(`/api/books/google/${query}?startIndex=${startIndex}&maxResults=${maxResults}`);
     if (response.ok) {
       const data = await response.json();
       console.log(data, "THUNKKKK")
-      dispatch(googleBooks(data.Books, data.itemCount));
+      dispatch(googleBooks(data.Books, data.pageCount));
     }
   } catch (error) {
     console.error(error);
@@ -78,7 +79,7 @@ const booksReducer = ( state = {}, action ) => {
         loading: false,
         error: null,
         books: action.books,
-        itemCount: action.itemCount
+        pageCount: action.pageCount
       };
     }
     default:
