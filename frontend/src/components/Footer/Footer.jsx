@@ -28,20 +28,20 @@ const Footer = () => {
         <a href='https://traceybee23.github.io' target="_blank" rel="noreferrer">
           <IoPizzaOutline />
         </a>
-        tracey beard
+        <span>tracey beard</span>
         </div>
       </span>
       <span>
         the tech:
         <div className="plugs">
-          <a href='#'><IoLogoJavascript /></a>
-          <a href='#'><SiExpress /></a>
-          <a href='#'><SiPostgresql /></a>
-          <a href='#'><FaReact /></a>
-          <a href='#'><SiRedux /></a>
-          <a href='#'><SiSequelize /></a>
-          <a href='#'><FaHtml5 /></a>
-          <a href='#'><FaCss3Alt /></a>
+          <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript'><IoLogoJavascript /></a>
+          <a href='https://expressjs.com/'><SiExpress /></a>
+          <a href='https://www.postgresql.org/docs/'><SiPostgresql /></a>
+          <a href='https://react.dev/'><FaReact /></a>
+          <a href='https://redux.js.org/'><SiRedux /></a>
+          <a href='https://sequelize.org/'><SiSequelize /></a>
+          <a href='https://developer.mozilla.org/en-US/docs/Web/HTML'><FaHtml5 /></a>
+          <a href='https://developer.mozilla.org/en-US/docs/Web/CSS'><FaCss3Alt /></a>
         </div>
       </span>
       <span>

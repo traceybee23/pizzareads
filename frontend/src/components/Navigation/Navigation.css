@@ -43,10 +43,10 @@ li {
 
 .profile-dropdown {
   background-color: #ed9c36;
-  width: 8vw;
+  width: 100px;
   height: fit-content;
   padding: 20px;
-  margin-top: 2.7vh;
+  margin-top: 26px;
   position: absolute;
   font-size: 20px;
   right: 0px;

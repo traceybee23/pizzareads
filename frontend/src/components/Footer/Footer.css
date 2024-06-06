@@ -3,21 +3,24 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  height: 4vh;
   font-size: larger;
-  padding-top: 10px;
-  padding-bottom: 40px;
+  padding-top: 5vh;
+  padding-bottom: 3.3vh;
   color: #ffffff;
   height: 100%;
-  
+
 }
 
 .footer-container a {
   padding: 3px;
   color: #ed9c36;
   margin: 3px;
+  font-size: 30px;
 }
 
 .plugs {
+  display: flex;
   margin-top: 10px;
+  align-items: center;
+  justify-content: center;
 }
