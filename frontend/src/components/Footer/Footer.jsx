@@ -15,7 +15,7 @@ import './Footer.css'
 
 const Footer = () => {
   return (
-    <div className='footer-container'>
+    <span className='footer'>
       <span>
         developed by:
         <div className="plugs">
@@ -50,7 +50,7 @@ const Footer = () => {
         <a href='https://github.com/traceybee23/pizzareads' rel="noreferrer" target='_blank'><FaGithubAlt /></a>
         </div>
       </span>
-    </div>
+    </span>
   )
 }
 

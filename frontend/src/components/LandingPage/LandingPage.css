@@ -1,12 +1,12 @@
 
 .title {
-  color: #922e21;
-  font-size: 60px;
-  width: fit-content;
+  background: url(../../pizzaprint.png);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color:transparent;
+  font-size: 150px;
   margin: auto;
-  position: relative;
-  top: 50px;
-  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
 }
 
 h1 {
@@ -23,5 +23,3 @@ h1 {
 
 
 }
-
-

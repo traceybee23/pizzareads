@@ -8,34 +8,45 @@ import './BooksList.css';
 const BooksList = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const { loading, error, books, pageCount } = useSelector(state => state.books);
-  const searchQuery = useSelector(selectSearchQuery);
+  const { error, books, pageCount } = useSelector(state => state.books);
 
+  const searchQuery = useSelector(selectSearchQuery);
+  const [load, setLoad] = useState(true)
 
   useEffect(() => {
-    dispatch(fetchGoogleBooks(searchQuery)); // Fetch books for the initial page
+    setLoad(true);
+    dispatch(fetchGoogleBooks(searchQuery)).then(() => setTimeout(() => {
+      setLoad(false);
+    }, 1000))
+    // Fetch books for the initial page
   }, [dispatch, searchQuery]);
 
   const itemsPerPage = 10; // 10 items per page
 
   const handleNextPage = (e) => {
     e.preventDefault();
+    setLoad(true);
     const nextPage = currentPage + 1;
     const startIndex = (nextPage - 1) * itemsPerPage;
     console.log(startIndex, "{}{}{}{}{}")
     if (nextPage <= pageCount) {
       setCurrentPage(nextPage); // Increment page number
-      dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)); // Fetch books for the next page
+      dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)).then(() => setTimeout(() => {
+        setLoad(false);
+      }, 1000)); // Fetch books for the next page
     }
   };
 
   const handlePrevPage = (e) => {
     e.preventDefault
+    setLoad(true);
     if (currentPage > 1) {
       const prevPage = currentPage - 1;
       const startIndex = (prevPage - 1) * itemsPerPage;
       setCurrentPage(prevPage); // Decrement page number
-      dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)); // Fetch books for the previous page
+      dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)).then(() => setTimeout(() => {
+        setLoad(false);
+      }, 1000)); // Fetch books for the previous page
     }
   };
 
@@ -50,8 +61,9 @@ const BooksList = () => {
   return (
     <div className="books-page">
       <div className="books-container">
-        {loading ? (
-          <p>Loading...</p>
+        <div className='books-wrapper'>
+        {load ? (
+          <div className="loader"></div>
         ) : error ? (
           <p>Error: {error.message}</p>
         ) : (
@@ -69,14 +81,16 @@ const BooksList = () => {
                 </Link>
               </div>
             ))}
+          </>
+        )}
+        </div>
             <div className="pagination">
               <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
               <span>Page {currentPage} of {pageCount}</span>
               <button onClick={handleNextPage} disabled={currentPage === pageCount}>Next</button>
             </div>
-          </>
-        )}
       </div>
+
     </div>
   );
 };
