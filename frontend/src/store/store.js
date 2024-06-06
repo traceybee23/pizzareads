@@ -7,6 +7,7 @@ import couponReducer from './coupons';
 import userCouponReducer from './userCoupons';
 import friendsReducer from './friends';
 import reviewsReducer from './reviews';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   // ADD REDUCERS HERE
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   coupon: couponReducer,
   userCoupon: userCouponReducer,
   friends: friendsReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  search: searchReducer
 });
 
 let enhancer;

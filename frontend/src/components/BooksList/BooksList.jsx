@@ -1,18 +1,54 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks } from "../../store/books";
-import { Link } from "react-router-dom";
-import './BooksList.css'
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchGoogleBooks } from '../../store/books'; // Modify this action according to your implementation
+import { Link } from 'react-router-dom';
+import { selectSearchQuery } from '../../store/search';
+import './BooksList.css';
 
 const BooksList = () => {
-
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { error, books, pageCount } = useSelector(state => state.books);
 
-  const books = Object.values(useSelector(state => state.books))
+  const searchQuery = useSelector(selectSearchQuery);
+  const [load, setLoad] = useState(true)
 
   useEffect(() => {
-    dispatch(fetchBooks())
-  }, [dispatch])
+    setLoad(true);
+    dispatch(fetchGoogleBooks(searchQuery)).then(() => setTimeout(() => {
+      setLoad(false);
+    }, 1000))
+    // Fetch books for the initial page
+  }, [dispatch, searchQuery]);
+
+  const itemsPerPage = 10; // 10 items per page
+
+  const handleNextPage = (e) => {
+    e.preventDefault();
+    setLoad(true);
+    const nextPage = currentPage + 1;
+    const startIndex = (nextPage - 1) * itemsPerPage;
+    console.log(startIndex, "{}{}{}{}{}")
+    if (nextPage <= pageCount) {
+      setCurrentPage(nextPage); // Increment page number
+      dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)).then(() => setTimeout(() => {
+        setLoad(false);
+      }, 1000)); // Fetch books for the next page
+    }
+  };
+
+  const handlePrevPage = (e) => {
+    e.preventDefault
+    setLoad(true);
+    if (currentPage > 1) {
+      const prevPage = currentPage - 1;
+      const startIndex = (prevPage - 1) * itemsPerPage;
+      setCurrentPage(prevPage); // Decrement page number
+      dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)).then(() => setTimeout(() => {
+        setLoad(false);
+      }, 1000)); // Fetch books for the previous page
+    }
+  };
 
   const descriptionSubstr = (text) => {
     if (text.length > 100) {
@@ -25,29 +61,46 @@ const BooksList = () => {
   return (
     <div className="books-page">
       <div className="books-container">
-        <h1 className="books-header" >books</h1>
-        {books && books.map(book => (
-          <div
-            className="book-cards"
-            key={book.id}
-          >
-            <Link className="link-books" to={`/books/${book.id}`}>
-
-              <img className='book-images' src={book.coverImageUrl} />
-              <div className="book-deets">
-                <span className="book-title">{book.title}</span>
-                <span className="book-author">{book.author}</span>
-                <span className="book-genre">{book.genre}</span>
-                <span className="book-description">{descriptionSubstr(book.description)}</span>
-              </div>
-
-            </Link>
-
+        <div className='books-wrapper'>
+          {load ? (
+            <div className='bookslist-loader'>
+              <div className="loader"></div>
+            </div>
+          ) : error ? (
+            <p>Error: {error.message}</p>
+          ) : (
+            <>
+              {books && books.map(book => (
+                <div className="book-card" key={book.id}>
+                  <Link className="book-link" to={`/books/${book.id}`}>
+                    <img className="book-list-image" src={book.coverImageUrl} alt={book.title} />
+                    <div className="book-details">
+                      <span className="book-title">{book.title}</span>
+                      <span className="book-author">{book.author}</span>
+                      <span className="book-genre">{book.genre}</span>
+                      <span className="book-description">{descriptionSubstr(book.description)}</span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+        {!load &&
+          <div className="pagination">
+            {currentPage !== 1 &&
+              <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+            }
+            <span>&nbsp;Page {currentPage} of {pageCount}&nbsp;</span>
+            {currentPage !== pageCount &&
+              <button onClick={handleNextPage} disabled={currentPage === pageCount}>Next</button>
+            }
           </div>
-        ))}
+        }
       </div>
+
     </div>
-  )
-}
+  );
+};
 
 export default BooksList;

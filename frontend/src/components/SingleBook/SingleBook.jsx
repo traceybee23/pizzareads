@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, fetchSingleBook } from '../../store/books';
+import { fetchSingleBook } from '../../store/books';
 import ProgressButton from '../ProgressFormModal/ProgressButton';
 import './SingleBook.css'
 import UpdateButton from '../UpdateProgress/UpdateButton';
@@ -9,7 +9,7 @@ import { fetchProgresses } from '../../store/progress';
 import { clearProgress } from '../../store/progress';
 import ReviewButton from '../Reviews/ReviewButton';
 import Reviews from '../Reviews';
-import { fetchReviews } from '../../store/reviews';
+
 
 
 const SingleBook = () => {
@@ -24,12 +24,17 @@ const SingleBook = () => {
   const bookProgress = userProgress.filter(progress => progress.bookId === +bookId)
   const reviews = Object.values(useSelector(state => state.reviews))
 
+  const [load, setLoad] = useState(true)
+
+  console.log(book, "THIS IS THE BOOK")
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchReviews(bookId))
-    dispatch(fetchBooks())
-    dispatch(fetchSingleBook(bookId));
+    setLoad(true);
+    dispatch(fetchSingleBook(bookId)).then(() => setTimeout(() => {
+      setLoad(false);
+    }, 1000));
     if (user) {
       dispatch(fetchProgresses(user.id))
     } else {
@@ -43,60 +48,68 @@ const SingleBook = () => {
     !reviews.some((review) => review.userId === user.id && review.bookId === book.id)
 
   return (
-    book && bookId &&
     <div className='single-book-page'>
-      <div className='single-book-card'>
-        <div className='image-container'>
-          <img className='book-image' src={book.coverImageUrl} />
-          {bookProgress && bookProgress.length ? (
-            bookProgress.map(progress => (
-              <div className='curr-read-butt' key={progress.id}>
-                {progress.completed ? (
-                  <span>you already read this book
-                    <div>
-                      {shouldDisplayReviewButton &&
-                        <div className="reviewButton">
-                          <ReviewButton bookId={bookId}/>
+      {load ? (
+        <div className='single-book-loader'>
+          <div className="loader"></div>
+        </div>
+      ) : (
+        book && bookId &&
+        <>
+          <div className='single-book-card'>
+            <div className='image-container'>
+              <img className='book-image' src={book?.bookDetails.coverImageUrl} />
+              {bookProgress && bookProgress.length ? (
+                bookProgress.map(progress => (
+                  <div className='curr-read-butt' key={progress.id}>
+                    {progress.completed ? (
+                      <span>you already read this book
+                        <div>
+                          {shouldDisplayReviewButton &&
+                            <div className="reviewButton">
+                              <ReviewButton bookId={bookId} />
+                            </div>
+                          }
                         </div>
-                      }
-                    </div>
-                  </span>
-                ) : (
-                  <UpdateButton progressId={progress.id} book={book} navigate={navigate} />
-                )}
-              </div>
-            ))
-          ) : (
-            <div className='curr-read-butt'>
-              <ProgressButton navigate={navigate} />
-            </div>
-          )}
-
-        </div>
-        <div className='single-book-deets'>
-          <span className='single-book-title'>{book.title}</span>
-          <span className='single-book-author'>{book.author}</span>
-          <span><span className='deet-label'>Genre:</span> {book.genre}</span>
-          <span className='single-book-desc' >{book.description}</span>
-          <span><span className='deet-label'>Total Pages:</span> {book.totalPages}</span>
-          <span><span className='deet-label'>Published:</span> {book.publicationDate}</span>
-          <span><span className='deet-label'>ISBN:</span> {book.isbn}</span>
-        </div>
-      </div>
-      <div className='reviews'>
-        {
-          book.avgStarRating !== "New" ? (
-            <span className="rating">
-              <span style={{ fontWeight: "700" }}>{book.avgStarRating} stars</span> out of {book.numReviews} reviews
-              <Reviews bookId={bookId} />
-            </span>
-          ) : (
-            <div className='bethefirst'>be the first to write a review
+                      </span>
+                    ) : (
+                      <UpdateButton progressId={progress.id} book={book} navigate={navigate} />
+                    )}
+                  </div>
+                ))
+              ) : (
+                <div className='curr-read-butt'>
+                  <ProgressButton navigate={navigate} />
+                </div>
+              )}
 
             </div>
-          )
-        }
-      </div>
+            <div className='single-book-deets'>
+              <span className='single-book-title'>{book.bookDetails.title}</span>
+              <span className='single-book-author'>{book.bookDetails.author}</span>
+              <span><span className='deet-label'>Genre:</span> {book.bookDetails.genre}</span>
+              <span className='single-book-desc' >{book.bookDetails.description}</span>
+              <span><span className='deet-label'>Total Pages:</span> {book.bookDetails.totalPages}</span>
+              <span><span className='deet-label'>Published:</span> {book.bookDetails.publicationDate}</span>
+              <span><span className='deet-label'>ISBN:</span> {book.bookDetails.isbn}</span>
+            </div>
+          </div>
+          <div className='reviews'>
+            {
+              book.avgStarRating !== "New" ? (
+                <span className="rating">
+                  <span style={{ fontWeight: "700" }}>{book.avgStarRating} stars</span> out of {book.numReviews} reviews
+                  <Reviews bookId={bookId} />
+                </span>
+              ) : (
+                <div className='bethefirst'>be the first to write a review
+
+                </div>
+              )
+            }
+          </div>
+        </>
+      )}
     </div>
   )
 }
