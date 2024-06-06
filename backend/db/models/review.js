@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Review.init({
     userId: DataTypes.INTEGER,
-    bookId: DataTypes.INTEGER,
+    bookId: DataTypes.STRING,
     review:  {
       type: DataTypes.STRING,
       allowNull: false,

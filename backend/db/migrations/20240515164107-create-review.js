@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       bookId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       review: {
         type: Sequelize.STRING
