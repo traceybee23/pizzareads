@@ -1,5 +1,6 @@
 const express = require('express');
 const https = require('https');
+const axios = require('axios');
 const { requireAuth } = require('../../utils/auth');
 const { Books, Review, User } = require("../../db/models");
 
@@ -12,48 +13,41 @@ router.get('/google/:query', async (req, res, next) => {
   const maxResults = req.query.maxResults || 10; // Default maxResults is 10
   const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=${startIndex}&maxResults=${maxResults}`;
 
+  try {
+    const response = await axios.get(url);
+    const apiResponse = response.data;
 
-  https.get(url, (response) => {
-    let data = '';
+    // Check if there are any items in the response
+    if (!apiResponse.items || apiResponse.items.length === 0) {
+      return res.status(404).json({ error: 'No books found for the given query' });
+    }
 
-    // A chunk of data has been received.
-    response.on('data', (chunk) => {
-      data += chunk;
+    const books = apiResponse.items.map((item, index) => {
+      const volumeInfo = item.volumeInfo;
+
+      // Ensure the cover image URL is HTTPS
+      const coverImageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available';
+
+      return {
+        id: item.id,
+        title: volumeInfo.title || 'No title available',
+        author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
+        genre: volumeInfo.categories ? volumeInfo.categories.join(', ') : 'No genre available',
+        publicationDate: volumeInfo.publishedDate || 'No publication date available',
+        isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
+        description: volumeInfo.description || 'No description available',
+        coverImageUrl: coverImageUrl,
+        totalPages: volumeInfo.pageCount || 'No page count available',
+      };
     });
 
-    // The whole response has been received.
-    response.on('end', () => {
-      try {
-        const apiResponse = JSON.parse(data);
-        const books = apiResponse.items.map((item, index) => {
-          const volumeInfo = item.volumeInfo;
-
-          return {
-            id: item.id,
-            title: volumeInfo.title || 'No title available',
-            author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
-            genre: volumeInfo.categories ? volumeInfo.categories.join(', ') : 'No genre available',
-            publicationDate: volumeInfo.publishedDate || 'No publication date available',
-            isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
-            description: volumeInfo.description || 'No description available',
-            coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'No cover image available',
-            totalPages: volumeInfo.pageCount || 'No page count available',
-          };
-        });
-
-        const pageCount = Math.ceil(apiResponse.totalItems / maxResults) || 1; // Calculate total pages based on totalItems and maxResults
-        const pageNumber = startIndex
-        res.json({ Books: books, pageCount, pageNumber });
-      } catch (error) {
-        res.status(500).json({ error: 'Error parsing response from Google Books API' });
-      }
-    });
-
-  }).on('error', (err) => {
+    const pageCount = Math.ceil(apiResponse.totalItems / maxResults) || 1; // Calculate total pages based on totalItems and maxResults
+    const pageNumber = startIndex;
+    res.json({ Books: books, pageCount, pageNumber });
+  } catch (error) {
     res.status(500).json({ error: 'Error fetching data from Google Books API' });
-  });
-})
-
+  }
+});
 
 // router.post('/:bookId/reviews', requireAuth, async (req, res, next) => {
 
@@ -145,76 +139,60 @@ router.get('/google/:query', async (req, res, next) => {
 // })
 
 router.get('/:bookId', async (req, res, next) => {
-
   const { bookId } = req.params;
+
   function stripHtmlTags(str) {
     return str.replace(/<\/?[^>]+(>|$)/g, ' ').replace(/\s\s+/g, ' ').trim();
   }
 
+  function truncateDescription(description) {
+    if (description.length <= 1500) return description;
+
+    const truncated = description.slice(0, 1500);
+    const lastPeriodIndex = truncated.lastIndexOf('.');
+
+    if (lastPeriodIndex !== -1) {
+      return truncated.slice(0, lastPeriodIndex + 1);
+    }
+
+    return truncated;
+  }
 
   const url = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
 
-  https.get(url, (response) => {
-    let data = '';
+  try {
+    const response = await axios.get(url);
+    const apiResponse = response.data;
+    const volumeInfo = apiResponse.volumeInfo;
 
-    // A chunk of data has been received.
-    response.on('data', (chunk) => {
-      data += chunk;
-    });
+    // Ensure the cover image URL is HTTPS
+    const coverImageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available';
 
-    // The whole response has been received.
-    response.on('end', () => {
-      try {
-        const apiResponse = JSON.parse(data);
+    // Get unique genres and use ' | ' as the delimiter
+    const genres = volumeInfo.categories ? [...new Set(volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available';
 
-        const bookDetails = {
-          id: apiResponse.id,
-          title: apiResponse.volumeInfo.title || 'No title available',
-          author: apiResponse.volumeInfo.authors ? apiResponse.volumeInfo.authors.join(', ') : 'No author available',
-          genre: apiResponse.volumeInfo.categories ? apiResponse.volumeInfo.categories.join(', ') : 'No genre available',
-          publicationDate: apiResponse.volumeInfo.publishedDate || 'No publication date available',
-          isbn: apiResponse.volumeInfo.industryIdentifiers ? apiResponse.volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
-          description: stripHtmlTags(apiResponse.volumeInfo.description) || 'No description available',
-          coverImageUrl: apiResponse.volumeInfo.imageLinks ? apiResponse.volumeInfo.imageLinks.thumbnail : 'No cover image available',
-          totalPages: apiResponse.volumeInfo.pageCount ? apiResponse.volumeInfo.printedPageCount : 'No page count available',
-        }
+    // Truncate description if it exceeds 1500 characters
+    const description = stripHtmlTags(volumeInfo.description || 'No description available');
+    const truncatedDescription = truncateDescription(description);
 
-          // return {
-          //   id: item.id,
-          //   title: volumeInfo.title || 'No title available',
-          //   author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
-          //   genre: volumeInfo.categories ? volumeInfo.categories.join(', ') : 'No genre available',
-          //   publicationDate: volumeInfo.publishedDate || 'No publication date available',
-          //   isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
-          //   description: volumeInfo.description || 'No description available',
-          //   coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'No cover image available',
-          //   totalPages: volumeInfo.pageCount || 'No page count available',
-          // };
+    const bookDetails = {
+      id: apiResponse.id,
+      title: volumeInfo.title || 'No title available',
+      author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
+      genre: genres,
+      publicationDate: volumeInfo.publishedDate || 'No publication date available',
+      isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
+      description: truncatedDescription,
+      coverImageUrl: coverImageUrl,
+      totalPages: volumeInfo.pageCount ? volumeInfo.pageCount : 'No page count available',
+    };
 
-
-
-        res.json({ bookDetails });
-      } catch (error) {
-        res.status(500).json({ error: 'Error parsing response from Google Books API' });
-      }
-    });
-
-  }).on('error', (err) => {
+    res.json({ bookDetails });
+  } catch (error) {
     res.status(500).json({ error: 'Error fetching data from Google Books API' });
-  });
-})
+  }
+});
 
-// router.get('/', async (req, res, next) => {
-
-//   let books = await Books.findAll({});
-
-//   let booksList = [];
-
-//   books.forEach(book => booksList.push(book.toJSON()))
-
-//   res.json({ Books: booksList })
-
-// })
 
 
 
