@@ -10,7 +10,7 @@ router.get('/google/:query', async (req, res, next) => {
   const { query } = req.params;
   const startIndex = req.query.startIndex || 0; // Default startIndex is 0
   const maxResults = req.query.maxResults || 10; // Default maxResults is 10
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}`;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=${startIndex}&maxResults=${maxResults}`;
 
 
   https.get(url, (response) => {
@@ -55,142 +55,104 @@ router.get('/google/:query', async (req, res, next) => {
 })
 
 
-router.post('/:bookId/reviews', requireAuth, async (req, res, next) => {
+// router.post('/:bookId/reviews', requireAuth, async (req, res, next) => {
 
-  const { user } = req;
-  if (!user) {
-    return res.status(401).json({
-      "message": "Authentication required"
-    })
-  }
+//   const { user } = req;
+//   if (!user) {
+//     return res.status(401).json({
+//       "message": "Authentication required"
+//     })
+//   }
 
-  const bookId = Number(req.params.bookId)
+//   const bookId = Number(req.params.bookId)
 
-  const { review, stars } = req.body
+//   const { review, stars } = req.body
 
-  const book = await Books.findOne({
-    where: { id: bookId },
-    include: [
-      {
-        model: Review,
-        attributes: ['userId']
-      }
-    ]
-  })
+//   const book = await Books.findOne({
+//     where: { id: bookId },
+//     include: [
+//       {
+//         model: Review,
+//         attributes: ['userId']
+//       }
+//     ]
+//   })
 
-  if (!book) {
-    return res.status(404).json({
-      message: "Book couldn't be found"
-    })
-  }
+//   if (!book) {
+//     return res.status(404).json({
+//       message: "Book couldn't be found"
+//     })
+//   }
 
-  try {
-    let errors = [];
+//   try {
+//     let errors = [];
 
-    book.Reviews.forEach(review => {
-      if (review.userId === user.id) {
-        const err = new Error("User already has a review for this book")
-        errors.push(err)
-      }
-    })
+//     book.Reviews.forEach(review => {
+//       if (review.userId === user.id) {
+//         const err = new Error("User already has a review for this book")
+//         errors.push(err)
+//       }
+//     })
 
-    if (errors.length) {
-      return res.status(500).json({
-        "message": "User already has a review for this book"
-      })
-    }
+//     if (errors.length) {
+//       return res.status(500).json({
+//         "message": "User already has a review for this book"
+//       })
+//     }
 
-    const newReview = await Review.create({ userId: user.id, bookId, review, stars })
-    res.status(201).json(newReview)
-  } catch (error) {
-    error.message = "Bad Request"
-    error.status = 400
-    next(error)
-  }
-})
+//     const newReview = await Review.create({ userId: user.id, bookId, review, stars })
+//     res.status(201).json(newReview)
+//   } catch (error) {
+//     error.message = "Bad Request"
+//     error.status = 400
+//     next(error)
+//   }
+// })
 
-router.get('/:bookId/reviews', async (req, res, next) => {
+// router.get('/:bookId/reviews', async (req, res, next) => {
 
-  const book = await Books.findByPk(req.params.bookId)
+//   const book = await Books.findByPk(req.params.bookId)
 
-  if (!book) {
-    return res.status(404).json({
-      message: "Book couldn't be found"
-    })
-  }
+//   if (!book) {
+//     return res.status(404).json({
+//       message: "Book couldn't be found"
+//     })
+//   }
 
-  const reviews = await Review.findAll({
-    where: { bookId: req.params.bookId },
-    include: [
-      {
-        model: User,
-        attributes: ['id', 'username']
-      }
-    ],
-    order: [['createdAt', 'DESC']]
-  })
+//   const reviews = await Review.findAll({
+//     where: { bookId: req.params.bookId },
+//     include: [
+//       {
+//         model: User,
+//         attributes: ['id', 'username']
+//       }
+//     ],
+//     order: [['createdAt', 'DESC']]
+//   })
 
-  let reviewList = [];
+//   let reviewList = [];
 
-  reviews.forEach(review => {
-    reviewList.push(review.toJSON())
-  })
+//   reviews.forEach(review => {
+//     reviewList.push(review.toJSON())
+//   })
 
-  if (!reviewList.length) {
-    res.json({ Reviews: "New" })
-  }
+//   if (!reviewList.length) {
+//     res.json({ Reviews: "New" })
+//   }
 
-  res.json({ Reviews: reviewList })
+//   res.json({ Reviews: reviewList })
 
-})
+// })
 
 router.get('/:bookId', async (req, res, next) => {
 
-  // const book = await Books.findOne({
-  //   where: { id: req.params.bookId },
-  //   include: [
-  //     {
-  //       model: Review,
-  //       attributes: ['stars']
-  //     }
-  //   ]
-  // })
-
-  // if (!book) {
-  //   const err = Error('Book not found');
-  //   err.message = "Book couldn't be found";
-  //   err.status = 404;
-  //   return next(err)
-  // } else {
-  //   const bookData = book.toJSON()
-
-  //   let stars = 0
-  //   bookData.Reviews.forEach(review => {
-  //     stars += review.stars
-  //     bookData.numReviews = bookData.Reviews.length
-  //     if (book.Reviews.length > 1) {
-  //       bookData.avgStarRating = (stars / bookData.Reviews.length).toFixed(1)
-  //     } else {
-  //       bookData.avgStarRating = review.stars.toFixed(1)
-  //     }
-  //   })
-
-  //   if (!bookData.numReviews) {
-  //     bookData.numReviews = null
-  //   }
-  //   if (!bookData.avgStarRating) {
-  //     bookData.avgStarRating = "New"
-  //   }
-
-  //   delete bookData.Reviews
-
-  //   res.json(bookData)
-  // }
-
   const { bookId } = req.params;
+  function stripHtmlTags(str) {
+    return str.replace(/<\/?[^>]+(>|$)/g, ' ').replace(/\s\s+/g, ' ').trim();
+  }
 
-  const url = `https://books.google.com/ebooks?id=${bookId}&dq=holmes&as_brr=4&source=webstore_bookcard`;
 
+  const url = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
 
   https.get(url, (response) => {
     let data = '';
@@ -204,24 +166,34 @@ router.get('/:bookId', async (req, res, next) => {
     response.on('end', () => {
       try {
         const apiResponse = JSON.parse(data);
-        const book = apiResponse.items.map((item, index) => {
-          const volumeInfo = item.volumeInfo;
 
-          return {
-            id: item.id,
-            title: volumeInfo.title || 'No title available',
-            author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
-            genre: volumeInfo.categories ? volumeInfo.categories.join(', ') : 'No genre available',
-            publicationDate: volumeInfo.publishedDate || 'No publication date available',
-            isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
-            description: volumeInfo.description || 'No description available',
-            coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'No cover image available',
-            totalPages: volumeInfo.pageCount || 'No page count available',
-          };
-        });
+        const bookDetails = {
+          id: apiResponse.id,
+          title: apiResponse.volumeInfo.title || 'No title available',
+          author: apiResponse.volumeInfo.authors ? apiResponse.volumeInfo.authors.join(', ') : 'No author available',
+          genre: apiResponse.volumeInfo.categories ? apiResponse.volumeInfo.categories.join(', ') : 'No genre available',
+          publicationDate: apiResponse.volumeInfo.publishedDate || 'No publication date available',
+          isbn: apiResponse.volumeInfo.industryIdentifiers ? apiResponse.volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
+          description: stripHtmlTags(apiResponse.volumeInfo.description) || 'No description available',
+          coverImageUrl: apiResponse.volumeInfo.imageLinks ? apiResponse.volumeInfo.imageLinks.thumbnail : 'No cover image available',
+          totalPages: apiResponse.volumeInfo.pageCount ? apiResponse.volumeInfo.printedPageCount : 'No page count available',
+        }
+
+          // return {
+          //   id: item.id,
+          //   title: volumeInfo.title || 'No title available',
+          //   author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
+          //   genre: volumeInfo.categories ? volumeInfo.categories.join(', ') : 'No genre available',
+          //   publicationDate: volumeInfo.publishedDate || 'No publication date available',
+          //   isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
+          //   description: volumeInfo.description || 'No description available',
+          //   coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'No cover image available',
+          //   totalPages: volumeInfo.pageCount || 'No page count available',
+          // };
 
 
-        res.json({ Books: book });
+
+        res.json({ bookDetails });
       } catch (error) {
         res.status(500).json({ error: 'Error parsing response from Google Books API' });
       }
@@ -232,17 +204,17 @@ router.get('/:bookId', async (req, res, next) => {
   });
 })
 
-router.get('/', async (req, res, next) => {
+// router.get('/', async (req, res, next) => {
 
-  let books = await Books.findAll({});
+//   let books = await Books.findAll({});
 
-  let booksList = [];
+//   let booksList = [];
 
-  books.forEach(book => booksList.push(book.toJSON()))
+//   books.forEach(book => booksList.push(book.toJSON()))
 
-  res.json({ Books: booksList })
+//   res.json({ Books: booksList })
 
-})
+// })
 
 
 
