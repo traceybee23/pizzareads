@@ -3,11 +3,13 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  height: 20px;
+  height: 4vh;
   font-size: larger;
   padding-top: 10px;
   padding-bottom: 40px;
   color: #ffffff;
+  height: 100%;
+  
 }
 
 .footer-container a {

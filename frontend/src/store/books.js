@@ -50,8 +50,8 @@ export const fetchSingleBook = (bookId) => async dispatch => {
   const response = await fetch(`/api/books/${bookId}`)
 
   if (response.ok) {
-    const bookData = await response.json();
-    dispatch(loadSingleBook(bookData, bookId))
+    const book = await response.json();
+    dispatch(loadSingleBook(book))
   } else {
     const errors = await response.json();
     return errors;
@@ -70,7 +70,7 @@ const booksReducer = ( state = {}, action ) => {
     }
     case SINGLE_BOOK: {
       const bookState = {}
-      bookState[action.book.id] = action.book
+      bookState[action.book.bookDetails.id] = action.book
       return bookState;
     }
     case GOOGLE_BOOKS: {
