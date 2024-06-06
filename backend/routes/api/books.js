@@ -146,46 +146,90 @@ router.get('/:bookId/reviews', async (req, res, next) => {
 
 router.get('/:bookId', async (req, res, next) => {
 
-  const book = await Books.findOne({
-    where: { id: req.params.bookId },
-    include: [
-      {
-        model: Review,
-        attributes: ['stars']
+  // const book = await Books.findOne({
+  //   where: { id: req.params.bookId },
+  //   include: [
+  //     {
+  //       model: Review,
+  //       attributes: ['stars']
+  //     }
+  //   ]
+  // })
+
+  // if (!book) {
+  //   const err = Error('Book not found');
+  //   err.message = "Book couldn't be found";
+  //   err.status = 404;
+  //   return next(err)
+  // } else {
+  //   const bookData = book.toJSON()
+
+  //   let stars = 0
+  //   bookData.Reviews.forEach(review => {
+  //     stars += review.stars
+  //     bookData.numReviews = bookData.Reviews.length
+  //     if (book.Reviews.length > 1) {
+  //       bookData.avgStarRating = (stars / bookData.Reviews.length).toFixed(1)
+  //     } else {
+  //       bookData.avgStarRating = review.stars.toFixed(1)
+  //     }
+  //   })
+
+  //   if (!bookData.numReviews) {
+  //     bookData.numReviews = null
+  //   }
+  //   if (!bookData.avgStarRating) {
+  //     bookData.avgStarRating = "New"
+  //   }
+
+  //   delete bookData.Reviews
+
+  //   res.json(bookData)
+  // }
+
+  const { bookId } = req.params;
+
+  const url = `https://books.google.com/ebooks?id=${bookId}&dq=holmes&as_brr=4&source=webstore_bookcard`;
+
+
+  https.get(url, (response) => {
+    let data = '';
+
+    // A chunk of data has been received.
+    response.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    // The whole response has been received.
+    response.on('end', () => {
+      try {
+        const apiResponse = JSON.parse(data);
+        const book = apiResponse.items.map((item, index) => {
+          const volumeInfo = item.volumeInfo;
+
+          return {
+            id: item.id,
+            title: volumeInfo.title || 'No title available',
+            author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
+            genre: volumeInfo.categories ? volumeInfo.categories.join(', ') : 'No genre available',
+            publicationDate: volumeInfo.publishedDate || 'No publication date available',
+            isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
+            description: volumeInfo.description || 'No description available',
+            coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'No cover image available',
+            totalPages: volumeInfo.pageCount || 'No page count available',
+          };
+        });
+
+
+        res.json({ Books: book });
+      } catch (error) {
+        res.status(500).json({ error: 'Error parsing response from Google Books API' });
       }
-    ]
-  })
+    });
 
-  if (!book) {
-    const err = Error('Book not found');
-    err.message = "Book couldn't be found";
-    err.status = 404;
-    return next(err)
-  } else {
-    const bookData = book.toJSON()
-
-    let stars = 0
-    bookData.Reviews.forEach(review => {
-      stars += review.stars
-      bookData.numReviews = bookData.Reviews.length
-      if (book.Reviews.length > 1) {
-        bookData.avgStarRating = (stars / bookData.Reviews.length).toFixed(1)
-      } else {
-        bookData.avgStarRating = review.stars.toFixed(1)
-      }
-    })
-
-    if (!bookData.numReviews) {
-      bookData.numReviews = null
-    }
-    if (!bookData.avgStarRating) {
-      bookData.avgStarRating = "New"
-    }
-
-    delete bookData.Reviews
-
-    res.json(bookData)
-  }
+  }).on('error', (err) => {
+    res.status(500).json({ error: 'Error fetching data from Google Books API' });
+  });
 })
 
 router.get('/', async (req, res, next) => {
