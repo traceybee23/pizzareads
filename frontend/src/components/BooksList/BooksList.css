@@ -3,6 +3,7 @@
   flex-direction: column;
   padding-top: 20px;
   padding-bottom: 20px;
+  align-items: center;
 }
 
 
@@ -11,22 +12,19 @@
   justify-content: space-around;
 }
 
-.books-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
+
 
 
 
 .book-card {
   align-self: center;
   justify-self: center;
-  width: 42vw;
+  width: 65vw;
   background-color: #ed9c36;
   padding: 15px;
   margin: 20px;
   border-radius: 5px;
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
   max-height: 200px;
   overflow: hidden;
 
@@ -65,7 +63,6 @@
 }
 
 
-
 .book-author {
   display: flex;
   flex-direction: column;
@@ -83,15 +80,21 @@
   font-size: 14px;
 }
 
+.bookslist-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+}
 
 /* HTML: <div class="loader"></div> */
 .loader {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 8px solid #d1914b;
+  border: 8px solid #ba8d5c;
   box-sizing: border-box;
-  --c:no-repeat radial-gradient(farthest-side, #d64123 94%,#0000);
+  --c:no-repeat radial-gradient(farthest-side, #922e21 94%,#0000);
   --b:no-repeat radial-gradient(farthest-side, #000 94%,#0000);
   background:
     var(--c) 11px 15px,
@@ -104,7 +107,7 @@
     var(--b) 50px 31px,
     var(--c) 47px 43px,
     var(--b) 31px 48px,
-    #f6d353;
+    #ed9c36;
   background-size: 15px 15px,6px 6px;
   animation: l4 3s infinite;
 }
@@ -116,4 +119,9 @@
   66.67% {-webkit-mask:conic-gradient(#0000 240deg,#000 0)}
   83.33% {-webkit-mask:conic-gradient(#0000 300deg,#000 0)}
   100%   {-webkit-mask:conic-gradient(#0000 360deg,#000 0)}
+}
+
+.pagination {
+  align-self: center;
+
 }

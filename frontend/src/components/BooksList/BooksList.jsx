@@ -62,33 +62,41 @@ const BooksList = () => {
     <div className="books-page">
       <div className="books-container">
         <div className='books-wrapper'>
-        {load ? (
-          <div className="loader"></div>
-        ) : error ? (
-          <p>Error: {error.message}</p>
-        ) : (
-          <>
-            {books && books.map(book => (
-              <div className="book-card" key={book.id}>
-                <Link className="book-link" to={`/books/${book.id}`}>
-                  <img className="book-list-image" src={book.coverImageUrl} alt={book.title} />
-                  <div className="book-details">
-                    <span className="book-title">{book.title}</span>
-                    <span className="book-author">{book.author}</span>
-                    <span className="book-genre">{book.genre}</span>
-                    <span className="book-description">{descriptionSubstr(book.description)}</span>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </>
-        )}
-        </div>
-            <div className="pagination">
-              <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-              <span>Page {currentPage} of {pageCount}</span>
-              <button onClick={handleNextPage} disabled={currentPage === pageCount}>Next</button>
+          {load ? (
+            <div className='bookslist-loader'>
+              <div className="loader"></div>
             </div>
+          ) : error ? (
+            <p>Error: {error.message}</p>
+          ) : (
+            <>
+              {books && books.map(book => (
+                <div className="book-card" key={book.id}>
+                  <Link className="book-link" to={`/books/${book.id}`}>
+                    <img className="book-list-image" src={book.coverImageUrl} alt={book.title} />
+                    <div className="book-details">
+                      <span className="book-title">{book.title}</span>
+                      <span className="book-author">{book.author}</span>
+                      <span className="book-genre">{book.genre}</span>
+                      <span className="book-description">{descriptionSubstr(book.description)}</span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+        {!load &&
+          <div className="pagination">
+            {currentPage !== 1 &&
+              <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+            }
+            <span>&nbsp;Page {currentPage} of {pageCount}&nbsp;</span>
+            {currentPage !== pageCount &&
+              <button onClick={handleNextPage} disabled={currentPage === pageCount}>Next</button>
+            }
+          </div>
+        }
       </div>
 
     </div>

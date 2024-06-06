@@ -1,13 +1,27 @@
 
 .title {
-  background: url(../../pizzaprint.png);
+  background: url(../../pizzaprint.png) repeat;
   -webkit-background-clip: text;
   background-clip: text;
-  color:transparent;
-  font-size: 150px;
+  color: transparent;
+  font-size: 9vw;
   margin: auto;
   font-family: "Poppins", sans-serif;
+
+  /* background-size: cover; Ensure the background image covers the entire text */
+  animation: slidein 10s infinite linear; /* Infinite to keep the animation going */
 }
+
+@keyframes slidein {
+  from {
+    background-position: 0 0; /* Start the background at the right */
+  }
+
+  to {
+    background-position: 0 100% ; /* Move the background to the left */
+  }
+}
+
 
 h1 {
   color: #922e21;

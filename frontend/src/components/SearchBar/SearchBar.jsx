@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { fetchGoogleBooks } from '../../store/books';
 import { useNavigate } from 'react-router-dom';
 import { setSearchQuery } from '../../store/search';
+import { IoSearchOutline } from "react-icons/io5";
 
 
 const SearchBar = () => {
@@ -28,14 +29,14 @@ const SearchBar = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='search-container' onSubmit={handleSubmit}>
       <input
         type="text"
         value={query}
         onChange={handleInputChange}
         placeholder="what are you reading?"
       />
-      <button onClick={handleSearch} type="submit">Search</button>
+      <button onClick={handleSearch} type="submit"><IoSearchOutline /></button>
     </form>
   );
 };
