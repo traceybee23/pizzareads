@@ -5,7 +5,7 @@ import { fetchProgresses } from "../../store/progress";
 import { useNavigate } from 'react-router-dom'
 import UpdateButton from "../UpdateProgress/UpdateButton";
 import DeleteProgressButton from "../DeleteProgressModal/DeleteProgressButton";
-import GoalProgress from "./GoalProgress";
+
 import { restoreUser } from "../../store/session";
 import { fetchCoupons } from "../../store/userCoupons";
 
@@ -106,7 +106,7 @@ const BookProgress = () => {
           </div>
         </>
       )}
-      <GoalProgress />
+
     </div>
   )
 }

@@ -17,14 +17,16 @@ h1 {
 .landing-page {
   height: 80.75vh !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  justify-self: center;
   margin: auto;
+  flex-direction: row;
 }
 
-.landing-page,.book-progress-lp {
+.book-progress-lp {
   display: flex;
-  align-self: start;
-  justify-content: start;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 
 }

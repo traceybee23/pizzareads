@@ -50,19 +50,20 @@
 .progress-deets {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: left;
   margin-left: 20px;
   width: 100%;
 }
 
-.progress-button {
-  width: fit-content;
-  height: fit-content;
+.progress-buttons {
+  display: flex;
+  justify-content: space-between;
   font-size: 15px;
   padding-bottom: 5px;
-  align-self: center;
+
 }
+
 
 .progress-title {
   font-weight: bold;
@@ -100,13 +101,14 @@
   display: flex;
   justify-content: center;
   padding-top: 4px;
-  width: 160px;
+  width: 60px;
   font-size: medium;
-  height: 50px;
+
 }
 
 .curr-read-butt {
   margin-top: 20px;
+
 }
 
 span.cr-text {
@@ -119,35 +121,35 @@ span.cr-text {
 }
 
 .book-icon {
-  color: #1B998B;
+  color: #ED9C36;
   font-size: 20px;
   padding-bottom: 2px;
 }
 
-.progress-buttons {
+/* .progress-buttons {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-around;
+} */
 
-}
 
-.progress-buttons button {
-  width: fit-content;
+
+.progress-buttons button:nth-child(1) {
+  background-color: #1B998B;
 
 }
 
 .goal-progress-container {
-  position: absolute;
+
   width: fit-content;
   padding: 0 25px;
-  left: 700px;
-  top: 200px;
 
 }
 
 .get-pizza-butt button {
   background-color: #1B998B;
-  color: black;
+  color: white;
+  width: 230px;
 }
 
 .goal-progress-banner {
