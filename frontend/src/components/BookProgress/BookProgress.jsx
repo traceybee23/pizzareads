@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './BookProgress.css'
 import { fetchProgresses } from "../../store/progress";
 import { useNavigate } from 'react-router-dom'
 import UpdateButton from "../UpdateProgress/UpdateButton";
-import { fetchBooks } from "../../store/books";
 import DeleteProgressButton from "../DeleteProgressModal/DeleteProgressButton";
 import GoalProgress from "./GoalProgress";
 import { restoreUser } from "../../store/session";
@@ -23,14 +22,28 @@ const BookProgress = () => {
 
   const completed = progresses.filter(progress => progress.completed === false)
 
+  const [className, setClassName] = useState('book-progress-container')
+  const [load, setLoad] = useState(true)
+
+  console.log(completed, "THIS IS PROGRESS IN BOOKPROGRESS>JS")
+
   useEffect(() => {
-    dispatch(fetchBooks())
+    setLoad(true);
     dispatch(fetchProgresses(user.id))
-    .then(() => dispatch(restoreUser()))
+      .then(() => dispatch(restoreUser())).then(() => setTimeout(() => {
+        setLoad(false);
+      }, 500))
 
     dispatch(fetchCoupons())
 
-  }, [dispatch, user.id])
+
+    if (completed.length <= 2) {
+      setClassName('no-scroll')
+    } else {
+      setClassName('book-progress-container')
+    }
+
+  }, [dispatch, user.id, completed.length])
 
 
   const percentage = (x, y) => {
@@ -43,49 +56,56 @@ const BookProgress = () => {
   return (
     progresses &&
     <div>
-      <h1 className="currentlyreading-h1">currently reading</h1>
-      <div className="book-progress-container">
-        {user && progresses && progresses.map(progress => (
-          progress.completed === false &&
-          progress.Book &&
-          <div
-            className="book-progress-cards"
-            key={progress.id}
-          >
-            <>
-              <img
-                className="progress-image"
-                src={progress.Book.coverImageUrl}
-                onClick={() => navigate(`/books/${progress.Book.id}`)}
-              />
-              <div className="progress-deets">
-                <span className="progress-title">{progress.Book.title}</span>
-                <span className="progress-author">by {progress.Book.author}</span>
-                <span className="progress-container">
-                  <progress
-                    className="progressBar"
-                    value={progress.pagesRead}
-                    max={progress.Book.totalPages}
-                  ></progress>&nbsp;&nbsp;
-                  {percentage(
-                    `${progress.Book.totalPages}`,
-                    `${progress.pagesRead}`
-                  )}%</span>
-                <div className="progress-buttons">
-                  <UpdateButton
-                    progressId={progress.id}
-                    book={progress.Book}
-                    navigate={navigate}/>
-                  <DeleteProgressButton progressId={progress.id} />
-                </div>
+      <h1 id="currently-reading" className="heading">currently reading</h1>
+      {load ? (
+        <div className='bookslist-loader'>
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <>
+          <div className={className}>
+            {user && progresses && progresses.map(progress => (
+              progress.completed === false &&
+              progress.bookDetails &&
+              <div
+                className="book-progress-cards"
+                key={progress.id}
+              >
+                <>
+                  <img
+                    className="progress-image"
+                    src={progress.bookDetails.coverImageUrl}
+                    onClick={() => navigate(`/books/${progress.bookId}`)}
+                  />
+                  <div className="progress-deets">
+                    <span className="progress-title">{progress.bookDetails.title}</span>
+                    <span className="progress-author">by {progress.bookDetails.author}</span>
+                    <span className="progress-container">
+                      <progress
+                        className="progressBar"
+                        value={progress.pagesRead}
+                        max={progress.bookDetails.totalPages}
+                      ></progress>&nbsp;&nbsp;
+                      {percentage(
+                        `${progress.bookDetails.totalPages}`,
+                        `${progress.pagesRead}`
+                      )}%</span>
+                    <div className="progress-buttons">
+                      <UpdateButton
+                        progressId={progress.id}
+                        book={progress.bookDetails}
+                        navigate={navigate} />
+                      <DeleteProgressButton progressId={progress.id} />
+                    </div>
+                  </div>
+                </>
               </div>
-            </>
+            ))}
+            {!completed.length && !!progresses.length && <span>pick a book to add your progress here!</span>}
+            {!progresses.length && <span>pick a book to add your progress here!</span>}
           </div>
-      ))}
-      {!completed.length && !!progresses.length && <span>pick a book to add your progress here!</span>}
-      {!progresses.length && <span>pick a book to add your progress here!</span>}
-      </div>
-
+        </>
+      )}
       <GoalProgress />
     </div>
   )

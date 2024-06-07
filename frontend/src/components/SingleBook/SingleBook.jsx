@@ -12,6 +12,7 @@ import Reviews from '../Reviews';
 
 
 
+
 const SingleBook = () => {
 
   const { bookId } = useParams();
@@ -21,26 +22,23 @@ const SingleBook = () => {
   const userProgress = Object.values(useSelector(state => state.progress));
 
   const user = useSelector(state => state.session.user);
-  const bookProgress = userProgress.filter(progress => progress.bookId === +bookId)
+  const bookProgress = userProgress.filter(progress => progress.bookId === bookId)
   const reviews = Object.values(useSelector(state => state.reviews))
 
   const [load, setLoad] = useState(true)
 
-  console.log(book, "THIS IS THE BOOK")
-
+  console.log(userProgress, "USER PROGRESS ON SBP")
   const dispatch = useDispatch();
 
   useEffect(() => {
     setLoad(true);
-    dispatch(fetchSingleBook(bookId)).then(() => setTimeout(() => {
+    dispatch(fetchSingleBook(bookId))
+    .then(() => dispatch(fetchProgresses(user.id)))
+    .then(() => setTimeout(() => {
       setLoad(false);
     }, 1000));
-    if (user) {
-      dispatch(fetchProgresses(user.id))
-    } else {
-      dispatch(clearProgress())
-    }
-  }, [dispatch, bookId, user])
+
+  }, [dispatch, bookId])
 
   const shouldDisplayReviewButton =
     user &&
@@ -73,7 +71,7 @@ const SingleBook = () => {
                         </div>
                       </span>
                     ) : (
-                      <UpdateButton progressId={progress.id} book={book} navigate={navigate} />
+                      <UpdateButton progressId={progress.id} book={book.bookDetails} navigate={navigate} />
                     )}
                   </div>
                 ))

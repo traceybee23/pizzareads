@@ -1,3 +1,5 @@
+
+
 .progress-image {
   height: 200px;
   border-radius: 0 10px 10px 0;
@@ -7,11 +9,8 @@
   cursor: pointer;
 }
 
-.currentlyreading-h1 {
-  color:#922e21;
-  text-align: left;
-  margin-left: 15px;
-  top: 90px;
+.no-scroll {
+  overflow-y: hidden;
 }
 
 .book-progress-container {
@@ -21,8 +20,8 @@
   margin: 20px;
   overflow-y: scroll;
   max-height: 70vh;
-  top: 150px;
 }
+
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -115,7 +114,9 @@ span.cr-text {
 
 }
 
-
+#currently-reading {
+  font-size: 50px;
+}
 
 .book-icon {
   color: #1B998B;
