@@ -2,7 +2,18 @@
 
 html {
   background-color: antiquewhite;
+  width: 100%;
+  margin: auto;
+}
 
+@media (max-width: 375px) {
+  html {
+    width: 375px;
+    margin: auto;
+  }
+  .main-content {
+    height: 100vh;
+  }
 }
 
 

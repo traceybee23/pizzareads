@@ -4,12 +4,29 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-size: 9vw;
+  font-size: 9rem;
   margin: auto;
   font-family: "Poppins", sans-serif;
+  background-size: 150%; /* Slightly larger to prevent visible seams */
+  animation: slidein 15s infinite linear; /* Infinite to keep the animation going */
+}
 
-  /* background-size: cover; Ensure the background image covers the entire text */
-  animation: slidein 10s infinite linear; /* Infinite to keep the animation going */
+@media (max-width: 1200px) {
+  .title {
+    font-size: 8rem; /* Adjust for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 6rem; /* Adjust for small screens */
+  }
+}
+
+@media (max-width: 375px) {
+  .title {
+    font-size: 4rem; /* Adjust for small screens */
+  }
 }
 
 @keyframes slidein {
@@ -18,7 +35,7 @@
   }
 
   to {
-    background-position: 0 100% ; /* Move the background to the left */
+    background-position: 0 150% ; /* Move the background to the left */
   }
 }
 
