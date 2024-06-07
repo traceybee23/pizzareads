@@ -23,7 +23,7 @@ function DemoUser({navigate}) {
         <button
           className='loginButtonModal'
           type="submit"
-        >Demo User</button>
+        >demo user</button>
       </div>
     </form >
     )
