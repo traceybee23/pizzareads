@@ -23,7 +23,6 @@ module.exports = {
       bookId: {
         type: Sequelize.STRING,
         allowNull: false,
-        references: { model: 'Books' }
       },
       pagesRead: {
         type: Sequelize.INTEGER,
