@@ -6,7 +6,6 @@ import ProgressButton from '../ProgressFormModal/ProgressButton';
 import './SingleBook.css'
 import UpdateButton from '../UpdateProgress/UpdateButton';
 import { fetchProgresses } from '../../store/progress';
-import { clearProgress } from '../../store/progress';
 import ReviewButton from '../Reviews/ReviewButton';
 import Reviews from '../Reviews';
 
@@ -38,7 +37,7 @@ const SingleBook = () => {
       setLoad(false);
     }, 1000));
 
-  }, [dispatch, bookId])
+  }, [dispatch, bookId, user.id])
 
   const shouldDisplayReviewButton =
     user &&
@@ -61,7 +60,7 @@ const SingleBook = () => {
                 bookProgress.map(progress => (
                   <div className='curr-read-butt' key={progress.id}>
                     {progress.completed ? (
-                      <span>you already read this book
+                      <span>you completed this book!
                         <div>
                           {shouldDisplayReviewButton &&
                             <div className="reviewButton">
