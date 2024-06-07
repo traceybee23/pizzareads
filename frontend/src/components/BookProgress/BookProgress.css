@@ -115,8 +115,10 @@ span.cr-text {
 
 }
 
+
+
 .book-icon {
-  color: #e1709a;
+  color: #1B998B;
   font-size: 20px;
   padding-bottom: 2px;
 }
@@ -143,12 +145,12 @@ span.cr-text {
 }
 
 .get-pizza-butt button {
-  background-color: #bae264;
+  background-color: #1B998B;
   color: black;
 }
 
 .goal-progress-banner {
-  background-color: #bae264;
+  background-color: #1B998B;
   border: 2px solid;
   padding: 15px;
   border-radius: 5px;
@@ -156,7 +158,7 @@ span.cr-text {
 }
 
 .redeem-coupon-link {
-  background-color: #bae264;
+  background-color: #1B998B;
   border: 2px solid;
   padding: 15px;
   border-radius: 5px;
@@ -167,14 +169,14 @@ span.cr-text {
 
 .redeem-coupon-link:hover {
   cursor: pointer;
-  color: #e1709a;
+  color: #ED9C36;
   text-decoration: underline;
   font-weight: bold;
 }
 
 .get-pizza-butt button:hover {
   cursor: pointer;
-  color: #e1709a;
+  color: #ED9C36;
   text-decoration: underline;
   font-weight: bold;
 }

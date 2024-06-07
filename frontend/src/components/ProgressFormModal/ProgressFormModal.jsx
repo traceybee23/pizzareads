@@ -66,7 +66,7 @@ const ProgressFormModal = ({navigate}) => {
   return (
 
     <div className='progress-form'>
-      <h1 style={{backgroundColor: "#ffffff"}}>what page are you on?</h1>
+      <h1 className='heading'>what page are you on?</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
