@@ -12,7 +12,6 @@ const ReadBooks = () => {
 
   const progresses = Object.values(useSelector(state => state.progress))
 
-  console.log(progresses, 'READ BOOKS PAGE')
 
   useEffect(() => {
     dispatch(fetchProgresses(user.id))
