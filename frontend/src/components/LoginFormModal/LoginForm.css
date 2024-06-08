@@ -63,7 +63,7 @@ input:focus {
   border-radius: 5px;
   padding: 5px;
   font-family: "Poppins", sans-serif;
-  background: url(../../pizzaprint.png) repeat;
+  background: url('../../pizzaprint.png') repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
