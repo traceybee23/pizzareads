@@ -26,7 +26,6 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
 
   const { closeModal } = useModal();
 
-  console.log(book, "USER PROG IN UPDATE")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
