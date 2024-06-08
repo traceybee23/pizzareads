@@ -35,24 +35,24 @@ function LoginFormModal({navigate}) {
 
   return (
     <div className='login-modal'>
-      <h1 className='heading'>Log In</h1>
+      <h1 className='heading'>log in</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder='Email or Username'
+          placeholder='email or username'
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
         <input
           type="password"
-          placeholder='Password'
+          placeholder='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
         <span className='errors'>{errors.credential && <p>{errors.credential}</p>}</span>
-        <button className='login-button' type="submit">Log In</button>
+        <button className='login-button' type="submit">log in</button>
       </form>
       <span className="new-message">
           new to pizzareads?

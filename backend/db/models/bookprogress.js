@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE' // Optional: Configure cascade delete behavior
       });
 
-      // Associate with Books
-      BookProgress.belongsTo(models.Books, {
-        foreignKey: 'bookId',
-        onDelete: 'CASCADE' // Optional: Configure cascade delete behavior
-      });
+      // // Associate with Books
+      // BookProgress.belongsTo(models.Books, {
+      //   foreignKey: 'bookId',
+      //   onDelete: 'CASCADE' // Optional: Configure cascade delete behavior
+      // });
 
       BookProgress.belongsTo(models.Friend, { foreignKey: 'userId' });
     }

@@ -43,12 +43,12 @@ function SignupFormModal() {
   useEffect(() => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let errObj = {}
-    if (email && !emailRegex.test(email)) errObj.email = "Email is invalid."
-    if(username && username.trim().length < 4) errObj.username = "Username must be more than 4 characters"
-    if(firstName && firstName.trim().length < 1) errObj.firstName = "First name must be more than 1 character"
-    if(lastName && lastName.trim().length < 1) errObj.lastName = "Last name must be more than 1 character"
-    if(password && password.length < 6) errObj.password = "Password must be more than 6 characters"
-    if(password !== confirmPassword) errObj.confirmPassword = "Confirm Password field must be the same as the Password field"
+    if (email && !emailRegex.test(email)) errObj.email = "email is invalid."
+    if(username && username.trim().length < 4) errObj.username = "username must be more than 4 characters"
+    if(firstName && firstName.trim().length < 1) errObj.firstName = "first name must be more than 1 character"
+    if(lastName && lastName.trim().length < 1) errObj.lastName = "last name must be more than 1 character"
+    if(password && password.length < 6) errObj.password = "password must be more than 6 characters"
+    if(password !== confirmPassword) errObj.confirmPassword = "confirm password field must be the same as the password field"
     setErrors(errObj)
   }, [password, confirmPassword, username, email, firstName, lastName])
 
@@ -66,21 +66,21 @@ function SignupFormModal() {
         {errors.confirmPassword && <span className='errors'>{errors.confirmPassword}</span>}
           <input
             type="text"
-            placeholder="Email"
+            placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <input
             type="text"
-            placeholder="Username"
+            placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
           <input
             type="text"
-            placeholder="First Name"
+            placeholder="first name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
@@ -88,20 +88,20 @@ function SignupFormModal() {
           <input
             type="text"
             value={lastName}
-            placeholder="Last Name"
+            placeholder="last name"
             onChange={(e) => setLastName(e.target.value)}
             required
           />
           <input
             type="password"
             value={password}
-            placeholder="Password"
+            placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
           <input
             type="password"
-            placeholder="Confirm Password"
+            placeholder="confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
@@ -110,7 +110,7 @@ function SignupFormModal() {
           <button
           className='login-button'
           type="submit"
-          disabled={!email || !password || !username || !firstName || !lastName || !!Object.values(errors).length}>Sign Up</button>
+          disabled={!email || !password || !username || !firstName || !lastName || !!Object.values(errors).length}>sign up</button>
         </div>
       </form>
       <span >

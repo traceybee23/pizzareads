@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import BookProgress from "../BookProgress/BookProgress"
+import BookProgress from "../BookProgress/BookProgress";
+import GoalProgress from "../BookProgress/GoalProgress";
 import './LandingPage.css';
 
 const LandingPage = () => {
@@ -25,18 +26,23 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className='landing-page'>
+    <>
       {!user &&
-        <>
+        <div className='landing-page'>
           <h1 className='title' ref={titleRef}>pizzareads</h1>
-        </>
-      }
-      {user &&
-        <div className='book-progress-lp'>
-          <BookProgress />
         </div>
       }
-    </div>
+      {user &&
+      <>
+        <div className='book-progress-lp'>
+          <BookProgress />
+          <GoalProgress />
+        </div>
+        <div>
+        </div>
+      </>
+      }
+    </>
   );
 };
 

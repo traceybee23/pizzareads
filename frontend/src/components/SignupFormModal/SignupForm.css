@@ -1,12 +1,11 @@
 
 .signup-modal {
-  padding: 20px 20px 40px;
+  padding: 0 20px 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-content: space-around;
-  width: 500px;
-  height: 600px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }
 
 .signup-modal button {

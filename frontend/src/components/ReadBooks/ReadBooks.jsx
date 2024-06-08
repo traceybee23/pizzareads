@@ -1,13 +1,22 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import './ReadBooks.css';
+import { useEffect } from 'react';
+import { fetchProgresses } from '../../store/progress';
 
 const ReadBooks = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
 
   const progresses = Object.values(useSelector(state => state.progress))
+
+  console.log(progresses, 'READ BOOKS PAGE')
+
+  useEffect(() => {
+    dispatch(fetchProgresses(user.id))
+  },[dispatch, user.id])
 
 
   return (
@@ -19,13 +28,12 @@ const ReadBooks = () => {
       <div className="book-progress-completed">
         {user && progresses && progresses.map(progress => (
           progress.completed === true &&
-          progress.Book &&
           <div
             className="book-read-cards"
             key={progress.id}
           >
             <>
-              <img className="read-image" src={progress.Book.coverImageUrl} onClick={() => navigate(`/books/${progress.Book.id}`)} />
+              <img className="read-image" src={progress.bookDetails.coverImageUrl} onClick={() => navigate(`/books/${progress.bookId}`)} />
             </>
           </div>
         ))}

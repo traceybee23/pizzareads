@@ -13,11 +13,7 @@ module.exports = (sequelize, DataTypes) => {
           onDelete: 'CASCADE'
         })
 
-      Review.belongsTo(models.Books,
-        {
-          foreignKey: 'bookId',
-          onDelete: 'CASCADE'
-        })
+      
     }
   }
   Review.init({

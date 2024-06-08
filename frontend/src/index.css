@@ -31,11 +31,13 @@ button {
   width: fit-content;
   padding: 0 20px;
   background: #922e21;;
-  color: #F4E9DC;
+  color: white;
   font-size: 20px;
   margin-bottom: 10px;
   border-radius: 5px;
   font-family: "Quicksand", sans-serif;
+  border: none;
+  outline: 1px solid grey;
 }
 
 input {
@@ -48,6 +50,7 @@ input {
 
 button:hover {
   cursor: pointer;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }
 
 .errors {
@@ -58,7 +61,7 @@ button:hover {
 }
 
 button:disabled {
-  background-color: rgb(146, 119, 117);
+  background-color: #a8a8a8da;
   cursor: not-allowed;
 }
 

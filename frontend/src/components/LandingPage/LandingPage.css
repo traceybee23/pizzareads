@@ -1,5 +1,5 @@
 .title {
-  background: url(../../pizzaprint.png) repeat;
+  background: url('../../pizzaprint.png') repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -17,10 +17,24 @@ h1 {
 .landing-page {
   height: 80.75vh !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  justify-self: center;
+  margin: auto;
+  flex-direction: row;
 }
 
 .book-progress-lp {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+
+}
+
+.cr-container {
+  margin-top: 0;
+}
+
+#currently-reading.heading {
+  margin-top: 2px;
 }
