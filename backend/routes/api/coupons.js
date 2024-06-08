@@ -41,13 +41,13 @@ router.put('/:couponId',  async (req, res, next) => {
     })
   }
 
-  if (user.totalBooksRead < 5) {
+  if (user.totalBooksRead < 6) {
     return res.status(403).json({
       "message": "Read more books!"
     })
   }
 
-  if (user.totalBooksRead !== 5 && user.totalBooksRead < 10) {
+  if (user.totalBooksRead !== 6 && user.totalBooksRead < 12) {
     return res.status(403).json({
       "message": "Read more books!"
     })
@@ -94,13 +94,13 @@ router.post('/:couponId', requireAuth, async (req, res, next) => {
     })
   }
 
-  if (user.totalBooksRead < 5) {
+  if (user.totalBooksRead < 6) {
     return res.status(403).json({
       "message": "Read more books!"
     })
   }
 
-  if (user.totalBooksRead !== 5 && user.totalBooksRead < 10) {
+  if (user.totalBooksRead !== 6 && user.totalBooksRead < 12) {
     return res.status(403).json({
       "message": "Read more books!"
     })
@@ -182,13 +182,13 @@ router.get('/', requireAuth, async (req, res, next) => {
     })
   }
 
-  if (user.totalBooksRead < 5) {
+  if (user.totalBooksRead < 6) {
     return res.status(403).json({
       "message": "Read more books!"
     })
   }
 
-  if (user.totalBooksRead !== 5 && user.totalBooksRead < 10) {
+  if (user.totalBooksRead !== 6 && user.totalBooksRead < 12) {
     return res.status(403).json({
       "message": "Read more books!"
     })

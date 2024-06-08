@@ -135,7 +135,7 @@ span.cr-text {
 }
 
 .goal-progress-container {
-  
+
   width: fit-content;
   padding: 0 25px;
 
@@ -145,6 +145,7 @@ span.cr-text {
   background-color: #1B998B;
   color: white;
   width: 230px;
+  margin: 25px 25px 50px;
 }
 
 .goal-progress-banner {
@@ -153,30 +154,33 @@ span.cr-text {
   padding: 15px;
   border-radius: 5px;
   font-size: 22px;
+  margin: 25px 25px 50px;
 }
 
-.redeem-coupon-link {
+.redeem-coupon-link  {
   background-color: #1B998B;
   border: 2px solid;
-  padding: 15px;
+  padding: 20px;
   border-radius: 5px;
   text-decoration: none;
-  color: black;
-}
+  color: white;
+  margin: 25px 25px 50px;
 
+}
 
 .redeem-coupon-link:hover {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
   cursor: pointer;
-  color: #ED9C36;
-  text-decoration: underline;
-  font-weight: bold;
 }
+
+
 
 .get-pizza-butt button:hover {
   cursor: pointer;
   color: #ED9C36;
   text-decoration: underline;
   font-weight: bold;
+
 }
 
 

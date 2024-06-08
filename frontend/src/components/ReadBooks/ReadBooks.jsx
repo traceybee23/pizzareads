@@ -22,7 +22,7 @@ const ReadBooks = () => {
   return (
     progresses &&
     <div className='book-trophies-page'>
-      <h1>
+      <h1 className='heading'>
         book trophies
       </h1>
       <div className="book-progress-completed">
@@ -33,7 +33,7 @@ const ReadBooks = () => {
             key={progress.id}
           >
             <>
-              <img className="read-image" src={progress.bookDetails.coverImageUrl} onClick={() => navigate(`/books/${progress.bookId}`)} />
+              <img className="read-image" src={progress.coverImageUrl} onClick={() => navigate(`/books/${progress.bookId}`)} />
             </>
           </div>
         ))}

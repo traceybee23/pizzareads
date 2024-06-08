@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuth } = require('../../utils/auth');
-const { BookProgress, User } = require("../../db/models"); // Removed Books model
+const { BookProgress, User } = require("../../db/models");
 const axios = require('axios');
 
 const router = express.Router();
@@ -42,25 +42,7 @@ router.get('/user/:userId', requireAuth, async (req, res, next) => {
       include: [ { model: User } ]
     });
 
-    const progressList = await Promise.all(progresses.map(async progress => {
-      const bookData = await fetchWithRetry(`https://www.googleapis.com/books/v1/volumes/${progress.bookId}`);
-      return {
-        ...progress.toJSON(),
-        bookDetails: {
-          id: bookData.id,
-          title: bookData.volumeInfo.title || 'No title available',
-          author: bookData.volumeInfo.authors ? bookData.volumeInfo.authors.join(', ') : 'No author available',
-          genre: bookData.volumeInfo.categories ? [...new Set(bookData.volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available',
-          publicationDate: bookData.volumeInfo.publishedDate || 'No publication date available',
-          isbn: bookData.volumeInfo.industryIdentifiers ? bookData.volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
-          description: bookData.volumeInfo.description ? (bookData.volumeInfo.description.length > 1500 ? bookData.volumeInfo.description.slice(0, bookData.volumeInfo.description.lastIndexOf('.', 1500)) : bookData.volumeInfo.description) : 'No description available',
-          coverImageUrl: bookData.volumeInfo.imageLinks ? bookData.volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available',
-          totalPages: bookData.volumeInfo.pageCount || 'No page count available',
-        }
-      };
-    }));
-
-    res.json({ BookProgress: progressList });
+    res.json({ BookProgress: progresses });
   } catch (error) {
     next(error);
   }
@@ -80,7 +62,8 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
   try {
     const apiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
     const bookDetails = await fetchWithRetry(apiUrl);
-    const totalPages = bookDetails.volumeInfo.pageCount;
+    const volumeInfo = bookDetails.volumeInfo;
+    const totalPages = volumeInfo.pageCount;
 
     if (!totalPages || pagesRead > totalPages || !pagesRead) {
       return res.status(400).json({
@@ -101,7 +84,15 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
     const newProgress = {
       userId: user.id,
       bookId: bookId,
-      pagesRead: pagesRead
+      pagesRead: pagesRead,
+      title: volumeInfo.title || 'No title available',
+      author: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'No author available',
+      genre: volumeInfo.categories ? [...new Set(volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available',
+      publicationDate: volumeInfo.publishedDate || 'No publication date available',
+      isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
+      description: volumeInfo.description ? (volumeInfo.description.length > 1500 ? volumeInfo.description.slice(0, volumeInfo.description.lastIndexOf('.', 1500)) : volumeInfo.description) : 'No description available',
+      coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available',
+      totalPages: totalPages,
     };
 
     const bookProgress = await BookProgress.create(newProgress);
@@ -139,9 +130,7 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
       });
     }
 
-    const apiUrl = `https://www.googleapis.com/books/v1/volumes/${progress.bookId}`;
-    const bookDetails = await fetchWithRetry(apiUrl);
-    const totalPages = bookDetails.volumeInfo.pageCount;
+    const totalPages = progress.totalPages;
 
     if (!totalPages || pagesRead > totalPages || !pagesRead) {
       return res.status(400).json({
@@ -152,6 +141,17 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
     if (pagesRead === totalPages) {
       progress.set({ pagesRead, completed: true });
       await progress.save();
+
+      // Check for milestone increment
+      const completedBooks = await BookProgress.count({
+        where: { userId: user.id, completed: true }
+      });
+
+      if (completedBooks % 6 === 0) {
+        user.milestone += 1;
+        await user.save();
+      }
+      
     } else {
       progress.set({ pagesRead });
       await progress.save();

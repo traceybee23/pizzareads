@@ -32,6 +32,34 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      author: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      genre: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      publicationDate: {
+        type: Sequelize.STRING,
+      },
+      isbn: {
+        type: Sequelize.STRING,
+      },
+      description: {
+        type: Sequelize.TEXT,
+      },
+      coverImageUrl: {
+        type: Sequelize.STRING,
+      },
+      totalPages: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
