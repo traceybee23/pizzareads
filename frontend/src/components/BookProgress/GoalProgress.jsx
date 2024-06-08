@@ -21,7 +21,6 @@ const GoalProgress = () => {
   const [slices, setSlices] = useState(0);
   const [newPie, setNewPie] = useState(false);
 
-  console.log(coupwithnoredeemdate, "couwnoreddemd")
   useEffect(() => {
     dispatch(fetchCoupons());
     dispatch(restoreUser()); // Ensure user data is always up-to-date
