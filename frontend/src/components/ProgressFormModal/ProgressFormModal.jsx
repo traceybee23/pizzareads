@@ -13,8 +13,6 @@ const ProgressFormModal = ({navigate}) => {
 
   const book = Object.values(useSelector(state => state.books));
 
-  console.log(book, "BOOK IN PROGRESS MODAL")
-
   // const userProgress = Object.values(useSelector(state => state.progress));
   const bookId = book[0].bookDetails.id
   const totalPages = book[0].bookDetails.totalPages
