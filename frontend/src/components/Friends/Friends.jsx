@@ -10,7 +10,6 @@ const Friends = () => {
 
   const friends = Object.values(useSelector(state => state.friends))
 
-  console.log(friends)
 
   useEffect(() => {
     dispatch(fetchFriends())

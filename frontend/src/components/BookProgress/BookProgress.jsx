@@ -25,7 +25,6 @@ const BookProgress = () => {
   const [className, setClassName] = useState('book-progress-container')
   const [load, setLoad] = useState(true)
 
-  console.log(completed, "THIS IS PROGRESS IN BOOKPROGRESS>JS")
 
   useEffect(() => {
     setLoad(true);
@@ -65,7 +64,6 @@ const BookProgress = () => {
           <div className={className}>
             {user && progresses && progresses.map(progress => (
               progress.completed === false &&
-              progress.bookDetails &&
               <div
                 className="book-progress-cards"
                 key={progress.id}
@@ -73,26 +71,26 @@ const BookProgress = () => {
                 <>
                   <img
                     className="progress-image"
-                    src={progress.bookDetails.coverImageUrl}
+                    src={progress.coverImageUrl}
                     onClick={() => navigate(`/books/${progress.bookId}`)}
                   />
                   <div className="progress-deets">
-                    <span className="progress-title">{progress.bookDetails.title}</span>
-                    <span className="progress-author">by {progress.bookDetails.author}</span>
+                    <span className="progress-title">{progress.title}</span>
+                    <span className="progress-author">by {progress.author}</span>
                     <span className="progress-container">
                       <progress
                         className="progressBar"
                         value={progress.pagesRead}
-                        max={progress.bookDetails.totalPages}
+                        max={progress.totalPages}
                       ></progress>&nbsp;&nbsp;
                       {percentage(
-                        `${progress.bookDetails.totalPages}`,
+                        `${progress.totalPages}`,
                         `${progress.pagesRead}`
                       )}%</span>
                     <div className="progress-buttons">
                       <UpdateButton
                         progressId={progress.id}
-                        book={progress.bookDetails}
+                        book={progress}
                         navigate={navigate} />
                       <DeleteProgressButton progressId={progress.id} />
                     </div>

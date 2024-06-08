@@ -44,7 +44,35 @@ module.exports = (sequelize, DataTypes) => {
     completed: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    }
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    author: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    genre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    publicationDate: {
+      type: DataTypes.STRING,
+    },
+    isbn: {
+      type: DataTypes.STRING,
+    },
+    description: {
+      type: DataTypes.TEXT,
+    },
+    coverImageUrl: {
+      type: DataTypes.STRING,
+    },
+    totalPages: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'BookProgress',

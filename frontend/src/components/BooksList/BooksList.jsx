@@ -25,10 +25,12 @@ const BooksList = () => {
 
   const handleNextPage = (e) => {
     e.preventDefault();
+
     setLoad(true);
+
     const nextPage = currentPage + 1;
     const startIndex = (nextPage - 1) * itemsPerPage;
-    console.log(startIndex, "{}{}{}{}{}")
+
     if (nextPage <= pageCount) {
       setCurrentPage(nextPage); // Increment page number
       dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)).then(() => setTimeout(() => {
@@ -39,10 +41,13 @@ const BooksList = () => {
 
   const handlePrevPage = (e) => {
     e.preventDefault
+
     setLoad(true);
+
     if (currentPage > 1) {
       const prevPage = currentPage - 1;
       const startIndex = (prevPage - 1) * itemsPerPage;
+      
       setCurrentPage(prevPage); // Decrement page number
       dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)).then(() => setTimeout(() => {
         setLoad(false);

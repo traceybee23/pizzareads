@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 80.74vh !important;
+
 }
 
 .coupon-cards {
   display: flex;
   flex-direction: column;
-  border: 1px solid #e1709a;
+  border: 1px solid #922e21;
   width: fit-content;
   align-self: center;
   padding: 20px;
@@ -25,8 +25,7 @@
 }
 
 .coupon-cards button {
-  background-color:#bae264;
-  color: black;
+
   align-self: center;
   margin: 10px;
   font-size: medium;
@@ -54,7 +53,7 @@ span.coupon-code {
 .warning-container {
   display: flex;
   flex-direction: column;
-  background-color: #bae264;
+  background-color: #ed9c36;
   width: fit-content;
   align-self: center;
 }
@@ -64,7 +63,7 @@ span.coupon-code {
   display: flex;
   padding: 20px;
   font-size: larger;
-  background-color: #e1709a;
+  background-color:#922e21;
   width: fit-content;
   margin: 20px;
 }

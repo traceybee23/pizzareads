@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       milestone: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        defaultValue: 0
       },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
