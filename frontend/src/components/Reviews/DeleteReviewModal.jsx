@@ -5,8 +5,6 @@ import { fetchSingleBook } from '../../store/books';
 
 const DeleteReview = ({reviewId, bookId}) => {
 
-  console.log(reviewId, "REVIEW ID")
-  console.log(bookId)
 
   const dispatch = useDispatch();
 
