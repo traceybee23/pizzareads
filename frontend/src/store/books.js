@@ -20,12 +20,12 @@ const googleBooks = (books, pageCount) => ({
 })
 
 export const fetchGoogleBooks = (query, startIndex=0, maxResults=10) => async (dispatch) => {
-  console.log(query, startIndex, maxResults)
+
   try {
     const response = await fetch(`/api/books/google/${query}?startIndex=${startIndex}&maxResults=${maxResults}`);
     if (response.ok) {
       const data = await response.json();
-      console.log(data, "THUNKKKK")
+
       dispatch(googleBooks(data.Books, data.pageCount));
     }
   } catch (error) {
