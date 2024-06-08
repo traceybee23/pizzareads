@@ -28,7 +28,7 @@ const BooksList = () => {
     setLoad(true);
     const nextPage = currentPage + 1;
     const startIndex = (nextPage - 1) * itemsPerPage;
-    console.log(startIndex, "{}{}{}{}{}")
+
     if (nextPage <= pageCount) {
       setCurrentPage(nextPage); // Increment page number
       dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)).then(() => setTimeout(() => {
