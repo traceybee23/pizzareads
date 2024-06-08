@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuth } = require('../../utils/auth');
-const { Friend, User, Books, BookProgress } = require("../../db/models");
+const { Friend, User, BookProgress } = require("../../db/models");
 
 const router = express.Router();
 
@@ -19,10 +19,7 @@ router.get('/', requireAuth, async (req, res, next) => {
         userId1: user.id,
         status: 'friends'
       },
-      include: [
-        { model: User },
-        { model: BookProgress, include: [Books] }
-      ]
+
     });
 
     if (!friends) {

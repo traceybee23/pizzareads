@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { updateProgress } from '../../store/progress';
 import { fetchProgresses } from '../../store/progress';
-import { fetchBooks } from '../../store/books';
 import { restoreUser } from '../../store/session';
 
 const UpdateProgressModal = ({progressId, book, navigate}) => {
@@ -27,6 +26,8 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
 
   const { closeModal } = useModal();
 
+  console.log(book, "USER PROG IN UPDATE")
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,7 +48,7 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
   }
 
   useEffect(() => {
-    dispatch(fetchBooks())
+
     dispatch(fetchProgresses(user.id))
     .then(() => dispatch(restoreUser()))
   }, [dispatch, user.id])
@@ -68,7 +69,7 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
   return (
     user &&
     <div className='progress-form'>
-      <h1 style={{backgroundColor: "#ffffff"}}>what page are you on?</h1>
+      <h1 className='heading'>what page are you on?</h1>
       <form onSubmit={handleSubmit}>
       <span>
         <input

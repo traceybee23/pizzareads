@@ -1,3 +1,5 @@
+
+
 .progress-image {
   height: 200px;
   border-radius: 0 10px 10px 0;
@@ -7,11 +9,8 @@
   cursor: pointer;
 }
 
-.currentlyreading-h1 {
-  color:#922e21;
-  text-align: left;
-  margin-left: 15px;
-  top: 90px;
+.no-scroll {
+  overflow-y: hidden;
 }
 
 .book-progress-container {
@@ -21,8 +20,8 @@
   margin: 20px;
   overflow-y: scroll;
   max-height: 70vh;
-  top: 150px;
 }
+
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -51,19 +50,20 @@
 .progress-deets {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: left;
   margin-left: 20px;
   width: 100%;
 }
 
-.progress-button {
-  width: fit-content;
-  height: fit-content;
+.progress-buttons {
+  display: flex;
+  justify-content: space-between;
   font-size: 15px;
   padding-bottom: 5px;
-  align-self: center;
+
 }
+
 
 .progress-title {
   font-weight: bold;
@@ -101,54 +101,54 @@
   display: flex;
   justify-content: center;
   padding-top: 4px;
-  width: 160px;
   font-size: medium;
-  height: 50px;
+
 }
 
-.curr-read-butt {
-  margin-top: 20px;
-}
 
 span.cr-text {
   text-align: center;
 
 }
 
+#currently-reading {
+  font-size: 50px;
+}
+
 .book-icon {
-  color: #e1709a;
+  color: #ED9C36;
   font-size: 20px;
   padding-bottom: 2px;
 }
 
-.progress-buttons {
+/* .progress-buttons {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-around;
+} */
 
-}
 
-.progress-buttons button {
-  width: fit-content;
+
+.progress-buttons button:nth-child(1) {
+  background-color: #1B998B;
 
 }
 
 .goal-progress-container {
-  position: absolute;
+  
   width: fit-content;
   padding: 0 25px;
-  left: 700px;
-  top: 200px;
 
 }
 
 .get-pizza-butt button {
-  background-color: #bae264;
-  color: black;
+  background-color: #1B998B;
+  color: white;
+  width: 230px;
 }
 
 .goal-progress-banner {
-  background-color: #bae264;
+  background-color: #1B998B;
   border: 2px solid;
   padding: 15px;
   border-radius: 5px;
@@ -156,7 +156,7 @@ span.cr-text {
 }
 
 .redeem-coupon-link {
-  background-color: #bae264;
+  background-color: #1B998B;
   border: 2px solid;
   padding: 15px;
   border-radius: 5px;
@@ -167,14 +167,22 @@ span.cr-text {
 
 .redeem-coupon-link:hover {
   cursor: pointer;
-  color: #e1709a;
+  color: #ED9C36;
   text-decoration: underline;
   font-weight: bold;
 }
 
 .get-pizza-butt button:hover {
   cursor: pointer;
-  color: #e1709a;
+  color: #ED9C36;
   text-decoration: underline;
   font-weight: bold;
+}
+
+
+
+.pizza-slices img {
+  height: 40%;
+  position: absolute;
+  right: 150px;
 }
