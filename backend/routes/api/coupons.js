@@ -113,7 +113,7 @@ router.post('/:couponId', requireAuth, async (req, res, next) => {
   if (coupon) {
 
     let milestone = currUser.milestone
-    milestone += 1
+    
 
     coupon.set({ used: true })
     currUser.set({ milestone: milestone })

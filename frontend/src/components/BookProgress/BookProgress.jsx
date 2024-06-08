@@ -25,7 +25,6 @@ const BookProgress = () => {
   const [className, setClassName] = useState('book-progress-container')
   const [load, setLoad] = useState(true)
 
-  console.log(progresses, "THIS IS PROGRESS IN BOOKPROGRESS>JS")
 
   useEffect(() => {
     setLoad(true);
