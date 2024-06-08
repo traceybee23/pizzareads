@@ -26,7 +26,6 @@ const SingleBook = () => {
 
   const [load, setLoad] = useState(true)
 
-  console.log(userProgress, "USER PROGRESS ON SBP")
   const dispatch = useDispatch();
 
   useEffect(() => {
