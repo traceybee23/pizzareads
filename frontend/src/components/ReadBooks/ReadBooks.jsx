@@ -16,7 +16,7 @@ const ReadBooks = () => {
 
   useEffect(() => {
     dispatch(fetchProgresses(user.id))
-  },[dispatch])
+  },[dispatch, user.id])
 
 
   return (

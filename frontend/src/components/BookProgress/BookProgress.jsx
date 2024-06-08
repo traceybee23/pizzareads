@@ -7,7 +7,7 @@ import UpdateButton from "../UpdateProgress/UpdateButton";
 import DeleteProgressButton from "../DeleteProgressModal/DeleteProgressButton";
 
 import { restoreUser } from "../../store/session";
-import { fetchCoupons } from "../../store/userCoupons";
+
 
 
 const BookProgress = () => {
@@ -29,13 +29,12 @@ const BookProgress = () => {
 
   useEffect(() => {
     setLoad(true);
-    dispatch(fetchProgresses(user.id))
-      .then(() => dispatch(restoreUser())).then(() => setTimeout(() => {
+
+    dispatch(restoreUser())
+    .then(() => dispatch(fetchProgresses(user.id)))
+      .then(() => setTimeout(() => {
         setLoad(false);
       }, 500))
-
-    dispatch(fetchCoupons())
-
 
     if (completed.length <= 2) {
       setClassName('no-scroll')
@@ -55,7 +54,7 @@ const BookProgress = () => {
 
   return (
     progresses &&
-    <div>
+    <div className="cr-container">
       <h1 id="currently-reading" className="heading">currently reading</h1>
       {load ? (
         <div className='bookslist-loader'>

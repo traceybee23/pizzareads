@@ -5,56 +5,57 @@ const axios = require('axios');
 
 const router = express.Router();
 
-async function fetchWithRetry(url, retries = 3, backoff = 3000) {
+const fetchWithRetry = async (url, retries = 3, backoff = 3000) => {
   for (let i = 0; i < retries; i++) {
     try {
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
-      if (i < retries - 1) {
-        console.log(`Retrying request (${i + 1}/${retries})...`);
-        await new Promise(res => setTimeout(res, backoff));
-        continue;
+      if (error.response && error.response.status === 429) {
+        if (i < retries - 1) {
+          const waitTime = backoff * Math.pow(2, i); // Exponential backoff
+          console.log(`Rate limited. Retrying after ${waitTime} ms...`);
+          await new Promise(resolve => setTimeout(resolve, waitTime));
+        } else {
+          throw new Error('Rate limit exceeded. Please try again later.');
+        }
+      } else {
+        throw error;
       }
-      throw error;
     }
   }
-}
+};
 
 router.get('/user/:userId', requireAuth, async (req, res, next) => {
   const { user } = req;
   const userId = Number(req.params.userId);
 
   if (!user) {
-    return res.status(401).json({
-      "message": "Authentication required"
-    });
+    return res.status(401).json({ "message": "Authentication required" });
   }
 
   if (user.id !== userId) return res.status(403).json({ "message": "Forbidden" });
 
   try {
     const progresses = await BookProgress.findAll({
-      where: {
-        userId: userId
-      },
-      include: [
-        { model: User }
-      ]
+      where: { userId: userId },
+      include: [ { model: User } ]
     });
 
-    const progressList = await Promise.all(progresses.map(async (progress) => {
-      // Fetch book details from Google Books API
-      const apiUrl = `https://www.googleapis.com/books/v1/volumes/${progress.bookId}`;
-      const bookDetails = await fetchWithRetry(apiUrl);
-
+    const progressList = await Promise.all(progresses.map(async progress => {
+      const bookData = await fetchWithRetry(`https://www.googleapis.com/books/v1/volumes/${progress.bookId}`);
       return {
         ...progress.toJSON(),
         bookDetails: {
-          title: bookDetails.volumeInfo.title,
-          author: bookDetails.volumeInfo.authors ? bookDetails.volumeInfo.authors.join(', ') : 'No author available',
-          coverImageUrl: bookDetails.volumeInfo.imageLinks ? bookDetails.volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available',
-          totalPages: bookDetails.volumeInfo.pageCount || 'No page count available'
+          id: bookData.id,
+          title: bookData.volumeInfo.title || 'No title available',
+          author: bookData.volumeInfo.authors ? bookData.volumeInfo.authors.join(', ') : 'No author available',
+          genre: bookData.volumeInfo.categories ? [...new Set(bookData.volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available',
+          publicationDate: bookData.volumeInfo.publishedDate || 'No publication date available',
+          isbn: bookData.volumeInfo.industryIdentifiers ? bookData.volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
+          description: bookData.volumeInfo.description ? (bookData.volumeInfo.description.length > 1500 ? bookData.volumeInfo.description.slice(0, bookData.volumeInfo.description.lastIndexOf('.', 1500)) : bookData.volumeInfo.description) : 'No description available',
+          coverImageUrl: bookData.volumeInfo.imageLinks ? bookData.volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available',
+          totalPages: bookData.volumeInfo.pageCount || 'No page count available',
         }
       };
     }));

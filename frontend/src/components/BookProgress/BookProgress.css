@@ -101,15 +101,10 @@
   display: flex;
   justify-content: center;
   padding-top: 4px;
-  width: 60px;
   font-size: medium;
 
 }
 
-.curr-read-butt {
-  margin-top: 20px;
-
-}
 
 span.cr-text {
   text-align: center;
@@ -140,7 +135,7 @@ span.cr-text {
 }
 
 .goal-progress-container {
-
+  
   width: fit-content;
   padding: 0 25px;
 
@@ -182,4 +177,12 @@ span.cr-text {
   color: #ED9C36;
   text-decoration: underline;
   font-weight: bold;
+}
+
+
+
+.pizza-slices img {
+  height: 40%;
+  position: absolute;
+  right: 150px;
 }
