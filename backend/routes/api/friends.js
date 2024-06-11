@@ -19,6 +19,9 @@ router.get('/', requireAuth, async (req, res, next) => {
         userId1: user.id,
         status: 'friends'
       },
+      include: [
+        { model: User }
+      ]
 
     });
 
