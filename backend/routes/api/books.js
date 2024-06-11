@@ -4,7 +4,7 @@ const { requireAuth } = require('../../utils/auth');
 const { Review, User } = require("../../db/models");
 
 const router = express.Router();
-const GOOGLE_API_KEY = process.env.BOOKS_API_KEY;
+
 
 async function fetchImage(url) {
   const response = await axios.get(url, { responseType: 'arraybuffer' });
@@ -15,7 +15,7 @@ router.get('/google/:query', async (req, res, next) => {
   const { query } = req.params;
   const startIndex = req.query.startIndex || 0;
   const maxResults = req.query.maxResults || 10;
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=${startIndex}&maxResults=${maxResults}&key=${GOOGLE_API_KEY}`;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=${startIndex}&maxResults=${maxResults}`;
 
   try {
     const response = await axios.get(url);
@@ -95,7 +95,7 @@ router.get('/:bookId', async (req, res, next) => {
     return truncated;
   }
 
-  const url = `https://www.googleapis.com/books/v1/volumes/${bookId}?&key=${GOOGLE_API_KEY}`;
+  const url = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
 
   try {
     const response = await axios.get(url);
