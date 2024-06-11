@@ -56,6 +56,7 @@ const BooksList = () => {
     }
     window.scrollTo(0, 0);
   };
+  
 
   const descriptionSubstr = (text) => {
     if (text.length > 100) {
