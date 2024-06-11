@@ -3,25 +3,28 @@ const axios = require('axios');
 const { requireAuth } = require('../../utils/auth');
 const { Review, User } = require("../../db/models");
 
-
 const router = express.Router();
+const GOOGLE_API_KEY = process.env.BOOKS_API_KEY;
+
+async function fetchImage(url) {
+  const response = await axios.get(url, { responseType: 'arraybuffer' });
+  return Buffer.from(response.data, 'binary');
+}
 
 router.get('/google/:query', async (req, res, next) => {
   const { query } = req.params;
-  const startIndex = req.query.startIndex || 0; // Default startIndex is 0
-  const maxResults = req.query.maxResults || 10; // Default maxResults is 10
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=${startIndex}&maxResults=${maxResults}`;
+  const startIndex = req.query.startIndex || 0;
+  const maxResults = req.query.maxResults || 10;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=${startIndex}&maxResults=${maxResults}&key=${GOOGLE_API_KEY}`;
 
   try {
     const response = await axios.get(url);
     const apiResponse = response.data;
 
-    // Check if there are any items in the response
     if (!apiResponse.items || apiResponse.items.length === 0) {
       return res.status(404).json({ error: 'No books found for the given query' });
     }
 
-    // Filter items to include only those with a page count and remove duplicates
     const seenIds = new Set();
     const filteredItems = apiResponse.items.filter(item => {
       const volumeInfo = item.volumeInfo;
@@ -35,22 +38,21 @@ router.get('/google/:query', async (req, res, next) => {
       return false;
     });
 
-    // Check if there are any items after filtering
     if (filteredItems.length === 0) {
       return res.status(404).json({ error: 'No books with a page count found for the given query' });
     }
 
-    const books = filteredItems.map((item, index) => {
+    const books = await Promise.all(filteredItems.map(async (item, index) => {
       const volumeInfo = item.volumeInfo;
 
-      // Ensure the cover image URL is HTTPS
-      const coverImageUrl = volumeInfo.imageLinks
-        ? (volumeInfo.imageLinks.small
-          ? volumeInfo.imageLinks.small.replace(/^http:\/\//i, 'https://')
-          : volumeInfo.imageLinks.thumbnail
-            ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://')
-            : 'No cover image available')
+      let coverImageUrl = volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail
+        ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://')
         : 'No cover image available';
+
+      if (coverImageUrl !== 'No cover image available') {
+        const imageBuffer = await fetchImage(coverImageUrl);
+        coverImageUrl = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+      }
 
       return {
         id: item.id,
@@ -63,104 +65,15 @@ router.get('/google/:query', async (req, res, next) => {
         coverImageUrl: coverImageUrl,
         totalPages: volumeInfo.pageCount,
       };
-    });
+    }));
 
-    const pageCount = Math.ceil(apiResponse.totalItems / maxResults) || 1; // Calculate total pages based on totalItems and maxResults
+    const pageCount = Math.ceil(apiResponse.totalItems / maxResults) || 1;
     const pageNumber = startIndex;
     res.json({ Books: books, pageCount, pageNumber });
   } catch (error) {
     res.status(500).json({ error: 'Error fetching data from Google Books API' });
   }
 });
-
-// router.post('/:bookId/reviews', requireAuth, async (req, res, next) => {
-
-//   const { user } = req;
-//   if (!user) {
-//     return res.status(401).json({
-//       "message": "Authentication required"
-//     })
-//   }
-
-//   const bookId = Number(req.params.bookId)
-
-//   const { review, stars } = req.body
-
-//   const book = await Books.findOne({
-//     where: { id: bookId },
-//     include: [
-//       {
-//         model: Review,
-//         attributes: ['userId']
-//       }
-//     ]
-//   })
-
-//   if (!book) {
-//     return res.status(404).json({
-//       message: "Book couldn't be found"
-//     })
-//   }
-
-//   try {
-//     let errors = [];
-
-//     book.Reviews.forEach(review => {
-//       if (review.userId === user.id) {
-//         const err = new Error("User already has a review for this book")
-//         errors.push(err)
-//       }
-//     })
-
-//     if (errors.length) {
-//       return res.status(500).json({
-//         "message": "User already has a review for this book"
-//       })
-//     }
-
-//     const newReview = await Review.create({ userId: user.id, bookId, review, stars })
-//     res.status(201).json(newReview)
-//   } catch (error) {
-//     error.message = "Bad Request"
-//     error.status = 400
-//     next(error)
-//   }
-// })
-
-// router.get('/:bookId/reviews', async (req, res, next) => {
-
-//   const book = await Books.findByPk(req.params.bookId)
-
-//   if (!book) {
-//     return res.status(404).json({
-//       message: "Book couldn't be found"
-//     })
-//   }
-
-//   const reviews = await Review.findAll({
-//     where: { bookId: req.params.bookId },
-//     include: [
-//       {
-//         model: User,
-//         attributes: ['id', 'username']
-//       }
-//     ],
-//     order: [['createdAt', 'DESC']]
-//   })
-
-//   let reviewList = [];
-
-//   reviews.forEach(review => {
-//     reviewList.push(review.toJSON())
-//   })
-
-//   if (!reviewList.length) {
-//     res.json({ Reviews: "New" })
-//   }
-
-//   res.json({ Reviews: reviewList })
-
-// })
 
 router.get('/:bookId', async (req, res, next) => {
   const { bookId } = req.params;
@@ -182,15 +95,14 @@ router.get('/:bookId', async (req, res, next) => {
     return truncated;
   }
 
-  const url = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
+  const url = `https://www.googleapis.com/books/v1/volumes/${bookId}?&key=${GOOGLE_API_KEY}`;
 
   try {
     const response = await axios.get(url);
     const apiResponse = response.data;
     const volumeInfo = apiResponse.volumeInfo;
 
-    // Ensure the cover image URL is HTTPS
-    const coverImageUrl = volumeInfo.imageLinks
+    let coverImageUrl = volumeInfo.imageLinks
       ? (volumeInfo.imageLinks.small
         ? volumeInfo.imageLinks.small.replace(/^http:\/\//i, 'https://')
         : volumeInfo.imageLinks.thumbnail
@@ -198,10 +110,12 @@ router.get('/:bookId', async (req, res, next) => {
           : 'No cover image available')
       : 'No cover image available';
 
-    // Get unique genres and use ' | ' as the delimiter
-    const genres = volumeInfo.categories ? [...new Set(volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available';
+    if (coverImageUrl !== 'No cover image available') {
+      const imageBuffer = await fetchImage(coverImageUrl);
+      coverImageUrl = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+    }
 
-    // Truncate description if it exceeds 1500 characters
+    const genres = volumeInfo.categories ? [...new Set(volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available';
     const description = stripHtmlTags(volumeInfo.description || 'No description available');
     const truncatedDescription = truncateDescription(description);
 
@@ -223,7 +137,4 @@ router.get('/:bookId', async (req, res, next) => {
   }
 });
 
-
-
-
-module.exports = router
+module.exports = router;
