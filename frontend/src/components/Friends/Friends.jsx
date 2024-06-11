@@ -37,15 +37,15 @@ const Friends = () => {
         <tbody>
           {friends && friends.map(friend => {
             // Filter the BookProgresses to get only in-progress books
-            const inProgressBooks = friend.BookProgresses.filter(progress => !progress.completed);
+            const inProgressBooks = friend.BookProgresses?.filter(progress => !progress.completed);
 
             // Filter the BookProgresses to get only completed books
-            const completedBooksCount = friend.BookProgresses.filter(progress => progress.completed).length;
+            const completedBooksCount = friend.BookProgresses?.filter(progress => progress.completed).length;
 
             return (
               <tr key={friend.id} className="friend-cards">
-                <td>{friend.User.username}</td>
-                {inProgressBooks.length > 0 ? (
+                <td>{friend.User?.username}</td>
+                {inProgressBooks?.length > 0 ? (
                   <td>
                     {inProgressBooks.map(progress => (
                       <div className="friend-book-prog" key={progress.id}>

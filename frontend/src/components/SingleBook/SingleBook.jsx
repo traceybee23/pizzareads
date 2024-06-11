@@ -10,8 +10,6 @@ import ReviewButton from '../Reviews/ReviewButton';
 import Reviews from '../Reviews';
 
 
-
-
 const SingleBook = () => {
 
   const { bookId } = useParams();
@@ -30,13 +28,18 @@ const SingleBook = () => {
 
   useEffect(() => {
     setLoad(true);
-    dispatch(fetchSingleBook(bookId))
-    .then(() => dispatch(fetchProgresses(user.id)))
-    .then(() => setTimeout(() => {
-      setLoad(false);
-    }, 1000));
+    if (user?.id) {
+      dispatch(fetchProgresses(user?.id))
+      dispatch(fetchSingleBook(bookId)).then(() => setTimeout(() => {
+        setLoad(false);
+      }, 1000))
+    } else {
+      dispatch(fetchSingleBook(bookId)).then(() => setTimeout(() => {
+        setLoad(false);
+      }, 1000))
+    }
 
-  }, [dispatch, bookId, user.id])
+  }, [dispatch, bookId, user?.id])
 
   const shouldDisplayReviewButton =
     user &&
@@ -55,7 +58,7 @@ const SingleBook = () => {
           <div className='single-book-card'>
             <div className='image-container'>
               <img className='book-image' src={book?.bookDetails.coverImageUrl} />
-              {bookProgress && bookProgress.length ? (
+              {bookProgress && bookProgress.length && user ? (
                 bookProgress.map(progress => (
                   <div className='curr-read-butt' key={progress.id}>
                     {progress.completed ? (
