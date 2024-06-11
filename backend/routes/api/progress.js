@@ -2,14 +2,8 @@ const express = require('express');
 const { requireAuth } = require('../../utils/auth');
 const { BookProgress, User } = require("../../db/models");
 const axios = require('axios');
-const GOOGLE_API_KEY = process.env.BOOKS_API_KEY;
 
 const router = express.Router();
-
-async function fetchImage(url) {
-  const response = await axios.get(url, { responseType: 'arraybuffer' });
-  return Buffer.from(response.data, 'binary');
-}
 
 const fetchWithRetry = async (url, retries = 3, backoff = 3000) => {
   for (let i = 0; i < retries; i++) {
@@ -66,7 +60,7 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
   }
 
   try {
-    const apiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}?&key=${GOOGLE_API_KEY}`;
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
     const bookDetails = await fetchWithRetry(apiUrl);
     const volumeInfo = bookDetails.volumeInfo;
     const totalPages = volumeInfo.pageCount;
@@ -87,15 +81,6 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
       });
     }
 
-    let coverImageUrl = volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail
-        ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://')
-        : 'No cover image available';
-
-      if (coverImageUrl !== 'No cover image available') {
-        const imageBuffer = await fetchImage(coverImageUrl);
-        coverImageUrl = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
-      }
-
     const newProgress = {
       userId: user.id,
       bookId: bookId,
@@ -106,7 +91,7 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
       publicationDate: volumeInfo.publishedDate || 'No publication date available',
       isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
       description: volumeInfo.description ? (volumeInfo.description.length > 1500 ? volumeInfo.description.slice(0, volumeInfo.description.lastIndexOf('.', 1500)) : volumeInfo.description) : 'No description available',
-      coverImageUrl: coverImageUrl,
+      coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available',
       totalPages: totalPages,
     };
 
