@@ -5,10 +5,6 @@ const axios = require('axios');
 
 const router = express.Router();
 
-async function fetchImage(url) {
-  const response = await axios.get(url, { responseType: 'arraybuffer' });
-  return Buffer.from(response.data, 'binary');
-}
 
 const fetchWithRetry = async (url, retries = 3, backoff = 3000) => {
   for (let i = 0; i < retries; i++) {
@@ -86,15 +82,6 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
       });
     }
 
-    let coverImageUrl = volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail
-      ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://')
-      : 'No cover image available';
-
-    if (coverImageUrl !== 'No cover image available') {
-      const imageBuffer = await fetchImage(coverImageUrl);
-      coverImageUrl = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
-    }
-
     const newProgress = {
       userId: user.id,
       bookId: bookId,
@@ -104,7 +91,7 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
       genre: volumeInfo.categories ? [...new Set(volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available',
       publicationDate: volumeInfo.publishedDate || 'No publication date available',
       isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
-      coverImageUrl: coverImageUrl,
+      coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available',
       totalPages: totalPages,
     };
 
