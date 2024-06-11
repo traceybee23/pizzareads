@@ -63,9 +63,6 @@ module.exports = (sequelize, DataTypes) => {
     isbn: {
       type: DataTypes.STRING,
     },
-    description: {
-      type: DataTypes.TEXT,
-    },
     coverImageUrl: {
       type: DataTypes.STRING,
     },

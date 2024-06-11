@@ -50,9 +50,6 @@ module.exports = {
       isbn: {
         type: Sequelize.STRING,
       },
-      description: {
-        type: Sequelize.TEXT,
-      },
       coverImageUrl: {
         type: Sequelize.STRING,
       },
