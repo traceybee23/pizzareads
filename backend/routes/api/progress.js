@@ -90,7 +90,6 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
       genre: volumeInfo.categories ? [...new Set(volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available',
       publicationDate: volumeInfo.publishedDate || 'No publication date available',
       isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
-      description: volumeInfo.description ? (volumeInfo.description.length > 1500 ? volumeInfo.description.slice(0, volumeInfo.description.lastIndexOf('.', 1500)) : volumeInfo.description) : 'No description available',
       coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available',
       totalPages: totalPages,
     };
