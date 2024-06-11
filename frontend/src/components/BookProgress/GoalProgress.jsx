@@ -60,7 +60,7 @@ const GoalProgress = () => {
           {bannerMessage}
         </h2>
       )}
-      {(count >= 6 && user.milestone >= 1) && coupwithnoredeemdate &&  (
+      {(count >= 6 && user.milestone >= 1) && coupwithnoredeemdate && !newPie &&(
         <div className="get-pizza-butt">
           <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
         </div>
