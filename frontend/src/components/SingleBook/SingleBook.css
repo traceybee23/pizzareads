@@ -19,8 +19,9 @@
 
 .book-image {
   border-radius: 0 15px 15px 0;
-  height: 40vh;
-  object-fit: cover;
+
+  object-fit: contain;
+
 }
 
 .single-book-deets {
@@ -92,6 +93,3 @@
   margin: 50px auto;
 }
 
-.curr-read-butt button {
-  width: fit-content;
-}

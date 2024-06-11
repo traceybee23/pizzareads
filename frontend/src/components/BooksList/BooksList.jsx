@@ -37,6 +37,7 @@ const BooksList = () => {
         setLoad(false);
       }, 1000)); // Fetch books for the next page
     }
+    window.scrollTo(0, 0);
   };
 
   const handlePrevPage = (e) => {
@@ -47,12 +48,13 @@ const BooksList = () => {
     if (currentPage > 1) {
       const prevPage = currentPage - 1;
       const startIndex = (prevPage - 1) * itemsPerPage;
-      
+
       setCurrentPage(prevPage); // Decrement page number
       dispatch(fetchGoogleBooks(searchQuery, startIndex, itemsPerPage)).then(() => setTimeout(() => {
         setLoad(false);
       }, 1000)); // Fetch books for the previous page
     }
+    window.scrollTo(0, 0);
   };
 
   const descriptionSubstr = (text) => {

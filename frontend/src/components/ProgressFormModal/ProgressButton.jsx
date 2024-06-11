@@ -5,6 +5,7 @@ import LoginFormModal from "../LoginFormModal"
 import { GiOpenBook } from "react-icons/gi";
 import './ProgressForm.css'
 
+
 const ProgressButton = ({navigate}) => {
 
   const user = useSelector(state => state.session.user)
