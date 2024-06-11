@@ -2,6 +2,7 @@ const express = require('express');
 const { requireAuth } = require('../../utils/auth');
 const { BookProgress, User } = require("../../db/models");
 const axios = require('axios');
+const GOOGLE_API_KEY = process.env.BOOKS_API_KEY;
 
 const router = express.Router();
 
@@ -60,7 +61,7 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
   }
 
   try {
-    const apiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}?&key=${GOOGLE_API_KEY}`;
     const bookDetails = await fetchWithRetry(apiUrl);
     const volumeInfo = bookDetails.volumeInfo;
     const totalPages = volumeInfo.pageCount;
@@ -151,7 +152,7 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
         user.milestone += 1;
         await user.save();
       }
-      
+
     } else {
       progress.set({ pagesRead });
       await progress.save();
