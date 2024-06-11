@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     bookId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
       allowNull: false
     },
     pagesRead: {
@@ -46,25 +46,25 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false
     },
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     author: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     genre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     publicationDate: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
     },
     isbn: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
     },
     coverImageUrl: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
     },
     totalPages: {
       type: DataTypes.INTEGER,
