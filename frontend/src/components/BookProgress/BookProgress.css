@@ -2,8 +2,10 @@
 
 .progress-image {
   height: 200px;
-  border-radius: 0 10px 10px 0;
+  width: 120px;
+  object-fit: contain;
 }
+
 
 .progress-image:hover {
   cursor: pointer;
