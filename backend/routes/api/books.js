@@ -21,11 +21,36 @@ router.get('/google/:query', async (req, res, next) => {
       return res.status(404).json({ error: 'No books found for the given query' });
     }
 
-    const books = apiResponse.items.map((item, index) => {
+    // Filter items to include only those with a page count and remove duplicates
+    const seenIds = new Set();
+    const filteredItems = apiResponse.items.filter(item => {
+      const volumeInfo = item.volumeInfo;
+      const hasPageCount = volumeInfo.pageCount;
+      const isDuplicate = seenIds.has(item.id);
+
+      if (hasPageCount && !isDuplicate) {
+        seenIds.add(item.id);
+        return true;
+      }
+      return false;
+    });
+
+    // Check if there are any items after filtering
+    if (filteredItems.length === 0) {
+      return res.status(404).json({ error: 'No books with a page count found for the given query' });
+    }
+
+    const books = filteredItems.map((item, index) => {
       const volumeInfo = item.volumeInfo;
 
       // Ensure the cover image URL is HTTPS
-      const coverImageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available';
+      const coverImageUrl = volumeInfo.imageLinks
+        ? (volumeInfo.imageLinks.small
+          ? volumeInfo.imageLinks.small.replace(/^http:\/\//i, 'https://')
+          : volumeInfo.imageLinks.thumbnail
+            ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://')
+            : 'No cover image available')
+        : 'No cover image available';
 
       return {
         id: item.id,
@@ -36,7 +61,7 @@ router.get('/google/:query', async (req, res, next) => {
         isbn: volumeInfo.industryIdentifiers ? volumeInfo.industryIdentifiers.map(id => id.identifier).join(', ') : 'No ISBN available',
         description: volumeInfo.description || 'No description available',
         coverImageUrl: coverImageUrl,
-        totalPages: volumeInfo.pageCount || 'No page count available',
+        totalPages: volumeInfo.pageCount,
       };
     });
 
@@ -165,7 +190,13 @@ router.get('/:bookId', async (req, res, next) => {
     const volumeInfo = apiResponse.volumeInfo;
 
     // Ensure the cover image URL is HTTPS
-    const coverImageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available';
+    const coverImageUrl = volumeInfo.imageLinks
+      ? (volumeInfo.imageLinks.small
+        ? volumeInfo.imageLinks.small.replace(/^http:\/\//i, 'https://')
+        : volumeInfo.imageLinks.thumbnail
+          ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://')
+          : 'No cover image available')
+      : 'No cover image available';
 
     // Get unique genres and use ' | ' as the delimiter
     const genres = volumeInfo.categories ? [...new Set(volumeInfo.categories.map(category => category.split(' / ').pop()))].join(' | ') : 'No genre available';
