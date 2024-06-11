@@ -18,18 +18,17 @@ const GoalProgress = () => {
 
   const user = useSelector(state => state.session.user);
 
-  const [slices, setSlices] = useState(0);
-  const [newPie, setNewPie] = useState(false);
-
+  const [newCoupon, setNewCoupon] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCoupons());
     dispatch(restoreUser()); // Ensure user data is always up-to-date
-    if (!newPie) {
-      let newCount = count % 6;
-      setSlices(newCount);
+
+    // Update newCoupon state based on conditions
+    if (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate) {
+      setNewCoupon(true);
     }
-  }, [dispatch, count, newPie]);
+  }, [dispatch, count, coupwithnoredeemdate]);
 
   const milestone = (count) => {
     return 6 - (count % 6);
@@ -49,10 +48,10 @@ const GoalProgress = () => {
   const bannerMessage = getBannerMessage(count, milestone(count), coupons, user);
 
   const handleCouponButtonClick = async () => {
-    setNewPie(true);
-    setNewCoupon(true);
+    setNewCoupon(false); // Assume coupon is grabbed
     await dispatch(fetchCoupons());
     await dispatch(restoreUser()); // Ensure user milestone is updated after grabbing a coupon
+    navigate('/coupons/current');
   };
 
   return (
@@ -62,11 +61,12 @@ const GoalProgress = () => {
           {bannerMessage}
         </h2>
       )}
-      {(count >= 6 && user.milestone >= 1) && coupwithnoredeemdate ? (
+      {(newCoupon || (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate)) && (
         <div className="get-pizza-butt">
           <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
         </div>
-      ) : (count >= 6 && user.milestone >= 1) && coupwithnoredeemdate && (
+      )}
+      {(count >= 6 && coupwithnoredeemdate) && (
         <div className="redeem-coupon-link">
           <Link to={'/coupons/current'} style={{ textDecoration: 'none', color: "white" }}>
             Please redeem your existing coupon
@@ -75,8 +75,13 @@ const GoalProgress = () => {
       )}
 
       <div className='pizza-slices'>
-        {[...Array(slices)].map((_, i) => (
-          <img key={i} src={`../../slice-${i + 1}.png`} alt={`Slice ${i + 1}`} />
+        {[...Array(6)].map((_, i) => (
+          <img
+            key={i}
+            src={`../../slice-${i + 1}.png`}
+            alt={`Slice ${i + 1}`}
+            style={{ opacity: i < count % 6 ? 1 : 0.2 }} // Highlight completed slices
+          />
         ))}
       </div>
     </div>

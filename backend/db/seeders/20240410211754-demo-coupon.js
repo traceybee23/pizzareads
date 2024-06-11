@@ -7,44 +7,13 @@ if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
-const demoCoupons = [
-  {
-    name: 'Free Pizza',
-    code: 'PIZZA123',
-    description: 'Get a free pizza!',
-    used: false
-  },
-  {
-    name: 'Free Pizza',
-    code: 'PIZZA456',
-    description: 'Get a free pizza!',
-    used: false
-  },
-  {
-    name: 'Free Pizza',
-    code: 'PIZZA789',
-    description: 'Get a free pizza!',
-    used: false
-  },
-  {
-    name: 'Free Pizza',
-    code: 'PIZZA987',
-    description: 'Get a free pizza!',
-    used: false
-  },
-  {
-    name: 'Free Pizza',
-    code: 'PIZZA654',
-    description: 'Get a free pizza!',
-    used: false
-  },
-  {
-    name: 'Free Pizza',
-    code: 'PIZZA321',
-    description: 'Get a free pizza!',
-    used: false
-  },
-]
+const demoCoupons = Array.from({ length: 100 }, (_, i) => ({
+  name: 'Free Pizza',
+  code: `PIZZA${String(i + 1).padStart(3, '0')}`,
+  description: 'Get a free pizza!',
+  used: false
+}));
+
 
 
 /** @type {import('sequelize-cli').Migration} */
