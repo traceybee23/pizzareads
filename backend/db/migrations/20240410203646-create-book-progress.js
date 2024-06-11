@@ -21,7 +21,7 @@ module.exports = {
         references: { model: 'Users' }
       },
       bookId: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       pagesRead: {
@@ -33,25 +33,25 @@ module.exports = {
         defaultValue: false
       },
       title: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       author: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       genre: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       publicationDate: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
       },
       isbn: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
       },
       coverImageUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
       },
       totalPages: {
         type: Sequelize.INTEGER,
