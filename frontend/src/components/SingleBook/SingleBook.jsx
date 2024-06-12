@@ -8,6 +8,7 @@ import UpdateButton from '../UpdateProgress/UpdateButton';
 import { fetchProgresses } from '../../store/progress';
 import ReviewButton from '../Reviews/ReviewButton';
 import Reviews from '../Reviews';
+import { fetchReviews } from '../../store/reviews';
 
 
 const SingleBook = () => {
@@ -22,15 +23,31 @@ const SingleBook = () => {
   const bookProgress = userProgress.filter(progress => progress.bookId === bookId)
   const reviews = Object.values(useSelector(state => state.reviews))
 
+  const bookReviews = useSelector(state => state.reviews)
+  console.log(bookReviews, "REEEVIEWWWS")
+
   const [load, setLoad] = useState(true)
 
   const dispatch = useDispatch();
+
+  const filterReviews = (obj) => {
+    return Object.keys(obj).reduce((acc, key) => {
+      if (key !== 'AvgStars') {
+        acc[key] = obj[key];
+      }
+      return acc;
+    }, {});
+  };
+
+  const reviewsOnly = Object.values(filterReviews(bookReviews));
+  console.log(reviewsOnly ,"ONLY");
+
 
   useEffect(() => {
     setLoad(true);
     if (user?.id) {
       dispatch(fetchProgresses(user?.id))
-      dispatch(fetchSingleBook(bookId)).then(() => setTimeout(() => {
+      dispatch(fetchSingleBook(bookId)).then(() => dispatch(fetchReviews(bookId))).then(() => setTimeout(() => {
         setLoad(false);
       }, 1000))
     } else {
@@ -57,7 +74,13 @@ const SingleBook = () => {
         <>
           <div className='single-book-card'>
             <div className='image-container'>
-              <img className='book-image' src={book?.bookDetails.coverImageUrl} />
+              {
+                book?.bookDetails.coverImageUrl !== 'No cover image available' ? (
+                  <img className='book-image' src={book?.bookDetails.coverImageUrl} alt={book.title} />
+                ) : (
+                  <img className='book-image' src='../no-cover.png' alt='no image' />
+                )
+              }
               {bookProgress && bookProgress.length && user ? (
                 bookProgress.map(progress => (
                   <div className='curr-read-butt' key={progress.id}>
@@ -95,9 +118,14 @@ const SingleBook = () => {
           </div>
           <div className='reviews'>
             {
-              book.avgStarRating !== "New" ? (
+              bookReviews.AvgStars ? (
                 <span className="rating">
-                  <span style={{ fontWeight: "700" }}>{book.avgStarRating} stars</span> out of {book.numReviews} reviews
+                  <span style={{ fontWeight: "700" }}>{bookReviews.AvgStars} stars</span> out of {reviewsOnly.length}
+                  {reviewsOnly.length === 1 ? (
+                    <span>&nbsp;review</span>
+                  ): (
+                    <span>&nbsp;reviews</span>
+                  )}
                   <Reviews bookId={bookId} />
                 </span>
               ) : (

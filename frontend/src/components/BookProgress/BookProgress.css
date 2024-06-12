@@ -3,7 +3,8 @@
 .progress-image {
   height: 200px;
   width: 120px;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 0 10px 10px 0;
 }
 
 
@@ -77,18 +78,18 @@
 .progressBar {
   appearance: none;
   height: 15px;
-  border-radius: 100px;
   width: 100%;
 
   /* Chrome and Safari */
   &::-webkit-progress-bar {
-    background: #ffd8a2 ;
+    background: antiquewhite ;
+    border-radius: 5px;
 
   }
 
   &::-webkit-progress-value {
-    background-color: #e1709a;
-
+    background-color: #1b998b;
+    border-radius: 5px 0 0 5px;
   }
 }
 
@@ -185,10 +186,8 @@ span.cr-text {
 
 }
 
-
-
 .pizza-slices img {
   height: 40%;
   position: absolute;
-  right: 150px;
+  right: 10vw;
 }
