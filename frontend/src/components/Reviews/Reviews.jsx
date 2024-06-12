@@ -6,7 +6,7 @@ import DeleteReviewButton from "./DeleteReviewButton";
 import UpdateReviewButton from "./UpdateReviewButton";
 
 
-const Reviews = ({bookId}) => {
+const Reviews = ({ bookId }) => {
 
   const dispatch = useDispatch();
 
@@ -31,28 +31,27 @@ const Reviews = ({bookId}) => {
   return (
     <>
       {reviews && reviews.map(review => (
-
+        review.User &&
         <li
-        className="reviewsList"
-        key={review.id}>
-
-            <span className="review-username">
-              {review.User?.username}&nbsp;&nbsp;&nbsp;
-              <span style={{fontSize: "15px"}}>
-                {review.createdAt &&
-                  getDate(review.createdAt)
-                }
-              </span>
-            </span>
-            <span className="review-content">
-              {review.review}&nbsp;&nbsp;&nbsp;
-              {sessionUser && sessionUser.id === review.User?.id &&
-              <span>
-                <span className="deleteReviewButton"><DeleteReviewButton reviewId={review.id} bookId={bookId}/></span>
-                <span className="deleteReviewButton"><UpdateReviewButton reviewId={review.id} bookId={bookId}/></span>
-              </span>
+          className="reviewsList"
+          key={review.id}>
+          <span className="review-username">
+            {review.User?.username}&nbsp;&nbsp;&nbsp;
+            <span style={{ fontSize: "15px" }}>
+              {review.createdAt &&
+                getDate(review.createdAt)
               }
             </span>
+          </span>
+          <span className="review-content">
+            {review.review}&nbsp;&nbsp;&nbsp;
+            {sessionUser && sessionUser.id === review.User?.id &&
+              <span>
+                <span className="deleteReviewButton"><DeleteReviewButton reviewId={review.id} bookId={bookId} /></span>
+                <span className="deleteReviewButton"><UpdateReviewButton reviewId={review.id} bookId={bookId} /></span>
+              </span>
+            }
+          </span>
         </li>
       ))}
     </>

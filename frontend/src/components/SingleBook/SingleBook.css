@@ -67,10 +67,10 @@
 
 
 .reviews {
-  width: 35vw;
+  width: 81.5vw;
   margin: 15px auto;
   background-color: #ed9c36;
-  padding: 20px;
+  padding: 23px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   height: 90.5%;
@@ -83,7 +83,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 20px;
   padding-top: 20px;
 }
 
