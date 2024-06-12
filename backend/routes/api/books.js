@@ -13,9 +13,9 @@ async function fetchImage(url) {
 
 router.get('/google/:query', async (req, res, next) => {
   const { query } = req.params;
-  const startIndex = req.query.startIndex || 0;
-  const maxResults = req.query.maxResults || 10;
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=${startIndex}&maxResults=${maxResults}`;
+  const startIndex = parseInt(req.query.startIndex) || 0;
+  const maxResults = parseInt(req.query.maxResults) || 10;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=0&maxResults=40`; // Fetch more items initially to allow for filtering
 
   try {
     const response = await axios.get(url);
@@ -30,8 +30,9 @@ router.get('/google/:query', async (req, res, next) => {
       const volumeInfo = item.volumeInfo;
       const hasPageCount = volumeInfo.pageCount;
       const isDuplicate = seenIds.has(item.id);
+      const hasMoreThan100Pages = volumeInfo.pageCount && volumeInfo.pageCount > 100;
 
-      if (hasPageCount && !isDuplicate) {
+      if (hasPageCount && !isDuplicate && hasMoreThan100Pages) {
         seenIds.add(item.id);
         return true;
       }
@@ -39,10 +40,16 @@ router.get('/google/:query', async (req, res, next) => {
     });
 
     if (filteredItems.length === 0) {
-      return res.status(404).json({ error: 'No books with a page count found for the given query' });
+      return res.status(404).json({ error: 'No books with more than 100 pages found for the given query' });
     }
 
-    const books = await Promise.all(filteredItems.map(async (item, index) => {
+    // Calculate the total number of filtered items
+    const totalFilteredItems = filteredItems.length;
+
+    // Paginate the filtered items
+    const paginatedItems = filteredItems.slice(startIndex, startIndex + maxResults);
+
+    const books = await Promise.all(paginatedItems.map(async (item) => {
       const volumeInfo = item.volumeInfo;
 
       let coverImageUrl = volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail
@@ -51,7 +58,9 @@ router.get('/google/:query', async (req, res, next) => {
 
       if (coverImageUrl !== 'No cover image available') {
         const imageBuffer = await fetchImage(coverImageUrl);
-        coverImageUrl = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+        if (imageBuffer) {
+          coverImageUrl = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+        }
       }
 
       return {
@@ -67,9 +76,10 @@ router.get('/google/:query', async (req, res, next) => {
       };
     }));
 
-    const pageCount = Math.ceil(apiResponse.totalItems / maxResults) || 1;
-    const pageNumber = startIndex;
-    res.json({ Books: books, pageCount, pageNumber });
+    const pageCount = Math.ceil(totalFilteredItems / maxResults) || 1;
+    const pageNumber = Math.ceil(startIndex / maxResults) + 1;
+
+    res.json({ Books: books, pageCount, pageNumber, totalFilteredItems });
   } catch (error) {
     res.status(500).json({ error: 'Error fetching data from Google Books API' });
   }
