@@ -20,8 +20,10 @@
 .book-image {
   border-radius: 0 15px 15px 0;
 
+  width: 100%;
+  height: auto;
+  min-width: 225px; /* Adjust based on your design */
   object-fit: contain;
-
 }
 
 .single-book-deets {
@@ -92,4 +94,3 @@
   justify-content: center;
   margin: 50px auto;
 }
-

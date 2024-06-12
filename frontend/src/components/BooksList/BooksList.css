@@ -51,8 +51,8 @@
   align-items: flex-start;
   border-radius: 0 10px 10px 0;
   height: 200px;
-  width: 120px;
-  object-fit: contain;
+  width: 140px;
+  object-fit: cover;
 }
 
 .book-title {

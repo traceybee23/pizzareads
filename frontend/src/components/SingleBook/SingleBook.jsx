@@ -57,7 +57,13 @@ const SingleBook = () => {
         <>
           <div className='single-book-card'>
             <div className='image-container'>
-              <img className='book-image' src={book?.bookDetails.coverImageUrl} />
+              {
+                book?.bookDetails.coverImageUrl !== 'No cover image available' ? (
+                  <img className='book-image' src={book?.bookDetails.coverImageUrl} alt={book.title} />
+                ) : (
+                  <img className='book-image' src='../no-cover.png' alt='no image' />
+                )
+              }
               {bookProgress && bookProgress.length && user ? (
                 bookProgress.map(progress => (
                   <div className='curr-read-butt' key={progress.id}>
