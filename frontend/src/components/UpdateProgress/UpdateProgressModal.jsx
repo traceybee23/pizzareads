@@ -28,6 +28,11 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
 
   const { closeModal } = useModal();
 
+  const coupons = Object.values(useSelector(state => state.userCoupon));
+  const coupwithnoredeemdate = coupons.find(coupon => coupon.redeemedDate === null);
+
+  console.log(coupons, !!coupwithnoredeemdate,"COUPONS IN UPDATE PROG FORM MODAL")
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,6 +62,7 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
   useEffect(() => {
     let errObj = {}
 
+    if (!!coupwithnoredeemdate) errObj.coupon = 'please redeem your current coupon first'
     if (!pagesRead) errObj.pagesRead = "pages read is required"
     if (pagesRead && pagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
     if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
@@ -81,6 +87,7 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
           placeholder='pages read'
         /> <span style={{backgroundColor: "#ffffff", fontSize: "large"}}>/{totalPages}</span></span>
         {errors.pagesRead && <span className="errors">&nbsp;{errors.pagesRead}</span>}
+        {errors.coupon && <span className="errors">&nbsp;{errors.coupon}</span>}
         <button
           disabled={!!Object.values(errors).length}
           className='add-book-progress'
