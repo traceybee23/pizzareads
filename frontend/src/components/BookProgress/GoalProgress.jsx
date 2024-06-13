@@ -20,17 +20,21 @@ const GoalProgress = () => {
 
   const [newCoupon, setNewCoupon] = useState(false);
 
-  console.log(coupwithnoredeemdate, "THIS LOOK AT")
+  console.log("COUP WITH NO REDEEM DATE: ", coupwithnoredeemdate)
+  console.log("COUNT: ", count)
+  console.log("USER: ", user)
+  console.log("NEW COUPON: ", newCoupon)
 
   useEffect(() => {
     dispatch(fetchCoupons());
     dispatch(restoreUser()); // Ensure user data is always up-to-date
 
     // Update newCoupon state based on conditions
-    if (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate) {
-      setNewCoupon(true);
+    if (count >= 6 && count % 6 === 0) {
+      setNewCoupon(true)
     }
-  }, [dispatch, count, coupwithnoredeemdate]);
+
+  }, [dispatch]);
 
   const milestone = (count) => {
     return 6 - (count % 6);
@@ -50,7 +54,7 @@ const GoalProgress = () => {
   const bannerMessage = getBannerMessage(count, milestone(count), coupons, user);
 
   const handleCouponButtonClick = async () => {
-    setNewCoupon(false); // Assume coupon is grabbed
+    setNewCoupon(true); // Assume coupon is grabbed
     await dispatch(fetchCoupons());
     await dispatch(restoreUser()); // Ensure user milestone is updated after grabbing a coupon
     navigate('/coupons/current');
@@ -63,12 +67,12 @@ const GoalProgress = () => {
           {bannerMessage}
         </h2>
       )}
-      {(newCoupon || (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate)) && (
+      {user.milestone >= 1 && newCoupon && (
         <div className="get-pizza-butt">
           <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
         </div>
       )}
-      {(count >= 6 && coupwithnoredeemdate) && (
+      { coupwithnoredeemdate && (
         <div className="redeem-coupon-link">
           <Link to={'/coupons/current'} style={{ textDecoration: 'none', color: "white" }}>
             Please redeem your existing coupon

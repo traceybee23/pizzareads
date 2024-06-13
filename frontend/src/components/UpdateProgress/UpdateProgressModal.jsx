@@ -7,6 +7,8 @@ import { restoreUser } from '../../store/session';
 
 const UpdateProgressModal = ({progressId, book, navigate}) => {
 
+  console.log(progressId, book, "UPM ")
+
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user)
@@ -15,7 +17,7 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
 
   const bookProgress = userProgress.find(progress => progress.bookId === book.id)
 
-  const currPagesRead = bookProgress ? bookProgress.pagesRead : 0;
+  const currPagesRead = bookProgress ? bookProgress.pagesRead : book.pagesRead;
 
   const totalPages = book.totalPages
 
