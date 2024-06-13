@@ -33,14 +33,16 @@ const LandingPage = () => {
         </div>
       }
       {user &&
-      <>
-        <div className='book-progress-lp'>
-          <BookProgress />
-          <GoalProgress />
-        </div>
-        <div>
-        </div>
-      </>
+        <>
+          <div className='book-progress-lp'>
+            <BookProgress />
+            <div className='goal-prog-wrapper'>
+              <GoalProgress />
+            </div>
+          </div>
+          <div>
+          </div>
+        </>
       }
     </>
   );
