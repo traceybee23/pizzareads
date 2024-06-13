@@ -14,6 +14,8 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
   const user = useSelector(state => state.session.user)
 
   const userProgress = Object.values(useSelector(state => state.progress))
+  const complete = userProgress.filter(progress => progress.completed === true);
+  const count = complete.length;
 
   const bookProgress = userProgress.find(progress => progress.bookId === book.id)
 
@@ -60,9 +62,13 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
   }, [dispatch, user.id])
 
   useEffect(() => {
+
     let errObj = {}
 
-    if (!!coupwithnoredeemdate) errObj.coupon = 'please redeem your current coupon'
+    if (count === 6 && user.milestone < 1) errObj.coupon = 'please redeem your current coupon'
+    if (count === 12 && user.milestone < 2) errObj.coupon = 'please redeem your current coupon'
+    if (count === 18 && user.milestone < 3) errObj.coupon = 'please redeem your current coupon'
+    if (coupwithnoredeemdate) errObj.coupon = 'please redeem your current coupon'
     if (!pagesRead) errObj.pagesRead = "pages read is required"
     if (pagesRead && pagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
     if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
@@ -70,7 +76,8 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
 
     setErrors(errObj)
 
-  }, [pagesRead, totalPages, setErrors, currPagesRead])
+  }, [pagesRead, totalPages, setErrors, currPagesRead, coupwithnoredeemdate, count, user.milestone])
+
 
 
   return (

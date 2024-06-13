@@ -17,6 +17,10 @@ const ProgressFormModal = ({navigate}) => {
   const bookId = book[0].bookDetails.id
   const totalPages = book[0].bookDetails.totalPages
 
+  const coupons = Object.values(useSelector(state => state.userCoupon));
+  const coupwithnoredeemdate = coupons.find(coupon => coupon.redeemedDate === null);
+
+  console.log(coupons, coupwithnoredeemdate,"COUPONS IN create PROG FORM MODAL")
 
   const [pagesRead, setPagesRead] = useState(0);
   const [userId, setUserId] = useState('')
@@ -54,13 +58,14 @@ const ProgressFormModal = ({navigate}) => {
 
     if (!pagesRead) errObj.pagesRead = "pages read is required"
 
+    if (coupwithnoredeemdate) errObj.coupon = 'please redeem your current coupon'
     if (pagesRead && pagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
     if (pagesRead && pagesRead < 0) errObj.pagesRead = "pages read is invalid"
     if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
     if (pagesRead && +pagesRead === totalPages) errObj.pagesRead = 'start book progress before completing the book'
     setErrors(errObj)
 
-  }, [pagesRead, totalPages, setErrors])
+  }, [pagesRead, totalPages, setErrors, coupwithnoredeemdate])
 
   return (
 
@@ -74,6 +79,7 @@ const ProgressFormModal = ({navigate}) => {
           placeholder='pages read'
         />
         {errors.pagesRead && <span className="errors">&nbsp;{errors.pagesRead}</span>}
+        {errors.coupon && <span className="errors">&nbsp;{errors.coupon}</span>}
         <button
           disabled={!!Object.values(errors).length}
           className='add-book-progress'

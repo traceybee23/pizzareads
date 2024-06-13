@@ -142,15 +142,15 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
       progress.set({ pagesRead, completed: true });
       await progress.save();
 
-      // Check for milestone increment
-      const completedBooks = await BookProgress.count({
-        where: { userId: user.id, completed: true }
-      });
+      // // Check for milestone increment
+      // const completedBooks = await BookProgress.count({
+      //   where: { userId: user.id, completed: true }
+      // });
 
-      if (completedBooks % 6 === 0) {
-        user.milestone += 1;
-        await user.save();
-      }
+      // if (completedBooks % 6 === 0) {
+      //   user.milestone += 1;
+      //   await user.save();
+      // }
 
     } else {
       progress.set({ pagesRead });

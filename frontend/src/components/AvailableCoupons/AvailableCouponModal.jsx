@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { fetchAvailCoup } from "../../store/coupons";
@@ -6,7 +6,9 @@ import { addCoupon } from "../../store/userCoupons";
 import { fetchCoupons } from "../../store/userCoupons";
 import './AvailableCoupon.css'
 
-const AvailableCoupons = ({navigate}) => {
+const AvailableCoupons = ({ navigate }) => {
+
+
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -19,9 +21,12 @@ const AvailableCoupons = ({navigate}) => {
 
   const handleAddCoupon = async (couponId, coupon) => {
 
-    await dispatch(addCoupon(couponId, coupon))
-    .then(closeModal())
-    .then(navigate('/coupons/current'))
+
+      await dispatch(addCoupon(couponId, coupon))
+      .then(closeModal())
+      .then(navigate('/coupons/current'))
+
+
   }
 
   return (
@@ -29,7 +34,6 @@ const AvailableCoupons = ({navigate}) => {
       <div className="coupons-container">
         {coupons && coupons.map(coupon => (
           <div key={coupon.id} className="coupon-cards">
-            <img src="../../red-pizza.png" />
             <span>{coupon.name}</span>
             <span>
               {coupon.description}

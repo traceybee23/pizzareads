@@ -18,43 +18,41 @@ const GoalProgress = () => {
 
   const user = useSelector(state => state.session.user);
 
-  const [newCoupon, setNewCoupon] = useState(false);
+  const [canGetCoupon, setcanGetCoupon] = useState(false);
 
+  console.log("USER COUPONS: ", coupons)
   console.log("COUP WITH NO REDEEM DATE: ", coupwithnoredeemdate)
   console.log("COUNT: ", count)
-  console.log("USER: ", user)
-  console.log("NEW COUPON: ", newCoupon)
+  console.log("USER.MILESTONE: ", user.milestone)
+  console.log("NEW COUPON: ", canGetCoupon)
+
 
   useEffect(() => {
     dispatch(fetchCoupons());
     dispatch(restoreUser()); // Ensure user data is always up-to-date
 
-    // Update newCoupon state based on conditions
-    if (count >= 6 && count % 6 === 0) {
-      setNewCoupon(true)
-    }
-
   }, [dispatch]);
+
 
   const milestone = (count) => {
     return 6 - (count % 6);
   };
 
   const getBannerMessage = (count, milestone, coupons, user) => {
-    if (user.milestone === Math.floor(count / 6)) {
+
       if (milestone === 1) {
         return `You are ${milestone} book away from a free pizza!`;
       } else {
         return `You are ${milestone} books away from a free pizza!`;
       }
-    }
-    return null;
+
+    
   };
 
   const bannerMessage = getBannerMessage(count, milestone(count), coupons, user);
 
   const handleCouponButtonClick = async () => {
-    setNewCoupon(true); // Assume coupon is grabbed
+    setcanGetCoupon(true); // Assume coupon is grabbed
     await dispatch(fetchCoupons());
     await dispatch(restoreUser()); // Ensure user milestone is updated after grabbing a coupon
     navigate('/coupons/current');
@@ -67,15 +65,30 @@ const GoalProgress = () => {
           {bannerMessage}
         </h2>
       )}
-      {user.milestone >= 1 && newCoupon && (
+      { user.milestone === 0 && count === 6  && !coupwithnoredeemdate &&
         <div className="get-pizza-butt">
           <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
         </div>
-      )}
+      }
+      { user.milestone === 1 && count === 12 && !coupwithnoredeemdate &&
+        <div className="get-pizza-butt">
+          <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
+        </div>
+      }
+      { user.milestone === 2 && count === 18 && !coupwithnoredeemdate &&
+        <div className="get-pizza-butt">
+          <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
+        </div>
+      }
+      { user.milestone === 3 && count === 24 && !coupwithnoredeemdate &&
+        <div className="get-pizza-butt">
+          <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
+        </div>
+      }
       { coupwithnoredeemdate && (
         <div className="redeem-coupon-link">
           <Link to={'/coupons/current'} style={{ textDecoration: 'none', color: "white" }}>
-            Please redeem your existing coupon
+            please redeem your existing coupon
           </Link>
         </div>
       )}
