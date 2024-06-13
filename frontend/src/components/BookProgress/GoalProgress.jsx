@@ -20,21 +20,17 @@ const GoalProgress = () => {
 
   const [newCoupon, setNewCoupon] = useState(false);
 
-  console.log(newCoupon, "THIS LOOK AT")
+  console.log(coupwithnoredeemdate, "THIS LOOK AT")
 
   useEffect(() => {
     dispatch(fetchCoupons());
-    dispatch(restoreUser());
-  }, [dispatch]);
+    dispatch(restoreUser()); // Ensure user data is always up-to-date
 
-  useEffect(() => {
     // Update newCoupon state based on conditions
-    if (count >= 6 && count % 6 === 0) {
+    if (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate) {
       setNewCoupon(true);
-    } else {
-      setNewCoupon(false);
     }
-  }, [count]);
+  }, [dispatch, count, coupwithnoredeemdate]);
 
   const milestone = (count) => {
     return 6 - (count % 6);
@@ -61,39 +57,36 @@ const GoalProgress = () => {
   };
 
   return (
-
-
-      <div className='goal-progress-container'>
-        {bannerMessage && (
-          <h2 className='goal-progress-banner'>
-            {bannerMessage}
-          </h2>
-        )}
-        {(newCoupon && (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate)) && coupons.length < user.milestone && (
-          <div className="get-pizza-butt">
-            <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
-          </div>
-        )}
-        {(count >= 6 && coupwithnoredeemdate) && (
-          <div className="redeem-coupon-link">
-            <Link to={'/coupons/current'} style={{ textDecoration: 'none', color: "white" }}>
-              Please redeem your existing coupon
-            </Link>
-          </div>
-        )}
-
-        <div className='pizza-slices'>
-          {[...Array(6)].map((_, i) => (
-            <img
-              key={i}
-              src={`../../slice-${i + 1}.png`}
-              alt={`Slice ${i + 1}`}
-              style={{ opacity: i < count % 6 ? 1 : 0.2 }} // Highlight completed slices
-            />
-          ))}
+    <div className='goal-progress-container'>
+      {bannerMessage && (
+        <h2 className='goal-progress-banner'>
+          {bannerMessage}
+        </h2>
+      )}
+      {(newCoupon || (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate)) && (
+        <div className="get-pizza-butt">
+          <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
         </div>
-      </div>
+      )}
+      {(count >= 6 && coupwithnoredeemdate) && (
+        <div className="redeem-coupon-link">
+          <Link to={'/coupons/current'} style={{ textDecoration: 'none', color: "white" }}>
+            Please redeem your existing coupon
+          </Link>
+        </div>
+      )}
 
+      <div className='pizza-slices'>
+        {[...Array(6)].map((_, i) => (
+          <img
+            key={i}
+            src={`../../slice-${i + 1}.png`}
+            alt={`Slice ${i + 1}`}
+            style={{ opacity: i < count % 6 ? 1 : 0.2 }} // Highlight completed slices
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

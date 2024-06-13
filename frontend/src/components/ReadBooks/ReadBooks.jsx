@@ -25,8 +25,8 @@ const ReadBooks = () => {
         book trophies
       </h1>
       <div className="book-progress-completed">
-        {user && progresses.length ? (progresses.map(progress => (
-          progress.completed === true &&
+        {user && progresses.length && progresses.map(progress => (
+          progress.completed === true ? (
           <div
             className="book-read-cards"
             key={progress.id}
@@ -35,9 +35,9 @@ const ReadBooks = () => {
               <img className="read-image" src={progress.coverImageUrl} onClick={() => navigate(`/books/${progress.bookId}`)} />
             </>
           </div>
-        ))): (
+        ): (
           <div>the books you complete will be shown here</div>
-        )}
+        )))}
       </div>
     </div>
   )
