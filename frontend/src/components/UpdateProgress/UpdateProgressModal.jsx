@@ -62,7 +62,7 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
   useEffect(() => {
     let errObj = {}
 
-    if (!!coupwithnoredeemdate) errObj.coupon = 'please redeem your current coupon first'
+    if (!!coupwithnoredeemdate) errObj.coupon = 'please redeem your current coupon'
     if (!pagesRead) errObj.pagesRead = "pages read is required"
     if (pagesRead && pagesRead > totalPages) errObj.pagesRead = "pages read cannot be greater than total pages"
     if (pagesRead && !Number.isInteger(+pagesRead)) errObj.pagesRead = "pages read is invalid"
