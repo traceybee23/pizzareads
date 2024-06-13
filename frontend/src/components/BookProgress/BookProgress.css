@@ -181,6 +181,12 @@ span.cr-text {
   cursor: pointer;
 }
 
+.get-pizza-butt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 
 .get-pizza-butt button:hover {

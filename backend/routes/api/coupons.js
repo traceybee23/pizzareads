@@ -85,60 +85,55 @@ router.put('/:couponId',  async (req, res, next) => {
 
 router.post('/:couponId', requireAuth, async (req, res, next) => {
   const { user } = req;
-
   const couponId = Number(req.params.couponId);
 
   if (!user) {
     return res.status(401).json({
       "message": "Authentication required"
-    })
+    });
   }
 
   if (user.totalBooksRead < 6) {
     return res.status(403).json({
       "message": "Read more books!"
-    })
+    });
   }
 
   if (user.totalBooksRead !== 6 && user.totalBooksRead < 12) {
     return res.status(403).json({
       "message": "Read more books!"
-    })
-  }
-
-  const coupon = await Coupon.findByPk(couponId)
-
-  const currUser = await User.findByPk(user.id)
-
-  if (coupon) {
-
-    let milestone = currUser.milestone
-    
-
-    coupon.set({ used: true })
-    currUser.set({ milestone: milestone })
-    await coupon.save();
-    await currUser.save();
-  } else {
-    return res.status(404).json({
-      message: "coupon couldn't be found or is already used"
-    })
+    });
   }
 
   try {
-    let newCoupon = {
-      userId: user.id,
-      couponId: coupon.id
+    const coupon = await Coupon.findByPk(couponId);
+
+    if (!coupon || coupon.used) {
+      return res.status(404).json({
+        message: "Coupon couldn't be found or is already used"
+      });
     }
 
-    const userCoupon = await UserCoupon.create(newCoupon)
+    // Mark the coupon as used
+    coupon.used = true;
+    await coupon.save();
 
-    res.json( userCoupon )
+    // Increment the milestone
+    user.milestone += 1;
+    await user.save();
+
+    // Create a new user coupon record
+    const newCoupon = {
+      userId: user.id,
+      couponId: coupon.id
+    };
+    const userCoupon = await UserCoupon.create(newCoupon);
+
+    res.json(userCoupon);
   } catch (error) {
     next(error); // Pass the error to the error handling middleware
   }
-
-})
+});
 
 router.delete('/:couponId', requireAuth, async (req, res, next) => {
   const { user } = req;
