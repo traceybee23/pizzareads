@@ -38,7 +38,7 @@ const GoalProgress = () => {
     return 6 - (count % 6);
   };
 
-  const getBannerMessage = (count, milestone, coupons, user) => {
+  const getBannerMessage = (milestone) => {
 
       if (milestone === 1) {
         return `You are ${milestone} book away from a free pizza!`;
@@ -46,10 +46,10 @@ const GoalProgress = () => {
         return `You are ${milestone} books away from a free pizza!`;
       }
 
-    
+
   };
 
-  const bannerMessage = getBannerMessage(count, milestone(count), coupons, user);
+  const bannerMessage = getBannerMessage(milestone(count));
 
   const handleCouponButtonClick = async () => {
     setcanGetCoupon(true); // Assume coupon is grabbed
