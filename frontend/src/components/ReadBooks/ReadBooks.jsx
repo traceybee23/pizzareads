@@ -36,7 +36,7 @@ const ReadBooks = () => {
             </>
           </div>
         ): (
-          <div>the books you complete will be shown here</div>
+          <div key={progress.id} >the books you complete will be shown here</div>
         )))}
       </div>
     </div>
