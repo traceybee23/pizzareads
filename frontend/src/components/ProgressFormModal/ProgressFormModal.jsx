@@ -17,10 +17,6 @@ const ProgressFormModal = ({navigate}) => {
   const bookId = book[0].bookDetails.id
   const totalPages = book[0].bookDetails.totalPages
 
-  const coupons = Object.values(useSelector(state => state.userCoupon));
-  const coupwithnoredeemdate = coupons.find(coupon => coupon.redeemedDate === null);
-
-  console.log(coupons, coupwithnoredeemdate,"COUPONS IN PROG FORM MODAL")
 
   const [pagesRead, setPagesRead] = useState(0);
   const [userId, setUserId] = useState('')
