@@ -9,6 +9,12 @@
   background-size: 100%; /* Slightly larger to prevent visible seams */
 }
 
+.goal-prog-wrapper {
+  display: flex;
+
+  justify-content: center;
+}
+
 
 h1 {
   color: #922e21;

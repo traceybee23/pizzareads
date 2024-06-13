@@ -82,3 +82,7 @@ link:hover {
   flex-direction: column;
   height: 100%;
 }
+
+h1:hover {
+  cursor: default;
+}

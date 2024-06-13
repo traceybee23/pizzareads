@@ -34,14 +34,14 @@ const Footer = () => {
       <span>
         the tech:
         <div className="plugs">
-          <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript'><IoLogoJavascript /></a>
-          <a href='https://expressjs.com/'><SiExpress /></a>
-          <a href='https://www.postgresql.org/docs/'><SiPostgresql /></a>
-          <a href='https://react.dev/'><FaReact /></a>
-          <a href='https://redux.js.org/'><SiRedux /></a>
-          <a href='https://sequelize.org/'><SiSequelize /></a>
-          <a href='https://developer.mozilla.org/en-US/docs/Web/HTML'><FaHtml5 /></a>
-          <a href='https://developer.mozilla.org/en-US/docs/Web/CSS'><FaCss3Alt /></a>
+          <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript' target="_blank" rel="noreferrer"><IoLogoJavascript /></a>
+          <a href='https://expressjs.com/' target="_blank" rel="noreferrer"><SiExpress /></a>
+          <a href='https://www.postgresql.org/docs/' target="_blank" rel="noreferrer"><SiPostgresql /></a>
+          <a href='https://react.dev/' target="_blank" rel="noreferrer"><FaReact /></a>
+          <a href='https://redux.js.org/' target="_blank" rel="noreferrer"><SiRedux /></a>
+          <a href='https://sequelize.org/' target="_blank" rel="noreferrer"><SiSequelize /></a>
+          <a href='https://developer.mozilla.org/en-US/docs/Web/HTML' target="_blank" rel="noreferrer"><FaHtml5 /></a>
+          <a href='https://developer.mozilla.org/en-US/docs/Web/CSS' target="_blank" rel="noreferrer"><FaCss3Alt /></a>
         </div>
       </span>
       <span>

@@ -138,11 +138,12 @@ span.cr-text {
 }
 
 .goal-progress-container {
-
+  display: flex;
+  flex-direction: column;
   width: fit-content;
-  padding: 0 25px;
-
+  padding: 0 5vw;
 }
+
 
 .get-pizza-butt button {
   background-color: #1B998B;
@@ -158,6 +159,10 @@ span.cr-text {
   border-radius: 5px;
   font-size: 22px;
   margin: 25px 25px 50px;
+}
+
+.goal-progress-banner:hover {
+  cursor: default;
 }
 
 .redeem-coupon-link  {
@@ -189,5 +194,10 @@ span.cr-text {
 .pizza-slices img {
   height: 40%;
   position: absolute;
-  right: 10vw;
+  margin: 0 60px 0 ;
+}
+
+.pizza-slices {
+  display: flex;
+  justify-self: center;
 }

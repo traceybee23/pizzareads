@@ -8,7 +8,7 @@
 .footer {
   display: flex;
   justify-content: space-around;
-  font-size: larger;
+  font-size: medium;
   padding-top: 25px;
   padding-bottom: 3px;
 }

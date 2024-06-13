@@ -20,21 +20,17 @@ const GoalProgress = () => {
 
   const [newCoupon, setNewCoupon] = useState(false);
 
-  console.log(newCoupon, "THIS LOOK AT")
+  console.log(coupwithnoredeemdate, "THIS LOOK AT")
 
   useEffect(() => {
     dispatch(fetchCoupons());
-    dispatch(restoreUser());
-  }, [dispatch]);
+    dispatch(restoreUser()); // Ensure user data is always up-to-date
 
-  useEffect(() => {
     // Update newCoupon state based on conditions
-    if (count >= 6 && count % 6 === 0  ) {
+    if (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate) {
       setNewCoupon(true);
-    } else {
-      setNewCoupon(false);
     }
-  }, [count]);
+  }, [dispatch, count, coupwithnoredeemdate]);
 
   const milestone = (count) => {
     return 6 - (count % 6);
@@ -67,7 +63,7 @@ const GoalProgress = () => {
           {bannerMessage}
         </h2>
       )}
-      {(newCoupon && (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate)) && coupons.length < user.milestone && (
+      {(newCoupon || (count >= 6 && count % 6 === 0 && !coupwithnoredeemdate)) && (
         <div className="get-pizza-butt">
           <AvailableCouponButton onClick={handleCouponButtonClick} coupons={coupons} navigate={navigate} />
         </div>
