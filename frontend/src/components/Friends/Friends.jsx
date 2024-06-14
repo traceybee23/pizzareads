@@ -85,7 +85,7 @@ const Friends = () => {
                         className="friend-book-img"
                         src={inProgressBooks[currentIndex].coverImageUrl}
                         alt={inProgressBooks[currentIndex].title}
-                        onClick={() => navigate(`/books/${inProgressBooks[currentIndex].id}`)}
+                        onClick={() => navigate(`/books/${inProgressBooks[currentIndex].bookId}`)}
                       />
                       <div className="friend-prog">
                         {inProgressBooks[currentIndex].title}
