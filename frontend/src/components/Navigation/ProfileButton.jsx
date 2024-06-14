@@ -69,26 +69,26 @@ function ProfileButton({ user }) {
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <div className='user-menu'>
-            <li style={{ paddingBottom: 15 }}>{user.username}</li>
+            <li className='username-menu'>{user.username}</li>
             <li className='booksLink' onClick={navBooks} >
               books
             </li>
             <li
               className='couponLink'
               onClick={navCoupons}
-              style={{ borderBottom: "2px solid #e1709a" }}>
+              >
               coupons
             </li>
             <li
               className='friendsLink'
               onClick={navFriends}
-              style={{ borderBottom: "2px solid #d3a8d3" }}>
+              >
               friends
             </li>
             <li
               className='friendsLink'
               onClick={() => window.alert("Feature Coming Soon...")}
-              style={{ borderBottom: "2px solid #84dcc6" }}>
+              >
               shop
             </li>
             <li>

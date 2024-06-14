@@ -62,7 +62,7 @@ li {
 
 .profile-dropdown {
   background-color: #ed9c36;
-  width: 9vw;
+  width: 150px;
   height: fit-content;
   padding: 20px;
   margin-top: 24px;
@@ -98,24 +98,41 @@ li {
 }
 
 .booksLink {
-  border-bottom: 2px solid #bae264;
   margin-bottom: 5px;
+  padding: 10px;
 }
 
 .booksLink:hover {
   cursor: pointer;
+  background-color: rgba(46,41,78);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.couponLink {
+  padding: 10px;
 }
 
 .couponLink:hover {
   cursor: pointer;
+  background-color: rgba(46,41,78);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
 }
 
 .friendsLink:hover {
   cursor: pointer;
+  background-color: rgb(46, 41, 78);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
 }
 
 .friendsLink {
   margin: 5px 0 0 0;
+  padding: 10px;
 }
 
 
@@ -182,4 +199,12 @@ span.book-icon-nav {
   color: #e1709a;
   text-decoration: underline;
   font-weight: bold;
+}
+
+.username-menu {
+  padding-bottom: 15px;
+  font-weight: 500;
+}
+.username-menu:hover {
+  cursor: default;
 }
