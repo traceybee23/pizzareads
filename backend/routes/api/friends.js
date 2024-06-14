@@ -20,7 +20,8 @@ router.get('/', requireAuth, async (req, res, next) => {
         status: 'friends'
       },
       include: [
-        { model: User }
+        { model: User },
+        { model: BookProgress }
       ]
 
     });
