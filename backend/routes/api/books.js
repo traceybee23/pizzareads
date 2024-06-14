@@ -3,19 +3,27 @@ const axios = require('axios');
 const { requireAuth } = require('../../utils/auth');
 const { Review, User } = require("../../db/models");
 
+require('dotenv').config();
+
+const GOOGLE_API_KEY = process.env.BOOKS_API_KEY;
+
 const router = express.Router();
 
-
 async function fetchImage(url) {
-  const response = await axios.get(url, { responseType: 'arraybuffer' });
-  return Buffer.from(response.data, 'binary');
+  try {
+    const response = await axios.get(url, { responseType: 'arraybuffer' });
+    return Buffer.from(response.data, 'binary');
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    return null;
+  }
 }
 
 router.get('/google/:query', async (req, res, next) => {
   const { query } = req.params;
   const startIndex = parseInt(req.query.startIndex) || 0;
   const maxResults = parseInt(req.query.maxResults) || 10;
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=0&maxResults=40`; // Fetch more items initially to allow for filtering
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&printType=books&startIndex=0&maxResults=40&key=${GOOGLE_API_KEY}`; // Fetch more items initially to allow for filtering
 
   try {
     const response = await axios.get(url);
@@ -81,63 +89,10 @@ router.get('/google/:query', async (req, res, next) => {
 
     res.json({ Books: books, pageCount, pageNumber, totalFilteredItems });
   } catch (error) {
+    console.error('Error fetching data from Google Books API:', error);
     res.status(500).json({ error: 'Error fetching data from Google Books API' });
   }
 });
-
-// router.post('/:bookId/reviews', requireAuth, async (req, res, next) => {
-
-//   const { user } = req;
-//   if (!user) {
-//     return res.status(401).json({
-//       "message": "Authentication required"
-//     })
-//   }
-
-//   const bookId = Number(req.params.bookId)
-
-//   const { review, stars } = req.body
-
-//   const book = await Books.findOne({
-//     where: { id: bookId },
-//     include: [
-//       {
-//         model: Review,
-//         attributes: ['userId']
-//       }
-//     ]
-//   })
-
-//   if (!book) {
-//     return res.status(404).json({
-//       message: "Book couldn't be found"
-//     })
-//   }
-
-//   try {
-//     let errors = [];
-
-//     book.Reviews.forEach(review => {
-//       if (review.userId === user.id) {
-//         const err = new Error("User already has a review for this book")
-//         errors.push(err)
-//       }
-//     })
-
-//     if (errors.length) {
-//       return res.status(500).json({
-//         "message": "User already has a review for this book"
-//       })
-//     }
-
-//     const newReview = await Review.create({ userId: user.id, bookId, review, stars })
-//     res.status(201).json(newReview)
-//   } catch (error) {
-//     error.message = "Bad Request"
-//     error.status = 400
-//     next(error)
-//   }
-// })
 
 router.get('/:bookId/reviews', async (req, res, next) => {
   try {
@@ -161,7 +116,7 @@ router.get('/:bookId/reviews', async (req, res, next) => {
     });
 
     if (!reviewList.length) {
-      return res.json({ Reviews: "New" }); // Return immediately after sending the response
+      return res.json({ Reviews: "New" });
     }
 
     const sum = stars.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
@@ -171,9 +126,9 @@ router.get('/:bookId/reviews', async (req, res, next) => {
     res.json({ Reviews: reviewList, AvgStars: avgStars });
 
   } catch (error) {
-    next(error); // Pass the error to the error handling middleware
+    next(error);
   }
-})
+});
 
 router.get('/:bookId', async (req, res, next) => {
   const { bookId } = req.params;
@@ -195,7 +150,7 @@ router.get('/:bookId', async (req, res, next) => {
     return truncated;
   }
 
-  const url = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
+  const url = `https://www.googleapis.com/books/v1/volumes/${bookId}?key=${GOOGLE_API_KEY}`;
 
   try {
     const response = await axios.get(url);
@@ -229,6 +184,7 @@ router.get('/:bookId', async (req, res, next) => {
 
     res.json({ bookDetails });
   } catch (error) {
+    console.error('Error fetching data from Google Books API:', error);
     res.status(500).json({ error: 'Error fetching data from Google Books API' });
   }
 });
