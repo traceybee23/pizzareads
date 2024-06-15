@@ -19,12 +19,12 @@ module.exports = (sequelize, DataTypes) => {
   Review.init({
     userId: DataTypes.INTEGER,
     bookId: DataTypes.STRING,
-    coverImageUrl: DataTypes.STRING(1000),
+    coverImageUrl: DataTypes.STRING(1500),
     review:  {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: { args: [10, 200], msg: "Review must be between 10 and 200 characters"},
+        len: { args: [10, 1200], msg: "Review must be between 10 and 200 characters"},
         notNull: {msg: "Review text is required"},
         notEmpty: {msg: "Review text is required"},
       }
