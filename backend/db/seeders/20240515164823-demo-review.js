@@ -60,18 +60,21 @@ const demoReviews = [
   {
     "userId": 8,
     "bookId": "I-lMBgrnJi8C",
+    "coverImageUrl": "http://books.google.com/books/content?id=I-lMBgrnJi8C&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71K7t08WYbWsKNAsct7oe7rkeOWbOABIBZcDRxwe-xMHy-QD5sy8MVb19rN3AaV0U0s-vO1P1xdEkyghsflqt5MCXXhJqb9y2ypYwcc8kwy-M7VtEx4_zW1YpaEGLGHirxeBdWz&source=gbs_api",
     "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in metus non ex posuere faucibus. Sed ornare fringilla nisi quis venenatis. Proin sit amet odio id leo euismod consequat. Ut lectus.",
     "stars": 5
   },
   {
     "userId": 9,
     "bookId": "I-lMBgrnJi8C",
+    "coverImageUrl": "http://books.google.com/books/content?id=I-lMBgrnJi8C&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71K7t08WYbWsKNAsct7oe7rkeOWbOABIBZcDRxwe-xMHy-QD5sy8MVb19rN3AaV0U0s-vO1P1xdEkyghsflqt5MCXXhJqb9y2ypYwcc8kwy-M7VtEx4_zW1YpaEGLGHirxeBdWz&source=gbs_api",
     "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in metus non ex posuere faucibus. Sed ornare fringilla nisi quis venenatis. Proin sit amet odio id leo euismod consequat. Ut lectus.",
     "stars": 5
   },
   {
     "userId": 10,
     "bookId": "I-lMBgrnJi8C",
+    "coverImageUrl": "http://books.google.com/books/content?id=I-lMBgrnJi8C&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71K7t08WYbWsKNAsct7oe7rkeOWbOABIBZcDRxwe-xMHy-QD5sy8MVb19rN3AaV0U0s-vO1P1xdEkyghsflqt5MCXXhJqb9y2ypYwcc8kwy-M7VtEx4_zW1YpaEGLGHirxeBdWz&source=gbs_api",
     "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod purus non magna auctor venenatis. Praesent lobortis a sapien et posuere. Maecenas semper orci at urna vestibulum, vel biam.",
     "stars": 2
   },
