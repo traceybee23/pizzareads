@@ -17,7 +17,13 @@ const UserReviews = () => {
     dispatch(fetchUserReviews());
   }, [dispatch]);
 
-
+  const getDate = (date) => {
+    const newDate = new Date(date);
+    const day = newDate.getDate();
+    const month = newDate.toLocaleString('default', { month: 'long' });
+    const year = newDate.getFullYear();
+    return ` ${month} ${day}, ${year}`;
+  }
 
   return (
     <div className="user-reviews-container">
@@ -29,9 +35,15 @@ const UserReviews = () => {
             <div className="stars-in-card">
               {review.stars}&nbsp;&nbsp;<FaStar />
             </div>
+            <div style={{ paddingBottom: "15px" }}>
+              {review.createdAt &&
+                getDate(review.createdAt)
+              }
+            </div>
             <div>
               {review.review}
             </div>
+
           </div>
           <span>
             <span className="deleteReviewButton"><DeleteReviewButton reviewId={review.id} bookId={review.bookId} /></span>

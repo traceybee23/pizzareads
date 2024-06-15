@@ -26,7 +26,7 @@ const DeleteReview = ({reviewId, bookId}) => {
 
   return (
     <div className='reviewForm'>
-      <h2>Confirm Delete</h2>
+      <h1 className='heading'>Confirm Delete</h1>
       <span>Are you sure you want to delete this review?</span>
       <button onClick={handleDelete}>Yes (Delete Review)</button>
       <button style={{backgroundColor: "darkgrey"}} onClick={closeModal}>No (Keep Review)</button>

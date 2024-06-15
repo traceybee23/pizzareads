@@ -54,9 +54,9 @@ const CreateReview = ({ bookId }) => {
 
 
   return (
-    <>
+
       <div className='reviewForm'>
-        <h2>how was the book?</h2>
+        <h1 className='heading'>how was the book?</h1>
         <form onSubmit={handleSubmit}>
           {errors.review && <span className='errors'>{errors.review}</span>}
           {errors.stars && <span className='errors'>{errors.stars}</span>}
@@ -74,7 +74,7 @@ const CreateReview = ({ bookId }) => {
           <button type='submit' disabled={(review.length < 10) || (!stars)}>submit your review</button>
         </form>
       </div>
-    </>
+
   )
 
 }
