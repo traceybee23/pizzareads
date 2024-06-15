@@ -34,7 +34,7 @@ const UserCoupons = () => {
         coupon.Coupon &&
         <div className="coupon-cards"
           key={coupon.id}>
-          <img src="../../red-pizza.png" />
+          <img src="../../cut-pizza.png" />
           <span>{coupon.Coupon.name}</span>
           <span>{coupon.Coupon.description}</span>
           {coupon.redeemedDate ? (

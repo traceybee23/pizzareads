@@ -1,6 +1,6 @@
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import DeleteProgressModal from "./DeleteProgressModal";
-import { GiTrashCan } from "react-icons/gi";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 
 const DeleteProgressButton = (progressId) => {
@@ -8,7 +8,7 @@ const DeleteProgressButton = (progressId) => {
     <OpenModalButton
       buttonText={
         <span className="currently-reading">
-          <span className="book-icon"><GiTrashCan /></span>
+          <span className="book-icon"><FaRegTrashAlt /></span>
           <span className="cr-text">&nbsp;delete</span>
         </span>
       }
