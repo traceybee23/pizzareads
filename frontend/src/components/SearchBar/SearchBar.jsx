@@ -20,6 +20,8 @@ const SearchBar = () => {
     if (query.trim()) {
       dispatch(fetchGoogleBooks(query)).then(() => {
         navigate('/books');
+      }).then(() => {
+        setQuery('');
       });
     }
   };
