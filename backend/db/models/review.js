@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Review.init({
     userId: DataTypes.INTEGER,
     bookId: DataTypes.STRING,
-    coverImageUrl: DataTypes.STRING(1500),
+    coverImageUrl: DataTypes.STRING(1200),
     review:  {
       type: DataTypes.STRING,
       allowNull: false,

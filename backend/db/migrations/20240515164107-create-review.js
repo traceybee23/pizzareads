@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       coverImageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1200)
       },
       review: {
         type: Sequelize.STRING
