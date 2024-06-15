@@ -57,7 +57,6 @@ export const fetchReviews = (bookId) => async (dispatch) => {
 
   if (response.ok) {
     const reviews = await response.json();
-    console.log(reviews, "THUNK REVIEWS")
     dispatch(loadReviews(reviews, bookId))
   } else {
     const errors = await response.json();
@@ -106,7 +105,6 @@ const reviewsReducer = (state = {}, action) => {
           })
         reviewState["AvgStars"] = action.reviews.AvgStars
       }
-      console.log("REDUCER", reviewState)
       return reviewState
     }
     case CREATE_REVIEW: {
