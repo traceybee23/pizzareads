@@ -157,15 +157,15 @@ li {
 }
 
 .search-container input {
-  padding: 10px;
+  padding: 9px;
   border-radius: 5px 0 0 5px;
   font-size: 15px;
   border: none;
-
 }
 
 .search-container input:focus {
   outline: none;
+  box-shadow: none;
 }
 
 .search-container button {

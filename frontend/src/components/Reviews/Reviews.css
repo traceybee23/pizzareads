@@ -34,12 +34,14 @@
   padding: 10px 30px 30px;
   display: flex;
   flex-direction: column;
-
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  background-color: antiquewhite;
+  border-radius: 5px;
 }
 
 .reviewForm h2 {
   align-self: center;
-  background-color: #ffffff;
+
   border-radius: 5px;
 }
 
@@ -53,7 +55,7 @@
   margin: 5px;
   justify-content: space-around;
   width: 100%;
-  background-color: #ffffff;
+
   border-radius: 5px;
   padding: 5px;
 }
@@ -67,7 +69,6 @@
 
 .reviewForm span {
   align-self: center;
-  background-color: #ffffff;
   border-radius: 5px;
   margin-bottom: 10px;
 }

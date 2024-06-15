@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './UserCoupons.css'
 import { fetchCoupons, redeemCoupon } from "../../store/userCoupons";
@@ -32,8 +33,14 @@ const UserCoupons = () => {
       </div>
       {!!coupons.length && coupons.map(coupon => (
         coupon.Coupon &&
-        <div className="coupon-cards"
+        <div className="coupon-cards-u"
           key={coupon.id}>
+          {[...Array(6)].map((_, i) => (
+            <React.Fragment key={i}>
+              <div className={`cutout cutout${i + 1} left`}></div>
+              <div className={`cutout cutout${i + 1} right`}></div>
+            </React.Fragment>
+          ))}
           <img src="../../cut-pizza.png" />
           <span>{coupon.Coupon.name}</span>
           <span>{coupon.Coupon.description}</span>

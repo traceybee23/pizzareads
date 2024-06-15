@@ -7,14 +7,81 @@
 
 .coupon-cards {
   display: flex;
-  flex-direction: column;
-  border: 1px solid #922e21;
-  width: fit-content;
   align-self: center;
-  padding: 20px;
-  border-radius: 0 20px;
+  flex-direction: column;
   background-color: #ffffff;
+  width: 300px;
+  height: 150px;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  position: relative;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   margin: 20px;
+  overflow: hidden;
+}
+
+.coupon-cards-u {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 370px;
+  height: 210px;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  position: relative;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 20px;
+  overflow: hidden;
+}
+
+.cutout {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: antiquewhite;
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  background-clip: content-box;
+}
+
+.cutout.left {
+  left: -10px;
+}
+
+.cutout.right {
+  right: -10px;
+}
+
+.cutout1 { top: 30px; }
+.cutout2 { top: 65px; }
+.cutout3 { top: 100px; }
+.cutout4 { top: 135px; }
+.cutout5 { top: 170px; }
+.cutout6 { top: 205px; }
+
+.coupon-cards span {
+  margin: 10px;
+  padding-left: 100px;
+  font-size: large;
+  font-weight: 600;
+}
+
+.coupon-cards button {
+
+  align-self: center;
+  margin: 10px;
+  font-size: medium;
+}
+
+.coupon-cards img {
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  padding-left: 20px;
+  padding-top: 10px;
 }
 
 .coupon-cards span {
@@ -39,6 +106,27 @@
   padding-top: 10px;
 }
 
+.coupon-cards-u span {
+  margin: 10px;
+  padding-left: 100px;
+  font-size: large;
+  font-weight: 600;
+}
+
+.coupon-cards-u button {
+  align-self: center;
+  margin: 10px;
+  font-size: medium;
+}
+
+.coupon-cards-u img {
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
 span.coupon-code {
   font-weight: 400;
   padding-left: 0;
@@ -56,6 +144,9 @@ span.coupon-code {
   background-color: #ed9c36;
   width: fit-content;
   align-self: center;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 .read-more {
@@ -66,6 +157,9 @@ span.coupon-code {
   background-color:#922e21;
   width: fit-content;
   margin: 20px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 

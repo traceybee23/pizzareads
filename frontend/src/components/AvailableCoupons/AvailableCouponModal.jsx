@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { fetchAvailCoup } from "../../store/coupons";
@@ -7,8 +8,6 @@ import { fetchCoupons } from "../../store/userCoupons";
 import './AvailableCoupon.css'
 
 const AvailableCoupons = ({ navigate }) => {
-
-
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -30,10 +29,17 @@ const AvailableCoupons = ({ navigate }) => {
   }
 
   return (
-    <div className="reviewForm">
+    <div className="avail-coup-form">
       <div className="coupons-container">
         {coupons && coupons.map(coupon => (
           <div key={coupon.id} className="coupon-cards">
+            {[...Array(4)].map((_, i) => (
+            <React.Fragment key={i}>
+              <div className={`cutout cutout${i + 1} left`}></div>
+              <div className={`cutout cutout${i + 1} right`}></div>
+            </React.Fragment>
+          ))}
+            <img src="../../cut-pizza.png" />
             <span>{coupon.name}</span>
             <span>
               {coupon.description}
