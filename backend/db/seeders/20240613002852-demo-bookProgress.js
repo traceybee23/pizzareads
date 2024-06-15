@@ -163,6 +163,19 @@ const demoBookProgress = [
     "isbn": "1440673756, 9781440673757",
     "coverImageUrl":  "http://books.google.com/books/content?id=I-lMBgrnJi8C&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72ZvwvJfO_yYr-KD_dBhOqOMinasx4yqp0rMBlFgMSANEOP2jBYxEp-U-Boc-1lvO2NMWDVDMP_5_J9smx-CkQEEzqVFolGqr_0LPeLDkNw1L4kLdqyjvoEbO1MSmUzX9v0U_NI&source=gbs_api",
     "totalPages": 304
+  },
+  {
+    "userId": 2,
+    "bookId": "nPF9n0SwstMC",
+    "pagesRead": 275,
+    "completed": false,
+    "title": "Red Rising",
+    "author": "Pierce Brown",
+    "genre": "Action & Adventure | Dystopian",
+    "publicationDate": "2014-01-28",
+    "isbn": "9780345539793, 0345539796",
+    "coverImageUrl": "http://books.google.com/books/content?id=nPF9n0SwstMC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72XeuoP661PS3x-k69-cp1F26hIygOiyntQ_Q9QUuZcWLhjDzJC7kOMwUMQaeucc8rJdXCm9_hP-hbqIOTKnmSv2HsNhxF4rhhSvOAW_1preIatmdx3FayNr2NZxaCfuPSZTGHY&source=gbs_api",
+    "totalPages": 400
   }
 ]
 

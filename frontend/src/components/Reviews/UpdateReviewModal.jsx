@@ -50,7 +50,7 @@ const UpdateReviewModal = ({ reviewId, bookId }) => {
 
   return (
     <div className="reviewForm">
-      <h2>update your review</h2>
+      <h1 className="heading">update your review</h1>
       <form onSubmit={handleSubmit}>
         {errors.review && <span className='errors'>{errors.review}</span>}
         {errors.stars && <span className='errors'>{errors.stars}</span>}
