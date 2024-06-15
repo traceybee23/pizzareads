@@ -4,6 +4,25 @@ const { Review } = require('../../db/models');
 
 const router = express.Router();
 
+
+router.get('/current', requireAuth, async (req, res, next) => {
+  const { user } = req;
+
+  try {
+    const reviews = await Review.findAll({
+      where: {
+        userId: user.id
+      }
+    })
+
+    res.status(200).json({reviews});
+  } catch (error) {
+    error.message = "Bad Request"
+    error.status = 400
+    next(error)
+  }
+})
+
 router.put('/:reviewId', requireAuth, async (req, res, next) => {
   const { user } = req;
   const reviewId = Number(req.params.reviewId)

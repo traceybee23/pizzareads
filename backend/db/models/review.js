@@ -13,12 +13,13 @@ module.exports = (sequelize, DataTypes) => {
           onDelete: 'CASCADE'
         })
 
-      
+
     }
   }
   Review.init({
     userId: DataTypes.INTEGER,
     bookId: DataTypes.STRING,
+    coverImageUrl: DataTypes.STRING(1000),
     review:  {
       type: DataTypes.STRING,
       allowNull: false,

@@ -19,6 +19,26 @@ async function fetchImage(url) {
   }
 }
 
+const fetchWithRetry = async (url, retries = 3, backoff = 3000) => {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 429) {
+        if (i < retries - 1) {
+          const waitTime = backoff * Math.pow(2, i); // Exponential backoff
+          await new Promise(resolve => setTimeout(resolve, waitTime));
+        } else {
+          throw new Error('Rate limit exceeded. Please try again later.');
+        }
+      } else {
+        throw error;
+      }
+    }
+  }
+};
+
 router.get('/google/:query', async (req, res, next) => {
   const { query } = req.params;
   const startIndex = parseInt(req.query.startIndex) || 0;
@@ -93,6 +113,54 @@ router.get('/google/:query', async (req, res, next) => {
     res.status(500).json({ error: 'Error fetching data from Google Books API' });
   }
 });
+
+router.post('/:bookId/reviews', requireAuth, async (req, res, next) => {
+
+  const { user } = req;
+  const { review, stars } = req.body
+  const bookId = req.params.bookId
+
+  if (!user) {
+    return res.status(401).json({
+      "message": "Authentication required"
+    })
+  }
+
+  try {
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
+    const bookDetails = await fetchWithRetry(apiUrl);
+    const volumeInfo = bookDetails.volumeInfo;
+
+    const existingReview = await Review.findOne({
+      where: {
+        userId: user.id,
+        bookId: bookId
+      }
+    })
+
+    if (existingReview) {
+      return res.status(403).json({
+        message: "You have already reviewed this book"
+      })
+    }
+
+    const reviewData = {
+      userId: user.id,
+      bookId: bookId,
+      coverImageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://') : 'No cover image available',
+      review: review,
+      stars: stars
+    }
+
+
+    const newReview = await Review.create(reviewData)
+    res.status(201).json(newReview)
+  } catch (error) {
+    error.message = "Bad Request"
+    error.status = 400
+    next(error)
+  }
+})
 
 router.get('/:bookId/reviews', async (req, res, next) => {
   try {
