@@ -20,8 +20,6 @@ const ProgressFormModal = ({navigate}) => {
   const coupons = Object.values(useSelector(state => state.userCoupon));
   const coupwithnoredeemdate = coupons.find(coupon => coupon.redeemedDate === null);
 
-  console.log(coupons, coupwithnoredeemdate,"COUPONS IN create PROG FORM MODAL")
-
   const [pagesRead, setPagesRead] = useState(0);
   const [userId, setUserId] = useState('')
   const [errors, setErrors] = useState({});

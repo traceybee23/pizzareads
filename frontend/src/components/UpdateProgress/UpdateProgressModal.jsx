@@ -7,8 +7,6 @@ import { restoreUser } from '../../store/session';
 
 const UpdateProgressModal = ({progressId, book, navigate}) => {
 
-  console.log(progressId, book, "UPM ")
-
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user)
@@ -33,7 +31,6 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
   const coupons = Object.values(useSelector(state => state.userCoupon));
   const coupwithnoredeemdate = coupons.find(coupon => coupon.redeemedDate === null);
 
-  console.log(coupons, !!coupwithnoredeemdate,"COUPONS IN UPDATE PROG FORM MODAL")
 
 
   const handleSubmit = async (e) => {

@@ -1,7 +1,15 @@
 
 
 .avail-coup {
-
   padding: 50px;
-  
+
+}
+
+.avail-coup-form {
+  padding: 10px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  background-color: antiquewhite;
+  border-radius: 5px;
 }

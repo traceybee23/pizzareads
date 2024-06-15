@@ -1,6 +1,6 @@
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import DeleteCouponModal from "./DeleteCouponModal";
-import { GiTrashCan } from "react-icons/gi";
+import { FaRegTrashAlt } from "react-icons/fa";
 import './DeleteCoupon.css'
 
 
@@ -9,7 +9,7 @@ const DeleteCouponButton = ({couponId}) => {
     <OpenModalButton
       buttonText={
         <>
-          <span className="trash-icon"><GiTrashCan /></span>
+          <span className="trash-icon"><FaRegTrashAlt /></span>
           <span className="delete-text">&nbsp;delete coupon</span>
         </>
       }

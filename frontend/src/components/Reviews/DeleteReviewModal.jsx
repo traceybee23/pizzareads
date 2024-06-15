@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { deleteReview, fetchReviews } from '../../store/reviews';
+import { deleteReview, fetchReviews, fetchUserReviews } from '../../store/reviews';
 import { fetchSingleBook } from '../../store/books';
 
 const DeleteReview = ({reviewId, bookId}) => {
@@ -17,6 +17,7 @@ const DeleteReview = ({reviewId, bookId}) => {
       await dispatch(deleteReview(reviewId))
       await dispatch(fetchSingleBook(bookId))
       await dispatch(fetchReviews(+bookId))
+      await dispatch(fetchUserReviews())
       .then(closeModal)
     } catch (error) {
       console.error("Error deleting review", error);

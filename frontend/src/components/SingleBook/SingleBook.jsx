@@ -24,7 +24,6 @@ const SingleBook = () => {
   const reviews = Object.values(useSelector(state => state.reviews))
 
   const bookReviews = useSelector(state => state.reviews)
-  console.log(bookReviews, "REEEVIEWWWS")
 
   const [load, setLoad] = useState(true)
 
@@ -40,7 +39,6 @@ const SingleBook = () => {
   };
 
   const reviewsOnly = Object.values(filterReviews(bookReviews));
-  console.log(reviewsOnly ,"ONLY");
 
 
   useEffect(() => {

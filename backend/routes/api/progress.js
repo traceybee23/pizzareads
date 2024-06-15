@@ -15,7 +15,6 @@ const fetchWithRetry = async (url, retries = 3, backoff = 3000) => {
       if (error.response && error.response.status === 429) {
         if (i < retries - 1) {
           const waitTime = backoff * Math.pow(2, i); // Exponential backoff
-          console.log(`Rate limited. Retrying after ${waitTime} ms...`);
           await new Promise(resolve => setTimeout(resolve, waitTime));
         } else {
           throw new Error('Rate limit exceeded. Please try again later.');
@@ -98,6 +97,8 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
     const bookProgress = await BookProgress.create(newProgress);
     res.json({ bookProgress });
   } catch (error) {
+    error.message = "Bad Request"
+    error.status = 400
     next(error);
   }
 });

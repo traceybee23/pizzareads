@@ -1,7 +1,7 @@
 .single-book-card {
   display: flex;
   padding: 30px;
-  width: 80vw;
+
   background-color: #ed9c36;
   margin: 20px auto;
   border-radius: 5px ;
@@ -15,6 +15,7 @@
   justify-content: center;
   height: 100%;
   margin: auto;
+  width: 80vw;
 }
 
 .book-image {
@@ -67,7 +68,6 @@
 
 
 .reviews {
-  width: 81.5vw;
   margin: 15px auto;
   background-color: #ed9c36;
   padding: 23px;
@@ -84,7 +84,7 @@
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  padding-top: 20px;
+
 }
 
 
