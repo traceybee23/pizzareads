@@ -13,6 +13,7 @@ import ReadBooks from './components/ReadBooks';
 import Friends from './components/Friends';
 import Reviews from './components/Reviews';
 import Footer from './components/Footer';
+import UserReviews from './components/UserReviews';
 
 
 function Layout() {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: '/friends',
         element: <Friends />
+      },
+      {
+        path: '/reviews/current',
+        element: <UserReviews />
       }
     ]
   }

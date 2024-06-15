@@ -25,7 +25,7 @@ const UserCoupons = () => {
   return (
 
     <div className="coupons-container">
-      <h1>your coupons</h1>
+      <h1 className="heading">your coupons</h1>
       <div className="warning-container">
         <span>please write down your coupon code once you redeem</span>
         <span> it will not be visible after leaving this page</span>
