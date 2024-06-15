@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useState, useEffect } from "react";
-import { fetchReviews, updateReview } from "../../store/reviews";
+import { fetchReviews, fetchUserReviews, updateReview } from "../../store/reviews";
 import StarRatingInput from "./StarRatingInput";
 import { fetchSingleBook } from "../../store/books";
 
@@ -37,6 +37,7 @@ const UpdateReviewModal = ({ reviewId, bookId }) => {
       await dispatch(updateReview(reviewId, reviewData))
       await dispatch(fetchSingleBook(bookId))
       await dispatch(fetchReviews(bookId))
+      await dispatch(fetchUserReviews())
       .then(closeModal)
 
     } catch (error) {

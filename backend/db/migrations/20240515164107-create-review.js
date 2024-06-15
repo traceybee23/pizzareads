@@ -21,6 +21,9 @@ module.exports = {
       bookId: {
         type: Sequelize.STRING
       },
+      coverImageUrl: {
+        type: Sequelize.STRING
+      },
       review: {
         type: Sequelize.STRING
       },

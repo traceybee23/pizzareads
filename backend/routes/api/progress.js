@@ -97,6 +97,8 @@ router.post('/books/:bookId', requireAuth, async (req, res, next) => {
     const bookProgress = await BookProgress.create(newProgress);
     res.json({ bookProgress });
   } catch (error) {
+    error.message = "Bad Request"
+    error.status = 400
     next(error);
   }
 });

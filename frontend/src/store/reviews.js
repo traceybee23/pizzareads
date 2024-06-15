@@ -5,6 +5,7 @@ const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
 const UPDATE_REVIEW = 'review/UPDATE_REVIEW';
 const REMOVE_REVIEW = 'reviews/REMOVE_REVIEW';
+const LOAD_USER_REVIEWS = 'reviews/LOAD_USER_REVIEWS'
 
 
 const loadReviews = (reviews, bookId) => ({
@@ -26,6 +27,11 @@ const editReview = (review) => ({
 const removeReview = (reviewId) => ({
   type: REMOVE_REVIEW,
   reviewId
+})
+
+const loadUserReviews = (reviews) => ({
+  type: LOAD_USER_REVIEWS,
+  reviews
 })
 
 export const createReview = (bookId, review) => async (dispatch, getState) => {
@@ -58,6 +64,18 @@ export const fetchReviews = (bookId) => async (dispatch) => {
   if (response.ok) {
     const reviews = await response.json();
     dispatch(loadReviews(reviews, bookId))
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+}
+
+export const fetchUserReviews = () => async (dispatch) => {
+  const response = await fetch(`/api/reviews/current`)
+
+  if (response.ok) {
+    const reviews = await response.json();
+    dispatch(loadUserReviews(reviews))
   } else {
     const errors = await response.json();
     return errors;
@@ -114,6 +132,13 @@ const reviewsReducer = (state = {}, action) => {
     }
     case UPDATE_REVIEW: {
       return { ...state, [action.review.id]: action.review }
+    }
+    case LOAD_USER_REVIEWS: {
+      const reviewState = {}
+      action.reviews.reviews.forEach(review => {
+        reviewState[review.id]= review
+      })
+      return reviewState
     }
     case REMOVE_REVIEW: {
       const newState = { ...state };

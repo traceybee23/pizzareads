@@ -58,6 +58,12 @@ function ProfileButton({ user }) {
     navigate('/friends')
   }
 
+  const navReviews = e => {
+    e.preventDefault()
+    closeMenu()
+    navigate('/reviews/current')
+  }
+
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
@@ -75,20 +81,25 @@ function ProfileButton({ user }) {
             </li>
             <li
               className='couponLink'
+              onClick={navReviews}>
+              reviews
+            </li>
+            <li
+              className='couponLink'
               onClick={navCoupons}
-              >
+            >
               coupons
             </li>
             <li
               className='friendsLink'
               onClick={navFriends}
-              >
+            >
               friends
             </li>
             <li
               className='friendsLink'
               onClick={() => window.alert("Feature Coming Soon...")}
-              >
+            >
               shop
             </li>
             <li>

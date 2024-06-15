@@ -4,6 +4,7 @@ import './Reviews.css'
 import { fetchSingleBook } from "../../store/books";
 import DeleteReviewButton from "./DeleteReviewButton";
 import UpdateReviewButton from "./UpdateReviewButton";
+import { FaStar } from "react-icons/fa";
 
 
 const Reviews = ({ bookId }) => {
@@ -43,6 +44,7 @@ const Reviews = ({ bookId }) => {
               }
             </span>
           </span>
+          <div className="review-stars">{review.stars}&nbsp;<FaStar /></div>
           <span className="review-content">
             {review.review}&nbsp;&nbsp;&nbsp;
             {sessionUser && sessionUser.id === review.User?.id &&
