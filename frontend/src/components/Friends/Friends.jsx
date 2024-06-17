@@ -88,7 +88,9 @@ const Friends = () => {
                         onClick={() => navigate(`/books/${inProgressBooks[currentIndex].bookId}`)}
                       />
                       <div className="friend-prog">
+                        <div className="book-t-f">
                         {inProgressBooks[currentIndex].title}
+                        </div>
                         <div>
                           <div className="progress-container">
                             <progress

@@ -103,11 +103,11 @@ const BooksList = () => {
         {!load &&
           <div className="pagination">
             {currentPage !== 1 &&
-              <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+              <button onClick={handlePrevPage} disabled={currentPage === 1}>&lt;</button>
             }
             <span>&nbsp;Page {currentPage} of {pageCount}&nbsp;</span>
             {currentPage !== pageCount &&
-              <button onClick={handleNextPage} disabled={currentPage === pageCount}>Next</button>
+              <button onClick={handleNextPage} disabled={currentPage === pageCount}>&gt;</button>
             }
           </div>
         }
