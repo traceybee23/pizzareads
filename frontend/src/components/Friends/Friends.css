@@ -37,13 +37,18 @@ td:last-of-type {
 .friend-book-prog {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .friend-prog {
   margin-left: 10px;
   font-size: medium;
+  width: 250px;
 }
+.book-t-f {
+  padding-bottom: 10px;
+}
+
 
 .friends-page {
   height: 77.8vh !important;
