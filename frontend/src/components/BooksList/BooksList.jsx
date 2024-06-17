@@ -56,7 +56,7 @@ const BooksList = () => {
     }
     window.scrollTo(0, 0);
   };
-  
+
 
   const descriptionSubstr = (text) => {
     if (text.length > 100) {
@@ -81,7 +81,13 @@ const BooksList = () => {
               {books && books.map(book => (
                 <div className="book-card" key={book.id}>
                   <Link className="book-link" to={`/books/${book.id}`}>
-                    <img className="book-list-image" src={book.coverImageUrl} alt={book.title} />
+                    {
+                      book?.coverImageUrl !== 'No cover image available' ? (
+                        <img className='book-list-image' src={book?.coverImageUrl} alt={book.title} />
+                      ) : (
+                        <img className='book-list-image' src='../no-cover.png' alt='no image' />
+                      )
+                    }
                     <div className="book-details">
                       <span className="book-title">{book.title}</span>
                       <span className="book-author">{book.author}</span>
