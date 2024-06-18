@@ -11,7 +11,6 @@
 
 .goal-prog-wrapper {
   display: flex;
-
   justify-content: center;
 }
 
@@ -21,7 +20,6 @@ h1 {
 }
 
 .landing-page {
-  height: 80.75vh !important;
   display: flex;
   text-align: center;
   justify-self: center;
@@ -43,4 +41,115 @@ h1 {
 
 #currently-reading.heading {
   margin-top: 2px;
+}
+
+@media screen and (max-width: 750px) {
+ .LP-logged-in {
+  display: flex;
+  flex-direction: column;
+ }
+ .book-progress-lp {
+  flex-direction: column;
+  align-items: center;
+ }
+
+ .pizza-slices img{
+  margin-left: 100px;
+ }
+
+}
+
+
+@media screen and (max-width: 500px) {
+  .pizza-slices img{
+    margin-left: 80px;
+   }
+}
+
+
+@media screen and (max-width: 450px) {
+  .pizza-slices img{
+    margin-left: 40px;
+   }
+}
+
+@media screen and (max-width: 450px) {
+  .pizza-slices img {
+    margin: 10px 50px;
+    height: 30%;
+   }
+
+  .goal-progress-container {
+    padding: 0;
+    margin: auto;
+  }
+  .goal-progress-banner {
+    margin: auto;
+    font-size: 15px;
+  }
+  #currently-reading {
+    font-size: 30px;
+  }
+
+  .nav-bar {
+    display: grid;
+    grid-template-areas:
+    'a . b'
+    'c c c';
+  }
+  .logo {
+    grid-area: a;
+    width: 20vw;
+  }
+  .profile-button {
+    grid-area: b;
+    width: 20vw;
+  }
+  .all-books-container {
+    grid-area: c;
+  }
+  .menu  {
+    display: flex;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .nav-bar {
+    display: grid;
+    grid-template-areas:
+    'a b'
+    'c c';
+  }
+  .logo {
+    grid-area: a;
+    width: 20vw;
+  }
+  .profile-button {
+    grid-area: b;
+    width: 20vw;
+  }
+  .all-books-container {
+    grid-area: c;
+    margin: auto;
+  }
+
+  .search-container {
+    margin: 0;
+    align-self: center;
+    padding-left: 0;
+  }
+
+  .goal-progress-banner {
+    margin: 10px;
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .book-progress-lp {
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    margin: auto;
+   }
 }

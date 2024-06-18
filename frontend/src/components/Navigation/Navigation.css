@@ -25,11 +25,8 @@ li {
   align-items: center;
 }
 
-@media (max-width: 380px) {
-  .nav-bar {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+/* @media (max-width: 380px) {
+
   .logo {
     width: 20vw;
   }
@@ -40,7 +37,7 @@ li {
     align-items: center;
   }
 
-}
+} */
 
 
 .logo {
