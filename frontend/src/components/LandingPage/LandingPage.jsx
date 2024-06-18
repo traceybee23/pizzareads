@@ -33,7 +33,7 @@ const LandingPage = () => {
         </div>
       }
       {user &&
-        <>
+        <div className='LP-logged-in'>
           <div className='book-progress-lp'>
             <BookProgress />
             <div className='goal-prog-wrapper'>
@@ -42,7 +42,7 @@ const LandingPage = () => {
           </div>
           <div>
           </div>
-        </>
+        </div>
       }
     </>
   );

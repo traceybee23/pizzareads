@@ -25,7 +25,6 @@
   box-shadow: 0 0 6px rgba(0,0,0,0.5);
   max-height: 200px;
   overflow: hidden;
-
 }
 
 .book-link {
@@ -122,4 +121,16 @@
 .pagination {
   align-self: center;
 
+}
+
+
+@media screen and (max-width: 449px) {
+
+  .book-title {
+    font-size: 15px;
+  }
+
+  .book-card {
+    width: 90vw;
+  }
 }
