@@ -16,7 +16,7 @@ import './Footer.css'
 const Footer = () => {
   return (
     <span className='footer'>
-      <span>
+      <span className="dev-by">
         developed by:
         <div className="plugs">
         <a href="https://www.linkedin.com/in/tracey-beard/" target='_blank' rel="noreferrer">
@@ -28,7 +28,7 @@ const Footer = () => {
         <a href='https://traceybee23.github.io' target="_blank" rel="noreferrer">
           <IoPizzaOutline />
         </a>
-        <span>tracey beard</span>
+        <div className="name">tracey beard</div>
         </div>
       </span>
       <span>

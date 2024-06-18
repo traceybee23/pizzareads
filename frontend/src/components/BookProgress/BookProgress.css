@@ -142,6 +142,8 @@ span.cr-text {
   flex-direction: column;
   width: fit-content;
   padding: 0 5vw;
+  height: 65vh;
+
 }
 
 
@@ -206,4 +208,5 @@ span.cr-text {
 .pizza-slices {
   display: flex;
   justify-self: center;
+
 }
