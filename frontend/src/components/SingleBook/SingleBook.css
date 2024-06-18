@@ -1,7 +1,6 @@
 .single-book-card {
   display: flex;
   padding: 30px;
-
   background-color: #ed9c36;
   margin: 20px auto;
   border-radius: 5px ;
@@ -92,4 +91,43 @@
   align-items: center;
   justify-content: center;
   margin: 50px auto;
+}
+
+@media screen and (max-width: 449px) {
+  .single-book-card {
+    width: 86vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+  }
+  .single-book-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    text-align: center;
+  }
+  .single-book-author {
+    text-align: center;
+  }
+  .book-image {
+    width: 10%;
+    object-fit: cover;
+    min-width: 60%;
+    padding: 0;
+    margin: 0;
+  }
+  .curr-read-butt button  {
+    margin: 15px;
+  }
+  .image-container {
+    height: fit-content;
+  }
+
+  .single-book-page {
+    width: 90vw;
+  }
+  .single-book-deets {
+    margin: auto;
+  }
 }

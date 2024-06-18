@@ -32,3 +32,15 @@
 .review-img:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 449px) {
+  .user-review-cards {
+    width: 85vw;
+  }
+  .review-content {
+    margin-left: 10px;
+  }
+  .heading {
+    font-size: 50px;
+  }
+}
