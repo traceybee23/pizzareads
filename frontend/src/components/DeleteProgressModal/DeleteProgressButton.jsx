@@ -9,7 +9,7 @@ const DeleteProgressButton = (progressId) => {
       buttonText={
         <span className="currently-reading">
           <span className="book-icon"><FaRegTrashAlt /></span>
-          <span className="cr-text">&nbsp;delete</span>
+          <span className="cr-text"></span>
         </span>
       }
       progressId={progressId}

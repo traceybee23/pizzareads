@@ -89,7 +89,7 @@ const UpdateProgressModal = ({progressId, book, navigate}) => {
           value={strPagesRead}
           onChange={e => setPagesRead(e.target.value)}
           placeholder='pages read'
-        /> <span style={{backgroundColor: "#ffffff", fontSize: "large"}}>/{totalPages}</span></span>
+        /> <span style={{fontSize: "large", fontWeight: 500}}>/{totalPages}</span></span>
         {errors.pagesRead && <span className="errors">&nbsp;{errors.pagesRead}</span>}
         {errors.coupon && <span className="errors">&nbsp;{errors.coupon}</span>}
         <button

@@ -19,7 +19,7 @@ const UpdateButton = ({progressId, book, navigate}) => {
               <span className='book-icon'>
                 <GiOpenBook />
               </span>
-              <span className='cr-text'>&nbsp;update</span>
+              <span className='cr-text'></span>
             </span>
           }
           modalComponent={<UpdateProgressModal progressId={progressId} book={book} navigate={navigate}/>}

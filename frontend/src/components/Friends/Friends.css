@@ -62,3 +62,37 @@ th:nth-child(2), td:nth-child(2) {
 .progress-navigation button {
   margin: 5px;
 }
+
+@media screen and (max-width: 449px) {
+  table {
+    font-size: 0.7rem;
+    margin: auto;
+    border-radius: 5px;
+
+  }
+  thead,
+  th,
+  td {
+    border: 1px solid #2e294e;
+    background-color: #ed9c36;
+    padding: 2px 4px;
+    border-radius: 5px;
+  }
+
+  .friends-page {
+    width: 80vw;
+  }
+  .friend-prog {
+    margin-left: 10px;
+    font-size: medium;
+    width: 20vw;
+  }
+  .book-t-f {
+    padding-bottom: 5px;
+    font-size: 0.8em;
+  }
+  .friends-page h1 {
+    text-align: justify;
+    margin: 10px;
+  }
+}
