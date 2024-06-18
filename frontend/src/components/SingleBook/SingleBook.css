@@ -93,7 +93,7 @@
   margin: 50px auto;
 }
 
-@media screen and (max-width: 449px) {
+@media screen and (max-width: 800px) {
   .single-book-card {
     width: 86vw;
     height: fit-content;
@@ -111,7 +111,7 @@
     text-align: center;
   }
   .book-image {
-    width: 10%;
+    width: 100%;
     object-fit: cover;
     min-width: 60%;
     padding: 0;
