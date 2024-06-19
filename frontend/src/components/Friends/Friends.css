@@ -68,24 +68,20 @@ th:nth-child(2), td:nth-child(2) {
     font-size: 0.7rem;
     margin: auto;
     border-radius: 5px;
-
   }
   thead,
   th,
   td {
     border: 1px solid #2e294e;
     background-color: #ed9c36;
-    padding: 2px 4px;
+    padding: 3px 2px;
     border-radius: 5px;
   }
 
-  .friends-page {
-    width: 80vw;
-  }
   .friend-prog {
     margin-left: 10px;
     font-size: medium;
-    width: 20vw;
+    width: 40vw;
   }
   .book-t-f {
     padding-bottom: 5px;
@@ -94,5 +90,12 @@ th:nth-child(2), td:nth-child(2) {
   .friends-page h1 {
     text-align: justify;
     margin: 10px;
+  }
+  .friend-book-prog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
   }
 }

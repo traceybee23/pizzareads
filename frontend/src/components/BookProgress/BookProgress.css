@@ -61,7 +61,7 @@
 
 .progress-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   font-size: 15px;
   padding-bottom: 5px;
 
