@@ -69,9 +69,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div>
+      
         <img className='menu' onClick={toggleMenu} src='../../profile.png' />
-      </div>
+
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <div className='user-menu'>

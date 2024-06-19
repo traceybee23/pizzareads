@@ -23,3 +23,7 @@ span.delete-text {
   padding: 0;
 
 }
+
+.confirm-delete-modal {
+  width: 80vw;
+}

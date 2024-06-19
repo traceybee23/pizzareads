@@ -10,7 +10,7 @@
   align-self: center;
   flex-direction: column;
   background-color: #ffffff;
-  width: 300px;
+  width: 70vw;
   height: 150px;
   background-color: #f8f9fa;
   border-radius: 15px;
@@ -26,8 +26,8 @@
   align-self: center;
   flex-direction: column;
   background-color: #ffffff;
-  width: 370px;
-  height: 210px;
+  width: 70vw;
+  height: 230px;
   background-color: #f8f9fa;
   border-radius: 15px;
   position: relative;
@@ -147,6 +147,7 @@ span.coupon-code {
   border-radius: 5px;
   padding: 10px;
   box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  width: 70vw;
 }
 
 .read-more {
@@ -165,4 +166,8 @@ span.coupon-code {
 
 .friends-page {
   height: 100vh;
+}
+
+@media (max-width: 550px) {
+
 }
