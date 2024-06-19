@@ -69,7 +69,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      
+
         <img className='menu' onClick={toggleMenu} src='../../profile.png' />
 
       <div className={ulClassName} ref={ulRef}>
@@ -95,12 +95,6 @@ function ProfileButton({ user }) {
               onClick={navFriends}
             >
               friends
-            </li>
-            <li
-              className='friendsLink'
-              onClick={() => window.alert("Feature Coming Soon...")}
-            >
-              shop
             </li>
             <li>
               <button className='logout-button' onClick={logout}>Log Out</button>
