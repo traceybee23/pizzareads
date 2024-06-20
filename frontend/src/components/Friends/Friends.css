@@ -12,7 +12,7 @@ table {
   letter-spacing: 1px;
   width: 80vw;
   margin: auto;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 caption {
@@ -27,7 +27,7 @@ td {
   border: 1px solid #2e294e;
   background-color: #ed9c36;
   padding: 8px 10px;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 td:last-of-type {
