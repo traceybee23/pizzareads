@@ -49,7 +49,6 @@
 .reviewTextArea {
   width: 100%;
   font-size: large;
-  width: 25vw;
 }
 
 .reviewTextArea:focus {
