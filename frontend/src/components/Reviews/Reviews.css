@@ -49,13 +49,13 @@
 .reviewTextArea {
   width: 100%;
   font-size: large;
-  width: 30vw;
+  width: 25vw;
 }
 
 .reviewTextArea:focus {
   outline: none;
   box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-  
+
 }
 
 .rating-input {
