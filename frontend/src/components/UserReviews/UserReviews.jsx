@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserReviews } from "../../store/reviews";
 import { useNavigate } from 'react-router-dom'
@@ -13,8 +13,13 @@ const UserReviews = () => {
 
   const userReviews = Object.values(useSelector(state => state.reviews))
 
+  const [load, setLoad] = useState(true)
+
   useEffect(() => {
-    dispatch(fetchUserReviews());
+    setLoad(true);
+    dispatch(fetchUserReviews()).then(() => setTimeout(() => {
+      setLoad(false);
+    }, 500));
   }, [dispatch]);
 
   const getDate = (date) => {
@@ -28,7 +33,12 @@ const UserReviews = () => {
   return (
     <div className="user-reviews-container">
       <h1 className="heading">reviews</h1>
-      {userReviews && userReviews.map(review => (
+      {load ? (
+        <div className='single-book-loader'>
+          <div className="loader"></div>
+        </div>
+      ) : (
+      userReviews && userReviews.map(review => (
         <div className="user-review-cards" key={review.id}>
           <img className="review-img" onClick={()=> navigate(`/books/${review.bookId}`)} src={review.coverImageUrl} />
           <div className="review-content">
@@ -50,7 +60,7 @@ const UserReviews = () => {
             <span className="deleteReviewButton"><UpdateReviewButton reviewId={review.id} bookId={review.bookId} /></span>
           </span>
         </div>
-      ))}
+      )))}
     </div>
   )
 }
