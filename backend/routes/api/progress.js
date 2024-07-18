@@ -157,7 +157,7 @@ router.delete('/:progressId', requireAuth, async (req, res, next) => {
   const { user } = req;
   const progressId = req.params.progressId;
 
-  try {
+  try {pin
     const progress = await BookProgress.findOne({
       where: {
         id: progressId
