@@ -8,13 +8,13 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const demoReviews = [
-  {
-    "userId": 1,
-    "bookId": "wrOQLV6xB-wC",
-    "coverImageUrl": "http://books.google.com/books/content?id=wrOQLV6xB-wC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72no3lnarBW49Y9ENVEoGcmKMxEz1t_75ubVueMYGoPUV4CHQPezvzUJvrGE4sXTL7JLYOh4cvSIWGecIfW7FhlGxvOOtap16-HNkOnOXLdGpSo45r1H6Cz-t9QZUMppcbKxo6p&source=gbs_api",
-    "review": "This was an awesome book! I loved it so much.",
-    "stars": 5
-  },
+  // {
+  //   "userId": 1,
+  //   "bookId": "wrOQLV6xB-wC",
+  //   "coverImageUrl": "http://books.google.com/books/content?id=wrOQLV6xB-wC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72no3lnarBW49Y9ENVEoGcmKMxEz1t_75ubVueMYGoPUV4CHQPezvzUJvrGE4sXTL7JLYOh4cvSIWGecIfW7FhlGxvOOtap16-HNkOnOXLdGpSo45r1H6Cz-t9QZUMppcbKxo6p&source=gbs_api",
+  //   "review": "This was an awesome book! I loved it so much.",
+  //   "stars": 5
+  // },
   {
     "userId": 2,
     "bookId": "wrOQLV6xB-wC",

@@ -8,19 +8,19 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const demoBookProgress = [
-  {
-    "userId": 1,
-    "bookId": "wrOQLV6xB-wC",
-    "pagesRead": 309,
-    "completed": true,
-    "title": "Harry Potter and the Sorcerer's Stone",
-    "author": "J.K. Rowling",
-    "genre": "General | Fantasy & Magic | Wizards & Witches | Boarding School & Prep School | Contemporary | Action & Adventure | School & Education",
-    "publicationDate": "2015-12-08",
-    "isbn": "1781100489, 9781781100486",
-    "coverImageUrl": "http://books.google.com/books/content?id=wrOQLV6xB-wC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72no3lnarBW49Y9ENVEoGcmKMxEz1t_75ubVueMYGoPUV4CHQPezvzUJvrGE4sXTL7JLYOh4cvSIWGecIfW7FhlGxvOOtap16-HNkOnOXLdGpSo45r1H6Cz-t9QZUMppcbKxo6p&source=gbs_api",
-    "totalPages": 309
-  },
+  // {
+  //   "userId": 1,
+  //   "bookId": "wrOQLV6xB-wC",
+  //   "pagesRead": 309,
+  //   "completed": true,
+  //   "title": "Harry Potter and the Sorcerer's Stone",
+  //   "author": "J.K. Rowling",
+  //   "genre": "General | Fantasy & Magic | Wizards & Witches | Boarding School & Prep School | Contemporary | Action & Adventure | School & Education",
+  //   "publicationDate": "2015-12-08",
+  //   "isbn": "1781100489, 9781781100486",
+  //   "coverImageUrl": "http://books.google.com/books/content?id=wrOQLV6xB-wC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72no3lnarBW49Y9ENVEoGcmKMxEz1t_75ubVueMYGoPUV4CHQPezvzUJvrGE4sXTL7JLYOh4cvSIWGecIfW7FhlGxvOOtap16-HNkOnOXLdGpSo45r1H6Cz-t9QZUMppcbKxo6p&source=gbs_api",
+  //   "totalPages": 309
+  // },
   {
     "userId": 1,
     "bookId": "5iTebBW-w7QC",

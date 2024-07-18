@@ -132,32 +132,19 @@ router.put('/:progressId', requireAuth, async (req, res, next) => {
     }
 
     const totalPages = progress.totalPages;
-
     if (!totalPages || pagesRead > totalPages || !pagesRead) {
       return res.status(400).json({
         message: "Pages read invalid"
       });
     }
-
     if (pagesRead === totalPages) {
       progress.set({ pagesRead, completed: true });
       await progress.save();
-
-      // // Check for milestone increment
-      // const completedBooks = await BookProgress.count({
-      //   where: { userId: user.id, completed: true }
-      // });
-
-      // if (completedBooks % 6 === 0) {
-      //   user.milestone += 1;
-      //   await user.save();
-      // }
 
     } else {
       progress.set({ pagesRead });
       await progress.save();
     }
-
     return res.status(200).json(progress);
   } catch (error) {
     error.message = "Bad Request";
@@ -170,7 +157,7 @@ router.delete('/:progressId', requireAuth, async (req, res, next) => {
   const { user } = req;
   const progressId = req.params.progressId;
 
-  try {
+  try {pin
     const progress = await BookProgress.findOne({
       where: {
         id: progressId
