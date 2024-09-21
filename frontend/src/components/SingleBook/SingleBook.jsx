@@ -12,15 +12,19 @@ import { fetchReviews } from "../../store/reviews";
 
 const generateGoogleCalendarLink = (bookTitle, releaseDate) => {
   const eventTitle = encodeURIComponent(`${bookTitle} Release Date`);
-  const eventDetails = encodeURIComponent(
-    `Don't miss the release of ${bookTitle}!`
-  );
-  const startDate = new Date(releaseDate)
-    .toISOString()
-    .replace(/-|:|\.\d\d\d/g, "");
-  const endDate = new Date(new Date(releaseDate).getTime() + 60 * 60 * 1000)
-    .toISOString()
-    .replace(/-|:|\.\d\d\d/g, ""); // Add 1 hour to release date
+  const eventDetails = encodeURIComponent(`Don't miss the release of ${bookTitle}!`);
+
+  // Format the releaseDate as YYYYMMDD (all-day event)
+  const formatDateForCalendar = (date) => {
+    const eventDate = new Date(date);
+    const year = eventDate.getUTCFullYear();
+    const month = (eventDate.getUTCMonth() + 1).toString().padStart(2, "0");
+    const day = eventDate.getUTCDate().toString().padStart(2, "0");
+    return `${year}${month}${day}`;
+  };
+
+  const startDate = formatDateForCalendar(releaseDate);
+  const endDate = formatDateForCalendar(releaseDate); // All-day event, same start and end date
 
   const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${startDate}/${endDate}&details=${eventDetails}`;
 
