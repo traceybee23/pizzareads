@@ -59,8 +59,10 @@ router.get('/google/:query', async (req, res, next) => {
       const hasPageCount = volumeInfo.pageCount;
       const isDuplicate = seenIds.has(item.id);
       const hasMoreThan100Pages = volumeInfo.pageCount && volumeInfo.pageCount > 100;
+      const isFutureRelease = volumeInfo.publishedDate && new Date(volumeInfo.publishedDate) > new Date();
 
-      if (hasPageCount && !isDuplicate && hasMoreThan100Pages) {
+      // Allow future release books even if page count is 0
+      if ((hasPageCount && hasMoreThan100Pages || isFutureRelease) && !isDuplicate) {
         seenIds.add(item.id);
         return true;
       }
