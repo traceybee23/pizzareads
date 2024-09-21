@@ -184,7 +184,7 @@ const SingleBook = () => {
                   <Reviews bookId={bookId} />
                 </span>
               ) : isFutureRelease ? (
-                <span>this book hasn't been released yet!</span>
+                <span>this book has not been released yet!</span>
               ) : (
                 <div className="bethefirst">Be the first to write a review</div>
               )}
