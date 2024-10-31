@@ -79,6 +79,7 @@ const SingleBook = () => {
       )
     : null;
 
+    
   return (
     <div className="single-book-page">
       {load ? (

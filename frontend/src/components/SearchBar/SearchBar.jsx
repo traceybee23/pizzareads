@@ -37,7 +37,7 @@ const SearchBar = () => {
         type="text"
         value={query}
         onChange={handleInputChange}
-        placeholder="what are you reading?"
+        placeholder="search books..."
       />
       <button onClick={handleSearch} type="submit"><IoSearchOutline /></button>
     </form>
