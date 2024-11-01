@@ -11,8 +11,16 @@
   padding: 20px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  width: 60vw;
+  width: 63vw;
   justify-content: space-between;
+  margin: 10px;
+}
+
+.review-content-user {
+  text-align: left;
+  padding: 10px 15px;
+  font-size: medium;
+  width: fit-content;
 }
 
 .stars-in-card {

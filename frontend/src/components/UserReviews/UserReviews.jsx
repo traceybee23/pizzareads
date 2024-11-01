@@ -41,7 +41,7 @@ const UserReviews = () => {
       userReviews && userReviews.map(review => (
         <div className="user-review-cards" key={review.id}>
           <img className="review-img" onClick={()=> navigate(`/books/${review.bookId}`)} src={review.coverImageUrl} />
-          <div className="review-content">
+          <div className="review-content-user">
             <div className="stars-in-card">
               {review.stars}&nbsp;&nbsp;<FaStar />
             </div>
